@@ -1,0 +1,53 @@
+{
+  "repo": "netty/netty",
+  "owner": "netty",
+  "name": "netty",
+  "package_managers": [
+    "maven"
+  ],
+  "languages": [
+    "Java",
+    "C",
+    "HTML",
+    "Shell",
+    "JavaScript",
+    "Dockerfile",
+    "Makefile",
+    "Groovy",
+    "Ruby",
+    "CSS"
+  ],
+  "vulnerabilities": {
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "findings": [],
+    "scan_error": "Trivy error: 2026-08-14T14:46:54+01:00\tFATAL\tError\tremote Maven repository returned 429 Too Many Requests for https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom. Retry-After: 580.\n"
+  },
+  "bots": {
+    "bots_found": [
+      "netty-project-bot"
+    ],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 661,
+    "open_prs": 80,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 32,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 30,
+    "total_recent_prs_checked": 49,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715220.2702544
+}

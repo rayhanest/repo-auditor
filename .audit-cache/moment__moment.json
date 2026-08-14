@@ -1,0 +1,45 @@
+{
+  "repo": "moment/moment",
+  "owner": "moment",
+  "name": "moment",
+  "package_managers": [
+    "composer",
+    "npm"
+  ],
+  "languages": [
+    "JavaScript",
+    "TypeScript",
+    "Shell"
+  ],
+  "vulnerabilities": {
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "findings": [],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 214,
+    "open_prs": 45,
+    "commits_last_90_days": 23,
+    "contributors_last_90_days": 11,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "moderate"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 22,
+    "total_recent_prs_checked": 37,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715635.946703
+}

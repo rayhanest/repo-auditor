@@ -1,0 +1,2 @@
+# repo-auditor dependencies
+# No external packages needed — uses only stdlib + system tools (git, trivy, gh)

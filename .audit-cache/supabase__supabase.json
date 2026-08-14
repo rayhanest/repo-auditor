@@ -1,0 +1,905 @@
+{
+  "repo": "supabase/supabase",
+  "owner": "supabase",
+  "name": "supabase",
+  "package_managers": [
+    "gradle",
+    "pnpm"
+  ],
+  "languages": [
+    "TypeScript",
+    "MDX",
+    "JavaScript",
+    "CSS",
+    "Shell",
+    "Vue",
+    "PLpgSQL",
+    "Makefile",
+    "Dockerfile",
+    "Smarty",
+    "Mermaid",
+    "Elixir",
+    "HTML"
+  ],
+  "vulnerabilities": {
+    "total": 94,
+    "critical": 2,
+    "high": 43,
+    "medium": 41,
+    "low": 8,
+    "findings": [
+      {
+        "id": "CVE-2025-66034",
+        "package": "fonttools",
+        "installed_version": "4.53.1",
+        "fixed_version": "4.60.2",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "fonttools: fontTools: Arbitrary file write leading to remote code execution via malicious .designspace file"
+      },
+      {
+        "id": "CVE-2026-25990",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.1.1",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "pillow: Pillow: Out-of-bounds Write via Specially Crafted PSD Image"
+      },
+      {
+        "id": "CVE-2026-40192",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.2.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via decompression bomb in FITS image processing"
+      },
+      {
+        "id": "CVE-2026-42311",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.2.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: python-pillow: Pillow: Arbitrary code execution via malicious PSD file processing"
+      },
+      {
+        "id": "CVE-2026-54058",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Memory disclosure or denial of service via crafted McIdas AREA image"
+      },
+      {
+        "id": "CVE-2026-54059",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted PCF font data"
+      },
+      {
+        "id": "CVE-2026-54060",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via excessive memory allocation when processing font files"
+      },
+      {
+        "id": "CVE-2026-55379",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted BDF font file"
+      },
+      {
+        "id": "CVE-2026-55380",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted GD 2.x image file"
+      },
+      {
+        "id": "CVE-2026-59197",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Native heap out-of-bounds write"
+      },
+      {
+        "id": "CVE-2026-59199",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via out-of-bounds write in image processing"
+      },
+      {
+        "id": "CVE-2026-59200",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of service via crafted PDF stream"
+      },
+      {
+        "id": "CVE-2026-59204",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via crafted JPEG2000 image"
+      },
+      {
+        "id": "CVE-2026-59205",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Controlled native heap corruption in ImageCms.ImageCmsTransform.apply API"
+      },
+      {
+        "id": "CVE-2026-42308",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.2.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: python: Pillow: Denial of Service via integer overflow in font processing"
+      },
+      {
+        "id": "CVE-2026-42310",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.2.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via malicious PDF processing"
+      },
+      {
+        "id": "CVE-2026-55798",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Arbitrary command injection via shell metacharacters in file paths"
+      },
+      {
+        "id": "CVE-2026-59198",
+        "package": "pillow",
+        "installed_version": "10.4.0",
+        "fixed_version": "12.3.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "Pillow: Pillow: Information disclosure via TGA RLE encoder out-of-bounds read"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      },
+      {
+        "id": "CVE-2025-50182",
+        "package": "urllib3",
+        "installed_version": "2.2.2",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/aws_bedrock_image_search/poetry.lock",
+        "title": "urllib3: urllib3 does not control redirects in browsers and Node.js"
+      },
+      {
+        "id": "CVE-2024-39689",
+        "package": "certifi",
+        "installed_version": "2023.7.22",
+        "fixed_version": "2024.7.4",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-certifi: Remove root certificates from `GLOBALTRUST` from the root store"
+      },
+      {
+        "id": "CVE-2025-68146",
+        "package": "filelock",
+        "installed_version": "3.12.0",
+        "fixed_version": "3.20.1",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "filelock: filelock: Time-of-Check-Time-of-Use (TOCTOU) race condition and symlink attack allows arbitrary file corruption or truncation"
+      },
+      {
+        "id": "CVE-2026-22701",
+        "package": "filelock",
+        "installed_version": "3.12.0",
+        "fixed_version": "3.20.3",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "filelock: filelock Time-of-Check-Time-of-Use (TOCTOU) in SoftFileLock"
+      },
+      {
+        "id": "CVE-2023-45139",
+        "package": "fonttools",
+        "installed_version": "4.39.4",
+        "fixed_version": "4.43.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "fonttools: XML External Entity Injection (XXE) Vulnerability"
+      },
+      {
+        "id": "CVE-2025-66034",
+        "package": "fonttools",
+        "installed_version": "4.39.4",
+        "fixed_version": "4.60.2",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "fonttools: fontTools: Arbitrary file write leading to remote code execution via malicious .designspace file"
+      },
+      {
+        "id": "CVE-2024-3651",
+        "package": "idna",
+        "installed_version": "3.4",
+        "fixed_version": "3.7",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-idna: potential DoS via resource consumption via specially crafted inputs to idna.encode()"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "3.4",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2024-22195",
+        "package": "jinja2",
+        "installed_version": "3.1.2",
+        "fixed_version": "3.1.3",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "jinja2: HTML attribute injection when passing user input as keys to xmlattr filter"
+      },
+      {
+        "id": "CVE-2024-34064",
+        "package": "jinja2",
+        "installed_version": "3.1.2",
+        "fixed_version": "3.1.4",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "jinja2: accepts keys containing non-attribute characters"
+      },
+      {
+        "id": "CVE-2024-56201",
+        "package": "jinja2",
+        "installed_version": "3.1.2",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "jinja2: Jinja has a sandbox breakout through malicious filenames"
+      },
+      {
+        "id": "CVE-2024-56326",
+        "package": "jinja2",
+        "installed_version": "3.1.2",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "jinja2: Jinja has a sandbox breakout through indirect reference to format method"
+      },
+      {
+        "id": "CVE-2025-27516",
+        "package": "jinja2",
+        "installed_version": "3.1.2",
+        "fixed_version": "3.1.6",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "jinja2: Jinja sandbox breakout through attr filter selecting format method"
+      },
+      {
+        "id": "CVE-2023-50447",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "10.2.0",
+        "severity": "CRITICAL",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "pillow: Arbitrary Code Execution via the environment parameter"
+      },
+      {
+        "id": "CVE-2023-44271",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "10.0.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: uncontrolled resource consumption when textlength in an ImageDraw instance operates on a long text argument"
+      },
+      {
+        "id": "CVE-2023-4863",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "10.0.1",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "libwebp: Heap buffer overflow in WebP Codec"
+      },
+      {
+        "id": "CVE-2024-28219",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "10.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: buffer overflow in _imagingcms.c"
+      },
+      {
+        "id": "CVE-2026-54058",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Memory disclosure or denial of service via crafted McIdas AREA image"
+      },
+      {
+        "id": "CVE-2026-54059",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted PCF font data"
+      },
+      {
+        "id": "CVE-2026-54060",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via excessive memory allocation when processing font files"
+      },
+      {
+        "id": "CVE-2026-55379",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted BDF font file"
+      },
+      {
+        "id": "CVE-2026-55380",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Denial of Service via crafted GD 2.x image file"
+      },
+      {
+        "id": "CVE-2026-59197",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Native heap out-of-bounds write"
+      },
+      {
+        "id": "CVE-2026-59199",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via out-of-bounds write in image processing"
+      },
+      {
+        "id": "CVE-2026-59200",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of service via crafted PDF stream"
+      },
+      {
+        "id": "CVE-2026-59204",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via crafted JPEG2000 image"
+      },
+      {
+        "id": "CVE-2026-59205",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Controlled native heap corruption in ImageCms.ImageCmsTransform.apply API"
+      },
+      {
+        "id": "CVE-2026-42308",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.2.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: python: Pillow: Denial of Service via integer overflow in font processing"
+      },
+      {
+        "id": "CVE-2026-42310",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.2.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Denial of Service via malicious PDF processing"
+      },
+      {
+        "id": "CVE-2026-55798",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-pillow: Pillow: Arbitrary command injection via shell metacharacters in file paths"
+      },
+      {
+        "id": "CVE-2026-59198",
+        "package": "pillow",
+        "installed_version": "9.5.0",
+        "fixed_version": "12.3.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pillow: Pillow: Information disclosure via TGA RLE encoder out-of-bounds read"
+      },
+      {
+        "id": "CVE-2024-35195",
+        "package": "requests",
+        "installed_version": "2.31.0",
+        "fixed_version": "2.32.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "requests: subsequent requests to the same host ignore cert verification"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.31.0",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.31.0",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2024-5206",
+        "package": "scikit-learn",
+        "installed_version": "1.2.2",
+        "fixed_version": "1.5.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "scikit-learn: Possible sensitive data leak"
+      },
+      {
+        "id": "CVE-2025-32434",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.6.0",
+        "severity": "CRITICAL",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "PyTorch is a Python package that provides tensor computation with stro ..."
+      },
+      {
+        "id": "CVE-2024-31580",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.2.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "PyTorch before v2.2.0 was discovered to contain a heap buffer overflow ..."
+      },
+      {
+        "id": "CVE-2024-31583",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.2.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "Pytorch before version v2.2.0 was discovered to contain a use-after-fr ..."
+      },
+      {
+        "id": "CVE-2025-2998",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "N/A",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability was found in PyTorch 2.6.0. It has been declared as cr ..."
+      },
+      {
+        "id": "CVE-2025-2999",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.9.1",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability was found in PyTorch 2.6.0. It has been rated as criti ..."
+      },
+      {
+        "id": "CVE-2025-3730",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.8.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability, which was classified as problematic, was found in PyT ..."
+      },
+      {
+        "id": "CVE-2025-2148",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "N/A",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability was found in PyTorch 2.6.0+cu124. It has been declared ..."
+      },
+      {
+        "id": "CVE-2025-2149",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "N/A",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability was found in PyTorch 2.6.0+cu124. It has been rated as ..."
+      },
+      {
+        "id": "CVE-2025-2953",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.7.1-rc1",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "torch: PyTorch torch.mkldnn_max_pool2d denial of service"
+      },
+      {
+        "id": "CVE-2025-3000",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.13.0",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability classified as critical has been found in PyTorch 2.6.0 ..."
+      },
+      {
+        "id": "CVE-2025-3001",
+        "package": "torch",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.10.0",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "A vulnerability classified as critical was found in PyTorch 2.6.0. Thi ..."
+      },
+      {
+        "id": "CVE-2024-34062",
+        "package": "tqdm",
+        "installed_version": "4.65.0",
+        "fixed_version": "4.66.3",
+        "severity": "LOW",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-tqdm: non-boolean CLI arguments may lead to local code execution"
+      },
+      {
+        "id": "CVE-2026-4372",
+        "package": "transformers",
+        "installed_version": "4.53.0",
+        "fixed_version": "5.3.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "HuggingFace transformers vulnerable to remote code execution"
+      },
+      {
+        "id": "CVE-2026-5241",
+        "package": "transformers",
+        "installed_version": "4.53.0",
+        "fixed_version": "5.5.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-transformers: python-transformers: Arbitrary code execution due to overridden trust_remote_code setting"
+      },
+      {
+        "id": "CVE-2026-1839",
+        "package": "transformers",
+        "installed_version": "4.53.0",
+        "fixed_version": "5.0.0rc3",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "transformers: HuggingFace Transformers: Arbitrary code execution via malicious checkpoint file"
+      },
+      {
+        "id": "CVE-2023-43804",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.0.6, 1.26.17",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2023-45803",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.0.7, 1.26.18",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: Request body not stripped after redirect from 303 status changes request method to GET"
+      },
+      {
+        "id": "CVE-2024-37891",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "1.26.19, 2.2.2",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: proxy-authorization request header is not stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "2.0.2",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "examples/ai/image_search/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      },
+      {
+        "id": "CVE-2026-54285",
+        "package": "@opentelemetry/core",
+        "installed_version": "1.24.1",
+        "fixed_version": "2.8.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "@opentelemetry/core: opentelemetry-js: @opentelemetry/core: Denial of Service via oversized baggage HTTP headers"
+      },
+      {
+        "id": "CVE-2026-54285",
+        "package": "@opentelemetry/core",
+        "installed_version": "1.30.1",
+        "fixed_version": "2.8.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "@opentelemetry/core: opentelemetry-js: @opentelemetry/core: Denial of Service via oversized baggage HTTP headers"
+      },
+      {
+        "id": "CVE-2026-59892",
+        "package": "@opentelemetry/propagator-jaeger",
+        "installed_version": "1.24.1",
+        "fixed_version": "2.9.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "@opentelemetry/propagator-jaeger: OpenTelemetry JavaScript: Denial of Service via malformed HTTP header decoding"
+      },
+      {
+        "id": "CVE-2026-69192",
+        "package": "ip-address",
+        "installed_version": "10.2.0",
+        "fixed_version": "10.3.1",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "ip-address: ip-address: Inconsistent IP address parsing leads to Server-Side Request Forgery (SSRF) and trust-boundary bypass"
+      },
+      {
+        "id": "CVE-2026-54272",
+        "package": "ip-address",
+        "installed_version": "10.2.0",
+        "fixed_version": "10.2.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "ip-address: ip-address: Server-Side Request Forgery via IPv4-mapped/NAT64 IPv6 address misclassification"
+      },
+      {
+        "id": "CVE-2026-69198",
+        "package": "ip-address",
+        "installed_version": "10.2.0",
+        "fixed_version": "10.2.2",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "ip-address: ip-address: Server-Side Request Forgery (SSRF) and trust-boundary bypass"
+      },
+      {
+        "id": "CVE-2026-50159",
+        "package": "mermaid",
+        "installed_version": "11.15.0",
+        "fixed_version": "11.16.1, 10.9.8",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "mermaid: Mermaid: CSS injection allows altering page elements via diagram input"
+      },
+      {
+        "id": "CVE-2026-71436",
+        "package": "mermaid",
+        "installed_version": "11.15.0",
+        "fixed_version": "10.9.8, 11.16.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "mermaid: Mermaid XY Charts: Denial of Service via invalid X-Axis parameters"
+      },
+      {
+        "id": "CVE-2026-71437",
+        "package": "mermaid",
+        "installed_version": "11.15.0",
+        "fixed_version": "11.16.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "mermaid: Mermaid: Prototype pollution vulnerability allows potential arbitrary code execution"
+      },
+      {
+        "id": "CVE-2026-71439",
+        "package": "mermaid",
+        "installed_version": "11.15.0",
+        "fixed_version": "11.16.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "mermaid: Mermaid: Denial of Service via Radar Diagrams 'ticks' parameter"
+      },
+      {
+        "id": "CVE-2026-71438",
+        "package": "mermaid",
+        "installed_version": "11.15.0",
+        "fixed_version": "11.16.1, 10.9.8",
+        "severity": "LOW",
+        "target": "pnpm-lock.yaml",
+        "title": "mermaid: Mermaid: Prototype pollution vulnerability via configuration APIs"
+      },
+      {
+        "id": "CVE-2026-69153",
+        "package": "postcss",
+        "installed_version": "8.5.22",
+        "fixed_version": "8.5.23",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "postcss: PostCSS: Information disclosure via crafted sourceMappingURL"
+      },
+      {
+        "id": "GHSA-f88m-g3jw-g9cj",
+        "package": "sharp",
+        "installed_version": "0.34.5",
+        "fixed_version": "0.35.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "sharp inherited vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "claude[bot]",
+      "supabase-supabase-autofixer[bot]"
+    ],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 1268,
+    "open_prs": 999,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 38,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 30,
+    "total_recent_prs_checked": 47,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715173.4942825
+}

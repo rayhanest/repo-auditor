@@ -1,0 +1,314 @@
+{
+  "repo": "argoproj/argo-cd",
+  "owner": "argoproj",
+  "name": "argo-cd",
+  "package_managers": [
+    "go modules",
+    "pip",
+    "pnpm"
+  ],
+  "languages": [
+    "Go",
+    "TypeScript",
+    "Lua",
+    "SCSS",
+    "Shell",
+    "Makefile",
+    "Dockerfile",
+    "Procfile",
+    "JavaScript",
+    "Starlark",
+    "CSS",
+    "Mustache",
+    "HTML"
+  ],
+  "vulnerabilities": {
+    "total": 28,
+    "critical": 0,
+    "high": 14,
+    "medium": 10,
+    "low": 4,
+    "findings": [
+      {
+        "id": "CVE-2026-46600",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.55.0",
+        "fixed_version": "0.56.0",
+        "severity": "HIGH",
+        "target": "gitops-engine/go.mod",
+        "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing"
+      },
+      {
+        "id": "CVE-2026-56852",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.37.0",
+        "fixed_version": "0.39.0",
+        "severity": "HIGH",
+        "target": "gitops-engine/go.mod",
+        "title": "golang.org/x/text: golang.org/x/text: Denial of Service via invalid UTF-8 input"
+      },
+      {
+        "id": "CVE-2026-71556",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.19.1",
+        "fixed_version": "5.19.2",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "CVE-2026-71557",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.19.1",
+        "fixed_version": "5.19.2",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "CVE-2026-13149",
+        "package": "brace-expansion",
+        "installed_version": "1.1.14",
+        "fixed_version": "5.0.7, 1.1.16, 2.1.2",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity"
+      },
+      {
+        "id": "CVE-2026-14257",
+        "package": "brace-expansion",
+        "installed_version": "1.1.14",
+        "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function"
+      },
+      {
+        "id": "CVE-2026-69152",
+        "package": "brace-expansion",
+        "installed_version": "1.1.14",
+        "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "id": "CVE-2026-13149",
+        "package": "brace-expansion",
+        "installed_version": "2.1.0",
+        "fixed_version": "5.0.7, 1.1.16, 2.1.2",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity"
+      },
+      {
+        "id": "CVE-2026-14257",
+        "package": "brace-expansion",
+        "installed_version": "2.1.0",
+        "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function"
+      },
+      {
+        "id": "CVE-2026-69152",
+        "package": "brace-expansion",
+        "installed_version": "2.1.0",
+        "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "id": "CVE-2026-49458",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.6",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "dompurify: DOMPurify: Cross-site scripting due to improper sanitization of DOM nodes"
+      },
+      {
+        "id": "CVE-2026-49459",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.6",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "dompurify: DOMPurify: Cross-site scripting bypass allows arbitrary script execution"
+      },
+      {
+        "id": "CVE-2026-49978",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.7",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "dompurify: DOMPurify: Cross-site scripting vulnerability allows code execution"
+      },
+      {
+        "id": "CVE-2026-65898",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.11",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify before 3.4.11 fails to clone the ALLOWED_ATTR allowlist when ..."
+      },
+      {
+        "id": "CVE-2026-65902",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.7",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify before 3.4.7 (affected versions <= 3.4.5) passes direct refe ..."
+      },
+      {
+        "id": "GHSA-55q2-fjhq-7xh7",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.13",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify: IN_PLACE hook removal leaves a detached subtree executable, causing XSS"
+      },
+      {
+        "id": "CVE-2026-65899",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.9",
+        "severity": "LOW",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify 3.0.0 before 3.4.9 does not reset the retained Trusted Types ..."
+      },
+      {
+        "id": "CVE-2026-65900",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.8",
+        "severity": "LOW",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "dompurify: DOMPurify: Template expression injection allows information disclosure"
+      },
+      {
+        "id": "CVE-2026-65901",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "N/A",
+        "severity": "LOW",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify through 3.4.6 contains a cross-site scripting vulnerability  ..."
+      },
+      {
+        "id": "GHSA-c2j3-45gr-mqc4",
+        "package": "dompurify",
+        "installed_version": "3.4.0",
+        "fixed_version": "3.4.12",
+        "severity": "LOW",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "DOMPurify: `CUSTOM_ELEMENT_HANDLING` bypasses `afterSanitizeElements` for allowed custom elements."
+      },
+      {
+        "id": "GHSA-67mh-4wv8-2f99",
+        "package": "esbuild",
+        "installed_version": "0.18.20",
+        "fixed_version": "0.25.0",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "esbuild enables any website to send any requests to the development server and read the response"
+      },
+      {
+        "id": "CVE-2026-12143",
+        "package": "form-data",
+        "installed_version": "4.0.5",
+        "fixed_version": "2.5.6, 3.0.5, 4.0.6",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "form-data: form-data: Form field override via CRLF injection"
+      },
+      {
+        "id": "CVE-2026-59869",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "3.15.0, 4.3.0",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML documents"
+      },
+      {
+        "id": "GHSA-5p4m-2wfm-xmqj",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "4.3.1, 3.15.1",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "id": "CVE-2026-53550",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "4.2.0, 3.15.0",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML merge keys"
+      },
+      {
+        "id": "CVE-2026-48801",
+        "package": "linkify-it",
+        "installed_version": "3.0.3",
+        "fixed_version": "5.0.1",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "linkify-it: linkify-it: Denial of Service via algorithmic complexity vulnerability"
+      },
+      {
+        "id": "CVE-2026-59887",
+        "package": "linkify-it",
+        "installed_version": "3.0.3",
+        "fixed_version": "5.0.2",
+        "severity": "HIGH",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "linkify-it: Quadratic-complexity DoS via the `mailto:` validator scan-loop on attacker text"
+      },
+      {
+        "id": "CVE-2026-41907",
+        "package": "uuid",
+        "installed_version": "9.0.1",
+        "fixed_version": "11.1.1, 12.0.1, 13.0.1",
+        "severity": "MEDIUM",
+        "target": "ui/pnpm-lock.yaml",
+        "title": "uuid: uuid: Out-of-bounds write vulnerability impacts data integrity and confidentiality"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "argo-cd-cherry-pick-bot[bot]",
+      "argoproj-renovate[bot]",
+      "dependabot[bot]",
+      "github-actions[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 4361,
+    "open_prs": 859,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 31,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 37,
+    "total_recent_prs_checked": 44,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715344.7732868
+}

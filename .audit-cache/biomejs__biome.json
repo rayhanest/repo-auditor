@@ -1,0 +1,211 @@
+{
+  "repo": "biomejs/biome",
+  "owner": "biomejs",
+  "name": "biome",
+  "package_managers": [
+    "cargo",
+    "pnpm"
+  ],
+  "languages": [
+    "Rust",
+    "JavaScript",
+    "TypeScript",
+    "CSS",
+    "SCSS",
+    "Vue",
+    "HTML",
+    "Svelte",
+    "Astro",
+    "Just",
+    "Shell",
+    "RenderScript"
+  ],
+  "vulnerabilities": {
+    "total": 17,
+    "critical": 1,
+    "high": 4,
+    "medium": 10,
+    "low": 2,
+    "findings": [
+      {
+        "id": "GHSA-cq8v-f236-94qc",
+        "package": "rand",
+        "installed_version": "0.8.5",
+        "fixed_version": "0.9.3, 0.10.1, 0.8.6",
+        "severity": "LOW",
+        "target": "Cargo.lock",
+        "title": "Rand is unsound with a custom logger using rand::rng()"
+      },
+      {
+        "id": "CVE-2026-42570",
+        "package": "devalue",
+        "installed_version": "5.6.4",
+        "fixed_version": "5.8.1",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "devalue: devalue: Excessive memory consumption via deserialization of sparse arrays"
+      },
+      {
+        "id": "CVE-2026-24001",
+        "package": "diff",
+        "installed_version": "8.0.2",
+        "fixed_version": "8.0.3, 5.2.2, 4.0.4, 3.5.1",
+        "severity": "LOW",
+        "target": "pnpm-lock.yaml",
+        "title": "jsdiff: denial of service vulnerability in parsePatch and applyPatch"
+      },
+      {
+        "id": "CVE-2026-31808",
+        "package": "file-type",
+        "installed_version": "16.5.4",
+        "fixed_version": "21.3.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "file-type: file-type: Denial of Service due to infinite loop in ASF file parsing"
+      },
+      {
+        "id": "CVE-2026-9277",
+        "package": "shell-quote",
+        "installed_version": "1.8.3",
+        "fixed_version": "1.8.4",
+        "severity": "CRITICAL",
+        "target": "pnpm-lock.yaml",
+        "title": "shell-quote: shell-quote: Arbitrary code execution via command injection due to unescaped line terminators"
+      },
+      {
+        "id": "CVE-2026-13311",
+        "package": "shell-quote",
+        "installed_version": "1.8.3",
+        "fixed_version": "1.9.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "shell-quote: shell-quote/parse: shell-quote: Denial of Service due to inefficient input parsing"
+      },
+      {
+        "id": "CVE-2026-27119",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte affected by XSS in SSR `<option>` element"
+      },
+      {
+        "id": "CVE-2026-27121",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte affected by cross-site scripting via spread attributes in Svelte SSR"
+      },
+      {
+        "id": "CVE-2026-27122",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte SSR does not validate dynamic element tag names in `<svelte:element>`"
+      },
+      {
+        "id": "CVE-2026-27125",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte SSR attribute spreading includes inherited properties from prototype chain"
+      },
+      {
+        "id": "CVE-2026-27901",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.53.5",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte: Cross-Site Scripting and HTML injection via improper escaping of bind:innerText and bind:textContent"
+      },
+      {
+        "id": "CVE-2026-42573",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.55.7",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte: Cross-Site Scripting via DOM Clobbering"
+      },
+      {
+        "id": "CVE-2026-42599",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.55.7",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "svelte: Svelte: Cross-Site Scripting via untrusted data in spread attributes"
+      },
+      {
+        "id": "GHSA-f3cj-j4f6-wq85",
+        "package": "svelte",
+        "installed_version": "5.46.4",
+        "fixed_version": "5.55.7",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "Svelte: SSR XSS via Insecure Promise Serialization in hydratable"
+      },
+      {
+        "id": "CVE-2026-48779",
+        "package": "ws",
+        "installed_version": "7.5.10",
+        "fixed_version": "5.2.5, 6.2.4, 7.5.11, 8.21.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments"
+      },
+      {
+        "id": "CVE-2026-48779",
+        "package": "ws",
+        "installed_version": "8.20.0",
+        "fixed_version": "5.2.5, 6.2.4, 7.5.11, 8.21.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments"
+      },
+      {
+        "id": "CVE-2026-45736",
+        "package": "ws",
+        "installed_version": "8.20.0",
+        "fixed_version": "8.20.1",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "ws: ws: Uninitialized memory disclosure via `websocket.close()` with `TypedArray`"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "github-actions[bot]",
+      "renovate[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 521,
+    "open_prs": 123,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 18,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 27,
+    "total_recent_prs_checked": 41,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715323.0014083
+}

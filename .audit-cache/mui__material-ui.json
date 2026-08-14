@@ -1,0 +1,212 @@
+{
+  "repo": "mui/material-ui",
+  "owner": "mui",
+  "name": "material-ui",
+  "package_managers": [
+    "pnpm"
+  ],
+  "languages": [
+    "JavaScript",
+    "TypeScript",
+    "CSS",
+    "HTML"
+  ],
+  "vulnerabilities": {
+    "total": 18,
+    "critical": 1,
+    "high": 9,
+    "medium": 7,
+    "low": 1,
+    "findings": [
+      {
+        "id": "CVE-2026-73653",
+        "package": "@vitest/browser",
+        "installed_version": "4.1.8",
+        "fixed_version": "4.1.10, 3.2.7, 5.0.0-beta.6",
+        "severity": "CRITICAL",
+        "target": "pnpm-lock.yaml",
+        "title": "@vitest/browser: Browser Mode provider commands bypass the file-access permission gate"
+      },
+      {
+        "id": "CVE-2026-12590",
+        "package": "body-parser",
+        "installed_version": "2.2.2",
+        "fixed_version": "1.20.6, 2.3.0",
+        "severity": "LOW",
+        "target": "pnpm-lock.yaml",
+        "title": "body-parser: body-parser: Denial of Service via invalid limit option"
+      },
+      {
+        "id": "CVE-2026-13149",
+        "package": "brace-expansion",
+        "installed_version": "2.1.1",
+        "fixed_version": "5.0.7, 1.1.16, 2.1.2",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity"
+      },
+      {
+        "id": "CVE-2026-14257",
+        "package": "brace-expansion",
+        "installed_version": "2.1.1",
+        "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function"
+      },
+      {
+        "id": "CVE-2026-69152",
+        "package": "brace-expansion",
+        "installed_version": "2.1.1",
+        "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "id": "GHSA-5p4m-2wfm-xmqj",
+        "package": "js-yaml",
+        "installed_version": "4.3.0",
+        "fixed_version": "4.3.1, 3.15.1",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "id": "CVE-2026-67213",
+        "package": "nanoid",
+        "installed_version": "3.3.16",
+        "fixed_version": "3.3.18, 5.1.6",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "nanoid: nanoid: Denial of Service via infinite loop in random ID generation"
+      },
+      {
+        "id": "CVE-2026-45623",
+        "package": "postcss",
+        "installed_version": "8.4.31",
+        "fixed_version": "8.5.12",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "postcss: PostCSS: Information disclosure and denial of service via crafted CSS input"
+      },
+      {
+        "id": "CVE-2026-73646",
+        "package": "postcss",
+        "installed_version": "8.4.31",
+        "fixed_version": "8.5.18",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure"
+      },
+      {
+        "id": "CVE-2026-41305",
+        "package": "postcss",
+        "installed_version": "8.4.31",
+        "fixed_version": "8.5.10",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "postcss: PostCSS: Cross-Site Scripting (XSS) via improper escaping of style closing tags"
+      },
+      {
+        "id": "CVE-2026-69153",
+        "package": "postcss",
+        "installed_version": "8.4.31",
+        "fixed_version": "8.5.23",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "postcss: PostCSS: Information disclosure via crafted sourceMappingURL"
+      },
+      {
+        "id": "GHSA-f88m-g3jw-g9cj",
+        "package": "sharp",
+        "installed_version": "0.34.5",
+        "fixed_version": "0.35.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "sharp inherited vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591"
+      },
+      {
+        "id": "CVE-2026-13697",
+        "package": "undici",
+        "installed_version": "7.28.0",
+        "fixed_version": "7.29.0, 8.9.0",
+        "severity": "HIGH",
+        "target": "pnpm-lock.yaml",
+        "title": "undici: undici: Information disclosure and Denial of Service via malformed Cache-Control directives"
+      },
+      {
+        "id": "CVE-2026-14643",
+        "package": "undici",
+        "installed_version": "7.28.0",
+        "fixed_version": "7.29.0, 8.9.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "undici: undici: Cross-user information disclosure due to improper Cache-Control directive parsing"
+      },
+      {
+        "id": "CVE-2026-15157",
+        "package": "undici",
+        "installed_version": "7.28.0",
+        "fixed_version": "6.28.0, 7.29.0, 8.9.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "undici: undici: HTTP header injection via unvalidated blob-like body type property"
+      },
+      {
+        "id": "CVE-2026-16728",
+        "package": "undici",
+        "installed_version": "7.28.0",
+        "fixed_version": "6.28.0, 7.29.0, 8.9.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "undici: undici: Response desynchronization via retry interceptor with mismatched Content-Length"
+      },
+      {
+        "id": "CVE-2026-16729",
+        "package": "undici",
+        "installed_version": "7.28.0",
+        "fixed_version": "6.28.0, 7.29.0, 8.9.0",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "undici: Undici: Cookie attribute injection allows bypassing security protections"
+      },
+      {
+        "id": "CVE-2026-33532",
+        "package": "yaml",
+        "installed_version": "1.10.2",
+        "fixed_version": "2.8.3, 1.10.3",
+        "severity": "MEDIUM",
+        "target": "pnpm-lock.yaml",
+        "title": "yaml: yaml: Denial of Service via deeply nested YAML document parsing"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "code-infra-renovate[bot]",
+      "github-actions[bot]",
+      "renovate[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 1493,
+    "open_prs": 112,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 18,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 6,
+    "total_recent_prs_checked": 39,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715565.0475016
+}

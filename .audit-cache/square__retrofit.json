@@ -1,0 +1,417 @@
+{
+  "repo": "square/retrofit",
+  "owner": "square",
+  "name": "retrofit",
+  "package_managers": [
+    "gradle",
+    "npm"
+  ],
+  "languages": [
+    "Java",
+    "Kotlin"
+  ],
+  "vulnerabilities": {
+    "total": 41,
+    "critical": 0,
+    "high": 18,
+    "medium": 17,
+    "low": 6,
+    "findings": [
+      {
+        "id": "CVE-2026-50146",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "6.3.3",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "Astro: Reflected XSS via unescaped slot name"
+      },
+      {
+        "id": "CVE-2026-54299",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "6.4.6",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "Astro: Host header SSRF in prerendered error page fetch"
+      },
+      {
+        "id": "CVE-2026-41067",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "6.1.6",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "Astro: XSS in define:vars via incomplete </script> tag sanitization"
+      },
+      {
+        "id": "CVE-2026-54298",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "6.4.6",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "Astro: XSS via Unescaped Attribute Names in Spread Props"
+      },
+      {
+        "id": "CVE-2026-59729",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "7.0.6",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "Astro: XSS via unescaped spread attribute names in renderHTMLElement (incomplete fix for CVE-2026-54298)"
+      },
+      {
+        "id": "CVE-2026-73422",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "7.1.0",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "Astro: Reflected XSS via unescaped View Transition animation properties"
+      },
+      {
+        "id": "CVE-2026-45028",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "6.1.10",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "Astro: Server island encrypted parameters vulnerable to cross-component replay"
+      },
+      {
+        "id": "CVE-2026-59727",
+        "package": "astro",
+        "installed_version": "5.18.1",
+        "fixed_version": "7.0.4",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "Astro: Cross-site scripting via unescaped transition:* directive values on hydrated islands"
+      },
+      {
+        "id": "CVE-2026-35209",
+        "package": "defu",
+        "installed_version": "6.1.4",
+        "fixed_version": "6.1.5",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "defu: Prototype pollution via `__proto__` key in defaults argument"
+      },
+      {
+        "id": "CVE-2026-30226",
+        "package": "devalue",
+        "installed_version": "5.6.2",
+        "fixed_version": "5.6.4",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "devalue: Devalue: Denial of Service or type confusion via prototype pollution"
+      },
+      {
+        "id": "GHSA-33hq-fvwr-56pm",
+        "package": "devalue",
+        "installed_version": "5.6.2",
+        "fixed_version": "5.6.3",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "devalue affected by CPU and memory amplification from sparse arrays"
+      },
+      {
+        "id": "GHSA-8qm3-746x-r74r",
+        "package": "devalue",
+        "installed_version": "5.6.2",
+        "fixed_version": "5.6.3",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "devalue `uneval`ed code can create objects with polluted prototypes when `eval`ed"
+      },
+      {
+        "id": "GHSA-mwv9-gp5h-frr4",
+        "package": "devalue",
+        "installed_version": "5.6.2",
+        "fixed_version": "5.6.4",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "Sveltejs devalue's `devalue.parse` and `devalue.unflatten` emit objects with `__proto__` own properties"
+      },
+      {
+        "id": "GHSA-g7r4-m6w7-qqqr",
+        "package": "esbuild",
+        "installed_version": "0.27.3",
+        "fixed_version": "0.28.1",
+        "severity": "LOW",
+        "target": "website/package-lock.json",
+        "title": "esbuild allows arbitrary file read when running the development server on Windows"
+      },
+      {
+        "id": "CVE-2026-33128",
+        "package": "h3",
+        "installed_version": "1.15.5",
+        "fixed_version": "2.0.1-rc.15, 1.15.6",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "h3 has a Server-Sent Events Injection via Unsanitized Newlines in Event Stream Fields"
+      },
+      {
+        "id": "GHSA-4hxc-9384-m385",
+        "package": "h3",
+        "installed_version": "1.15.5",
+        "fixed_version": "2.0.1-rc.17, 1.15.9",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "h3: SSE Event Injection via Unsanitized Carriage Return (`\\r`) in EventStream Data and Comment Fields (Bypass of CVE Fix)"
+      },
+      {
+        "id": "GHSA-72gr-qfp7-vwhw",
+        "package": "h3",
+        "installed_version": "1.15.5",
+        "fixed_version": "1.15.9",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "h3: Double Decoding in `serveStatic` Bypasses `resolveDotSegments` Path Traversal Protection via `%252e%252e`"
+      },
+      {
+        "id": "GHSA-wr4h-v87w-p3r7",
+        "package": "h3",
+        "installed_version": "1.15.5",
+        "fixed_version": "2.0.1-rc.15, 1.15.6",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "h3 has a Path Traversal via Percent-Encoded Dot Segments in serveStatic Allows Arbitrary File Read"
+      },
+      {
+        "id": "CVE-2026-59869",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "3.15.0, 4.3.0",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML documents"
+      },
+      {
+        "id": "GHSA-5p4m-2wfm-xmqj",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "4.3.1, 3.15.1",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "id": "CVE-2026-53550",
+        "package": "js-yaml",
+        "installed_version": "4.1.1",
+        "fixed_version": "4.2.0, 3.15.0",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML merge keys"
+      },
+      {
+        "id": "CVE-2026-67213",
+        "package": "nanoid",
+        "installed_version": "3.3.11",
+        "fixed_version": "3.3.18, 5.1.6",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "nanoid: nanoid: Denial of Service via infinite loop in random ID generation"
+      },
+      {
+        "id": "CVE-2026-67214",
+        "package": "nanoid",
+        "installed_version": "3.3.11",
+        "fixed_version": "3.3.16, 5.1.16",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "nanoid (Nano ID) before 5.1.16 contains an infinite loop in the custom ..."
+      },
+      {
+        "id": "CVE-2026-33671",
+        "package": "picomatch",
+        "installed_version": "2.3.1",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "picomatch: Picomatch: Regular Expression Denial of Service via crafted extglob patterns"
+      },
+      {
+        "id": "CVE-2026-33672",
+        "package": "picomatch",
+        "installed_version": "2.3.1",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "picomatch: Picomatch: Data integrity compromised via method injection with crafted POSIX bracket expressions"
+      },
+      {
+        "id": "CVE-2026-33671",
+        "package": "picomatch",
+        "installed_version": "4.0.3",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "picomatch: Picomatch: Regular Expression Denial of Service via crafted extglob patterns"
+      },
+      {
+        "id": "CVE-2026-33672",
+        "package": "picomatch",
+        "installed_version": "4.0.3",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "picomatch: Picomatch: Data integrity compromised via method injection with crafted POSIX bracket expressions"
+      },
+      {
+        "id": "CVE-2026-45623",
+        "package": "postcss",
+        "installed_version": "8.5.3",
+        "fixed_version": "8.5.12",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "postcss: PostCSS: Information disclosure and denial of service via crafted CSS input"
+      },
+      {
+        "id": "CVE-2026-73646",
+        "package": "postcss",
+        "installed_version": "8.5.3",
+        "fixed_version": "8.5.18",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure"
+      },
+      {
+        "id": "CVE-2026-41305",
+        "package": "postcss",
+        "installed_version": "8.5.3",
+        "fixed_version": "8.5.10",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "postcss: PostCSS: Cross-Site Scripting (XSS) via improper escaping of style closing tags"
+      },
+      {
+        "id": "CVE-2026-69153",
+        "package": "postcss",
+        "installed_version": "8.5.3",
+        "fixed_version": "8.5.23",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "postcss: PostCSS: Information disclosure via crafted sourceMappingURL"
+      },
+      {
+        "id": "CVE-2026-27606",
+        "package": "rollup",
+        "installed_version": "4.40.0",
+        "fixed_version": "2.80.0, 3.30.0, 4.59.0",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "rollup: Rollup: Remote Code Execution via Path Traversal Vulnerability"
+      },
+      {
+        "id": "GHSA-f88m-g3jw-g9cj",
+        "package": "sharp",
+        "installed_version": "0.34.5",
+        "fixed_version": "0.35.0",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "sharp inherited vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591"
+      },
+      {
+        "id": "GHSA-v3rj-xjv7-4jmq",
+        "package": "smol-toml",
+        "installed_version": "1.6.0",
+        "fixed_version": "1.6.1",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "smol-toml: Denial of Service via TOML documents containing thousands of consecutive commented lines"
+      },
+      {
+        "id": "CVE-2026-29074",
+        "package": "svgo",
+        "installed_version": "4.0.0",
+        "fixed_version": "2.8.1, 3.3.3, 4.0.1",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "svgo: SVGO: Denial of Service via XML entity expansion"
+      },
+      {
+        "id": "CVE-2026-73650",
+        "package": "svgo",
+        "installed_version": "4.0.0",
+        "fixed_version": "2.8.3, 3.3.4, 4.0.2",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "SVGO removeScripts plugin leaves some executable scripts intact"
+      },
+      {
+        "id": "CVE-2026-39363",
+        "package": "vite",
+        "installed_version": "6.4.1",
+        "fixed_version": "8.0.5, 7.3.2, 6.4.2",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "Vite: Vite: Information disclosure via WebSocket connection bypasses access control"
+      },
+      {
+        "id": "CVE-2026-53571",
+        "package": "vite",
+        "installed_version": "6.4.1",
+        "fixed_version": "8.0.16, 7.3.5, 6.4.3",
+        "severity": "HIGH",
+        "target": "website/package-lock.json",
+        "title": "vite: `server.fs.deny` bypass on Windows alternate paths"
+      },
+      {
+        "id": "CVE-2026-39365",
+        "package": "vite",
+        "installed_version": "6.4.1",
+        "fixed_version": "8.0.5, 7.3.2, 6.4.2",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "vite: Vite: Information disclosure via path traversal in dev server's .map request handling"
+      },
+      {
+        "id": "CVE-2026-53632",
+        "package": "vite",
+        "installed_version": "6.4.1",
+        "fixed_version": "8.0.16, 7.3.5, 6.4.3",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "launch-editor: launch-editor: Credential compromise via NTLMv2 password hash leak through UNC path access"
+      },
+      {
+        "id": "CVE-2026-33532",
+        "package": "yaml",
+        "installed_version": "2.7.1",
+        "fixed_version": "2.8.3, 1.10.3",
+        "severity": "MEDIUM",
+        "target": "website/package-lock.json",
+        "title": "yaml: yaml: Denial of Service via deeply nested YAML document parsing"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "dependabot[bot]",
+      "renovate[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 173,
+    "open_prs": 0,
+    "commits_last_90_days": 3,
+    "contributors_last_90_days": 3,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "low"
+  },
+  "contributor_openness": {
+    "has_contributing_md": false,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 37,
+    "total_recent_prs_checked": 37,
+    "is_open_to_contributions": false
+  },
+  "_cached_at": 1786715401.5668252
+}

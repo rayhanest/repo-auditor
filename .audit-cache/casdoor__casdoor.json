@@ -1,0 +1,2167 @@
+{
+  "repo": "casdoor/casdoor",
+  "owner": "casdoor",
+  "name": "casdoor",
+  "package_managers": [
+    "go modules",
+    "yarn"
+  ],
+  "languages": [
+    "Go",
+    "CSS",
+    "HTML",
+    "Makefile",
+    "Less",
+    "Dockerfile",
+    "Shell"
+  ],
+  "vulnerabilities": {
+    "total": 235,
+    "critical": 8,
+    "high": 106,
+    "medium": 94,
+    "low": 27,
+    "findings": [
+      {
+        "id": "CVE-2026-26958",
+        "package": "filippo.io/edwards25519",
+        "installed_version": "v1.1.0",
+        "fixed_version": "1.1.1",
+        "severity": "LOW",
+        "target": "go.mod",
+        "title": "filippo.io/edwards25519: filippo.io/edwards25519: Cryptographic integrity bypass due to incorrect MultiScalarMult results"
+      },
+      {
+        "id": "CVE-2026-32952",
+        "package": "github.com/Azure/go-ntlmssp",
+        "installed_version": "v0.0.0-20221128193559-754e69321358",
+        "fixed_version": "0.1.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "go-ntlmssp: go-ntlmssp: Denial of Service via malicious NTLM challenge"
+      },
+      {
+        "id": "GHSA-xmrv-pmrh-hhx2",
+        "package": "github.com/aws/aws-sdk-go-v2/service/s3",
+        "installed_version": "v1.95.0",
+        "fixed_version": "1.97.3",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "Denial of Service due to Panic in AWS SDK for Go v2 SDK EventStream Decoder"
+      },
+      {
+        "id": "CVE-2026-1229",
+        "package": "github.com/cloudflare/circl",
+        "installed_version": "v1.6.1",
+        "fixed_version": "1.6.3",
+        "severity": "LOW",
+        "target": "go.mod",
+        "title": "CIRCL has an incorrect calculation in secp384r1 CombinedMult"
+      },
+      {
+        "id": "CVE-2026-44973",
+        "package": "github.com/go-git/go-billy/v5",
+        "installed_version": "v5.6.2",
+        "fixed_version": "5.9.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/go-git/go-billy: Go-billy: Arbitrary file access due to path traversal vulnerability"
+      },
+      {
+        "id": "CVE-2026-44740",
+        "package": "github.com/go-git/go-billy/v5",
+        "installed_version": "v5.6.2",
+        "fixed_version": "5.9.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/go-git/go-billy: Billy: Denial of Service via crafted input due to insufficient validation"
+      },
+      {
+        "id": "CVE-2026-45022",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "CVE-2026-71556",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.2",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "CVE-2026-25934",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.16.5",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "go-git/go-git: go-git: Data integrity issue due to improper verification of pack and index files"
+      },
+      {
+        "id": "CVE-2026-34165",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.17.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/go-git/go-git/v5: go-git: Denial of Service via crafted .idx file"
+      },
+      {
+        "id": "CVE-2026-41506",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.18.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang: github.com/go-git/go-git: go-git: Information disclosure of HTTP authentication credentials via redirects"
+      },
+      {
+        "id": "CVE-2026-45571",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/go-git/go-git: go-git: Path validation flaw allows unauthorized file access"
+      },
+      {
+        "id": "CVE-2026-71557",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.2",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "GHSA-w5pp-99ch-qj29",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "go-git: Malformed Git object data may cause panics or resource exhaustion"
+      },
+      {
+        "id": "CVE-2026-33762",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.17.1",
+        "severity": "LOW",
+        "target": "go.mod",
+        "title": "github.com/go-git/go-git/v5: go-git: Denial of Service via crafted Git index file"
+      },
+      {
+        "id": "CVE-2026-45570",
+        "package": "github.com/go-git/go-git/v5",
+        "installed_version": "v5.16.3",
+        "fixed_version": "5.19.1",
+        "severity": "LOW",
+        "target": "go.mod",
+        "title": "go-git is an extensible git implementation library written in pure Go. ..."
+      },
+      {
+        "id": "CVE-2026-34986",
+        "package": "github.com/go-jose/go-jose/v4",
+        "installed_version": "v4.1.3",
+        "fixed_version": "4.1.4",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/go-jose/go-jose/v3: github.com/go-jose/go-jose/v4: Go JOSE: Denial of Service via crafted JSON Web Encryption (JWE) object"
+      },
+      {
+        "id": "CVE-2026-33252",
+        "package": "github.com/modelcontextprotocol/go-sdk",
+        "installed_version": "v1.4.0",
+        "fixed_version": "1.4.1",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "encoding/json: golang: github.com/modelcontextprotocol/go-sdk: Go MCP SDK: Remote tool execution via cross-site request forgery"
+      },
+      {
+        "id": "GHSA-q382-vc8q-7jhj",
+        "package": "github.com/modelcontextprotocol/go-sdk",
+        "installed_version": "v1.4.0",
+        "fixed_version": "1.4.1",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "Improper handling of null Unicode character when parsing JSON in github.com/modelcontextprotocol/go-sdk"
+      },
+      {
+        "id": "GHSA-hwqm-qvj9-4jr2",
+        "package": "github.com/russellhaering/gosaml2",
+        "installed_version": "v0.9.0",
+        "fixed_version": "0.11.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "gosaml2 CBC Padding Panic \u2014 Unauthenticated Process Crash"
+      },
+      {
+        "id": "GHSA-pcgw-qcv5-h8ch",
+        "package": "github.com/russellhaering/gosaml2",
+        "installed_version": "v0.9.0",
+        "fixed_version": "0.11.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "Unsigned SAML LogoutRequest Acceptance in gosaml2"
+      },
+      {
+        "id": "CVE-2026-33487",
+        "package": "github.com/russellhaering/goxmldsig",
+        "installed_version": "v1.2.0",
+        "fixed_version": "1.6.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/russellhaering/goxmldsig: goxmlsig: Integrity bypass due to incorrect XML Digital Signature validation via loop variable capture issue"
+      },
+      {
+        "id": "GHSA-gxhx-2686-5h9g",
+        "package": "github.com/slack-go/slack",
+        "installed_version": "v0.15.0",
+        "fixed_version": "0.23.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "slack-go `SecretsVerifier` accepts empty signing secret without precondition"
+      },
+      {
+        "id": "CVE-2026-29181",
+        "package": "go.opentelemetry.io/otel",
+        "installed_version": "v1.40.0",
+        "fixed_version": "1.41.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/open-telemetry/opentelemetry-go: OpenTelemetry-Go: Denial of Service via crafted multi-value baggage headers"
+      },
+      {
+        "id": "CVE-2026-39883",
+        "package": "go.opentelemetry.io/otel/sdk",
+        "installed_version": "v1.40.0",
+        "fixed_version": "1.43.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/open-telemetry/opentelemetry-go: OpenTelemetry-Go: Arbitrary code execution via PATH hijacking on BSD/Solaris"
+      },
+      {
+        "id": "CVE-2026-39828",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Unauthorized command execution via discarded SSH permissions"
+      },
+      {
+        "id": "CVE-2026-39829",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted public key with excessive parameters"
+      },
+      {
+        "id": "CVE-2026-39830",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via resource leak from unsolicited SSH responses"
+      },
+      {
+        "id": "CVE-2026-39831",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Security key bypass due to missing user presence check"
+      },
+      {
+        "id": "CVE-2026-39832",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to improper handling of key restrictions"
+      },
+      {
+        "id": "CVE-2026-39835",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via crafted SSH certificate"
+      },
+      {
+        "id": "CVE-2026-42508",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/knownhosts: golang: golang.org/x/crypto/ssh/knownhosts: Revocation bypass via unchecked SignatureKey"
+      },
+      {
+        "id": "CVE-2026-46595",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Authorization bypass due to skipped source-address validation"
+      },
+      {
+        "id": "CVE-2026-46597",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted AES-GCM packet decoder inputs"
+      },
+      {
+        "id": "CVE-2026-39827",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via repeated rejected channel openings"
+      },
+      {
+        "id": "CVE-2026-39833",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to unenforced key confirmation"
+      },
+      {
+        "id": "CVE-2026-39834",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service due to integer overflow in SSH channel write"
+      },
+      {
+        "id": "CVE-2026-46598",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang: golang.org/x/crypto/ssh/agent: Denial of Service via malformed input"
+      },
+      {
+        "id": "CVE-2026-46602",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.43.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "The TIFF decoder does not set a limit on the size of tiles in tiled im ..."
+      },
+      {
+        "id": "CVE-2026-33809",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.38.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang: golang.org/x/image/tiff: golang.org/x/image/tiff: Denial of Service via maliciously crafted TIFF file"
+      },
+      {
+        "id": "CVE-2026-33812",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.39.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image: golang: golang.org/x/image: Denial of Service due to excessive memory allocation when parsing malicious font files"
+      },
+      {
+        "id": "CVE-2026-33813",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.42.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image: golang: golang.org/x/image: Denial of Service via malformed WEBP image parsing"
+      },
+      {
+        "id": "CVE-2026-42500",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.41.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image/bmp: golang: golang.org/x/image/bmp: Denial of Service via out-of-range palette index in BMP decoding"
+      },
+      {
+        "id": "CVE-2026-46599",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.41.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image/tiff: golang.org/x/image/tiff: Denial of Service via crafted PackBits-compressed data"
+      },
+      {
+        "id": "CVE-2026-46601",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.43.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image/webp: golang.org/x/image/webp: Denial of Service via malformed VP8 chunk in WebP images"
+      },
+      {
+        "id": "CVE-2026-46604",
+        "package": "golang.org/x/image",
+        "installed_version": "v0.18.0",
+        "fixed_version": "0.43.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/image/tiff: golang.org/x/image/tiff: Denial of Service via invalid TIFF image"
+      },
+      {
+        "id": "CVE-2026-25681",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Arbitrary code execution via Cross-Site Scripting"
+      },
+      {
+        "id": "CVE-2026-27136",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via HTML parsing bypass"
+      },
+      {
+        "id": "CVE-2026-33814",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.53.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "net/http/internal/http2: golang: golang.org/x/net: Go HTTP/2: Denial of Service via malformed SETTINGS_MAX_FRAME_SIZE frame"
+      },
+      {
+        "id": "CVE-2026-39821",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/idna: golang: net/http: golang.org/x/net/idna: Privilege escalation via incorrect Punycode label processing"
+      },
+      {
+        "id": "CVE-2026-46600",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.56.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing"
+      },
+      {
+        "id": "CVE-2026-25680",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Denial of Service due to excessive HTML parsing"
+      },
+      {
+        "id": "CVE-2026-42502",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via unexpected HTML tree rendering"
+      },
+      {
+        "id": "CVE-2026-42506",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.49.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Cross-Site Scripting (XSS) via arbitrary HTML parsing"
+      },
+      {
+        "id": "CVE-2026-56852",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.33.0",
+        "fixed_version": "0.39.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/text: golang.org/x/text: Denial of Service via invalid UTF-8 input"
+      },
+      {
+        "id": "GHSA-hrxh-6v49-42gf",
+        "package": "google.golang.org/grpc",
+        "installed_version": "v1.79.3",
+        "fixed_version": "1.82.1",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "gRPC-Go: xDS RBAC and HTTP/2 Vulnerabilities"
+      },
+      {
+        "id": "CVE-2024-28180",
+        "package": "gopkg.in/square/go-jose.v2",
+        "installed_version": "v2.6.0",
+        "fixed_version": "N/A",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "jose-go: improper handling of highly compressed data"
+      },
+      {
+        "id": "CVE-2026-49356",
+        "package": "@babel/core",
+        "installed_version": "7.22.5",
+        "fixed_version": "8.0.0-rc.6, 7.29.6",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "@babel/core: @babel/core: Arbitrary file read via sourceMappingURL comment"
+      },
+      {
+        "id": "CVE-2025-27789",
+        "package": "@babel/helpers",
+        "installed_version": "7.22.5",
+        "fixed_version": "7.26.10, 8.0.0-alpha.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      },
+      {
+        "id": "CVE-2026-44728",
+        "package": "@babel/plugin-transform-modules-systemjs",
+        "installed_version": "7.22.5",
+        "fixed_version": "7.29.4, 8.0.0-alpha.13",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "Babel is a compiler for writing next generation JavaScript. From 7.12. ..."
+      },
+      {
+        "id": "CVE-2025-27789",
+        "package": "@babel/runtime",
+        "installed_version": "7.22.5",
+        "fixed_version": "7.26.10, 8.0.0-alpha.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      },
+      {
+        "id": "CVE-2025-27789",
+        "package": "@babel/runtime",
+        "installed_version": "7.22.6",
+        "fixed_version": "7.26.10, 8.0.0-alpha.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      },
+      {
+        "id": "CVE-2025-27789",
+        "package": "@babel/runtime",
+        "installed_version": "7.26.7",
+        "fixed_version": "7.26.10, 8.0.0-alpha.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      },
+      {
+        "id": "CVE-2025-27789",
+        "package": "@babel/runtime",
+        "installed_version": "7.26.9",
+        "fixed_version": "7.26.10, 8.0.0-alpha.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      },
+      {
+        "id": "CVE-2023-45133",
+        "package": "@babel/traverse",
+        "installed_version": "7.22.5",
+        "fixed_version": "7.23.2, 8.0.0-alpha.4",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "babel: arbitrary code execution"
+      },
+      {
+        "id": "CVE-2024-30253",
+        "package": "@solana/web3.js",
+        "installed_version": "1.78.2",
+        "fixed_version": "1.91.3, 1.90.2, 1.89.2, 1.88.1, 1.87.7, 1.86.1, 1.85.1, 1.84.1, 1.83.1, 1.82.1, 1.81.1, 1.80.1, 1.79.1, 1.78.8, 1.77.4, 1.76.1, 1.75.1, 1.74.1, 1.73.5, 1.72.1, 1.71.1, 1.70.4, 1.69.1, 1.68.2, 1.67.3, 1.66.6, 1.65.1, 1.64.1, 1.63.2, 1.62.2, 1.61.2, 1.60.1, 1.59.2, 1.58.1, 1.57.1, 1.56.3, 1.55.1, 1.54.2, 1.53.1, 1.52.1, 1.51.1, 1.50.2, 1.49.1, 1.48.1, 1.47.5, 1.46.1, 1.45.1, 1.44.4, 1.43.7, 1.42.1, 1.41.11, 1.40.2, 1.39.2, 1.38.1, 1.37.3, 1.36.1, 1.35.2, 1.34.1, 1.33.1, 1.32.2, 1.31.1, 1.30.3, 1.29.4, 1.28.1, 1.27.1, 1.26.1, 1.25.1, 1.24.3, 1.23.1, 1.22.1, 1.21.1, 1.20.3, 1.19.1, 1.18.1, 1.17.1, 1.16.2, 1.15.1, 1.14.1, 1.13.1, 1.12.1, 1.11.1, 1.10.2, 1.9.2, 1.8.1, 1.7.2, 1.6.1, 1.5.1, 1.4.1, 1.3.1, 1.2.8, 1.1.2, 1.0.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "Handling untrusted input can result in a crash, leading to loss of availability / denial of service"
+      },
+      {
+        "id": "CVE-2026-3449",
+        "package": "@tootallnate/once",
+        "installed_version": "1.1.2",
+        "fixed_version": "3.0.1, 2.0.1",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "@tootallnate/once: @tootallnate/once: Denial of Service due to incorrect control flow scoping with AbortSignal"
+      },
+      {
+        "id": "CVE-2025-69873",
+        "package": "ajv",
+        "installed_version": "6.12.6",
+        "fixed_version": "8.18.0, 6.14.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "ajv: ReDoS via $data reference"
+      },
+      {
+        "id": "CVE-2025-69873",
+        "package": "ajv",
+        "installed_version": "8.12.0",
+        "fixed_version": "8.18.0, 6.14.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "ajv: ReDoS via $data reference"
+      },
+      {
+        "id": "CVE-2025-27611",
+        "package": "base-x",
+        "installed_version": "3.0.9",
+        "fixed_version": "5.0.1, 4.0.1, 3.0.11",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "base-x: base-x homograph attack allows Unicode lookalike characters to bypass validation."
+      },
+      {
+        "id": "CVE-2025-3194",
+        "package": "bigint-buffer",
+        "installed_version": "1.1.5",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function"
+      },
+      {
+        "id": "CVE-2026-2739",
+        "package": "bn.js",
+        "installed_version": "4.12.0",
+        "fixed_version": "4.12.3, 5.2.3",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "bn.js: bn.js: Denial of Service via calling maskn(0)"
+      },
+      {
+        "id": "CVE-2026-2739",
+        "package": "bn.js",
+        "installed_version": "5.2.1",
+        "fixed_version": "4.12.3, 5.2.3",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "bn.js: bn.js: Denial of Service via calling maskn(0)"
+      },
+      {
+        "id": "CVE-2024-45590",
+        "package": "body-parser",
+        "installed_version": "1.20.1",
+        "fixed_version": "1.20.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "body-parser: Denial of Service Vulnerability in body-parser"
+      },
+      {
+        "id": "CVE-2026-12590",
+        "package": "body-parser",
+        "installed_version": "1.20.1",
+        "fixed_version": "1.20.6, 2.3.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "body-parser: body-parser: Denial of Service via invalid limit option"
+      },
+      {
+        "id": "CVE-2026-13149",
+        "package": "brace-expansion",
+        "installed_version": "1.1.11",
+        "fixed_version": "5.0.7, 1.1.16, 2.1.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity"
+      },
+      {
+        "id": "CVE-2026-14257",
+        "package": "brace-expansion",
+        "installed_version": "1.1.11",
+        "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function"
+      },
+      {
+        "id": "CVE-2026-69152",
+        "package": "brace-expansion",
+        "installed_version": "1.1.11",
+        "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "id": "CVE-2026-33750",
+        "package": "brace-expansion",
+        "installed_version": "1.1.11",
+        "fixed_version": "5.0.5, 3.0.2, 2.0.3, 1.1.13",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern"
+      },
+      {
+        "id": "CVE-2025-5889",
+        "package": "brace-expansion",
+        "installed_version": "1.1.11",
+        "fixed_version": "2.0.2, 1.1.12, 3.0.1, 4.0.1",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: juliangruber brace-expansion index.js expand redos"
+      },
+      {
+        "id": "CVE-2026-13149",
+        "package": "brace-expansion",
+        "installed_version": "2.0.1",
+        "fixed_version": "5.0.7, 1.1.16, 2.1.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity"
+      },
+      {
+        "id": "CVE-2026-14257",
+        "package": "brace-expansion",
+        "installed_version": "2.0.1",
+        "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function"
+      },
+      {
+        "id": "CVE-2026-69152",
+        "package": "brace-expansion",
+        "installed_version": "2.0.1",
+        "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      },
+      {
+        "id": "CVE-2026-33750",
+        "package": "brace-expansion",
+        "installed_version": "2.0.1",
+        "fixed_version": "5.0.5, 3.0.2, 2.0.3, 1.1.13",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern"
+      },
+      {
+        "id": "CVE-2025-5889",
+        "package": "brace-expansion",
+        "installed_version": "2.0.1",
+        "fixed_version": "2.0.2, 1.1.12, 3.0.1, 4.0.1",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "brace-expansion: juliangruber brace-expansion index.js expand redos"
+      },
+      {
+        "id": "CVE-2024-4068",
+        "package": "braces",
+        "installed_version": "3.0.2",
+        "fixed_version": "3.0.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "braces: fails to limit the number of characters it can handle"
+      },
+      {
+        "id": "CVE-2024-47764",
+        "package": "cookie",
+        "installed_version": "0.5.0",
+        "fixed_version": "0.7.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "cookie: cookie accepts cookie name, path, and domain with out of bounds characters"
+      },
+      {
+        "id": "CVE-2024-21538",
+        "package": "cross-spawn",
+        "installed_version": "7.0.3",
+        "fixed_version": "7.0.5, 6.0.6",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "cross-spawn: regular expression denial of service"
+      },
+      {
+        "id": "CVE-2023-46133",
+        "package": "crypto-es",
+        "installed_version": "1.2.7",
+        "fixed_version": "2.1.0",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "crypto-es PBKDF2 1,000 times weaker than specified in 1993 and 1.3M times weaker than current standard"
+      },
+      {
+        "id": "CVE-2026-24001",
+        "package": "diff",
+        "installed_version": "4.0.2",
+        "fixed_version": "8.0.3, 5.2.2, 4.0.4, 3.5.1",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "jsdiff: denial of service vulnerability in parsePatch and applyPatch"
+      },
+      {
+        "id": "CVE-2026-45249",
+        "package": "echarts",
+        "installed_version": "5.4.3",
+        "fixed_version": "6.1.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Apache ECharts has a cross-site scripting (XSS) vulnerability"
+      },
+      {
+        "id": "CVE-2024-33883",
+        "package": "ejs",
+        "installed_version": "3.1.9",
+        "fixed_version": "3.1.10",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "The ejs (aka Embedded JavaScript templates) package before 3.1.10 for  ..."
+      },
+      {
+        "id": "GHSA-vjh7-7g9h-fjfh",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.6.1",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "Elliptic's private key extraction in ECDSA upon signing a malformed input (e.g. a string)"
+      },
+      {
+        "id": "CVE-2024-42459",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.5.7",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: nodejs/elliptic: EDDSA signature malleability due to missing signature length check"
+      },
+      {
+        "id": "CVE-2024-42460",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.5.7",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: nodejs/elliptic: ECDSA signature malleability due to missing checks"
+      },
+      {
+        "id": "CVE-2024-42461",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.5.7",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: nodejs/elliptic: ECDSA implementation malleability due to BER-enconded signatures being allowed"
+      },
+      {
+        "id": "CVE-2024-48948",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.6.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: ECDSA signature verification error may reject legitimate transactions"
+      },
+      {
+        "id": "CVE-2024-48949",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "6.5.6",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: Missing Validation in Elliptic's EDDSA Signature Verification"
+      },
+      {
+        "id": "CVE-2025-14505",
+        "package": "elliptic",
+        "installed_version": "6.5.4",
+        "fixed_version": "N/A",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "elliptic: Key handling flaws in Elliptic"
+      },
+      {
+        "id": "CVE-2024-27088",
+        "package": "es5-ext",
+        "installed_version": "0.10.62",
+        "fixed_version": "0.10.63",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "es5-ext contains ECMAScript 5 extensions. Passing functions with very  ..."
+      },
+      {
+        "id": "CVE-2024-29041",
+        "package": "express",
+        "installed_version": "4.18.2",
+        "fixed_version": "4.19.2, 5.0.0-beta.3",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "express: cause malformed URLs to be evaluated"
+      },
+      {
+        "id": "CVE-2024-43796",
+        "package": "express",
+        "installed_version": "4.18.2",
+        "fixed_version": "4.20.0, 5.0.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "express: Improper Input Handling in Express Redirects"
+      },
+      {
+        "id": "CVE-2026-32141",
+        "package": "flatted",
+        "installed_version": "3.2.7",
+        "fixed_version": "3.4.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "flatted: flatted: Unbounded recursion DoS in parse() revive phase"
+      },
+      {
+        "id": "CVE-2026-33228",
+        "package": "flatted",
+        "installed_version": "3.2.7",
+        "fixed_version": "3.4.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "flatted: Flatted: Prototype pollution vulnerability allows arbitrary code execution via crafted JSON."
+      },
+      {
+        "id": "CVE-2023-26159",
+        "package": "follow-redirects",
+        "installed_version": "1.15.2",
+        "fixed_version": "1.15.4",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "follow-redirects: Improper Input Validation due to the improper handling of URLs by the url.parse()"
+      },
+      {
+        "id": "CVE-2024-28849",
+        "package": "follow-redirects",
+        "installed_version": "1.15.2",
+        "fixed_version": "1.15.6",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "follow-redirects: Possible credential leak"
+      },
+      {
+        "id": "GHSA-r4q5-vmmm-2653",
+        "package": "follow-redirects",
+        "installed_version": "1.15.2",
+        "fixed_version": "1.16.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "follow-redirects leaks Custom Authentication Headers to Cross-Domain Redirect Targets"
+      },
+      {
+        "id": "CVE-2025-7783",
+        "package": "form-data",
+        "installed_version": "3.0.1",
+        "fixed_version": "2.5.4, 3.0.4, 4.0.4",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "form-data: Unsafe random function in form-data"
+      },
+      {
+        "id": "CVE-2026-12143",
+        "package": "form-data",
+        "installed_version": "3.0.1",
+        "fixed_version": "2.5.6, 3.0.5, 4.0.6",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "form-data: form-data: Form field override via CRLF injection"
+      },
+      {
+        "id": "CVE-2024-21536",
+        "package": "http-proxy-middleware",
+        "installed_version": "2.0.6",
+        "fixed_version": "2.0.7, 3.0.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "http-proxy-middleware: Denial of Service"
+      },
+      {
+        "id": "CVE-2025-32996",
+        "package": "http-proxy-middleware",
+        "installed_version": "2.0.6",
+        "fixed_version": "2.0.8, 3.0.4",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "http-proxy-middleware: Always-Incorrect Control Flow Implementation in http-proxy-middleware"
+      },
+      {
+        "id": "CVE-2025-32997",
+        "package": "http-proxy-middleware",
+        "installed_version": "2.0.6",
+        "fixed_version": "2.0.9, 3.0.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "http-proxy-middleware: Improper Check for Unusual or Exceptional Conditions in http-proxy-middleware"
+      },
+      {
+        "id": "CVE-2026-55602",
+        "package": "http-proxy-middleware",
+        "installed_version": "2.0.6",
+        "fixed_version": "3.0.6, 4.1.0, 2.0.10",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "http-proxy-middleware: http-proxy-middleware: Unintended backend routing due to crafted Host header"
+      },
+      {
+        "id": "CVE-2025-71329",
+        "package": "image-size",
+        "installed_version": "0.5.5",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "image-size: image-size: Denial of Service via crafted image buffer with zero-valued size field"
+      },
+      {
+        "id": "CVE-2025-71330",
+        "package": "image-size",
+        "installed_version": "0.5.5",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "image-size: image-size: Denial of Service via crafted ICNS image buffer"
+      },
+      {
+        "id": "CVE-2026-48038",
+        "package": "joi",
+        "installed_version": "17.9.1",
+        "fixed_version": "18.2.1, 17.13.4",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "joi: joi: Denial of Service via uncaught RangeError on deeply nested input through recursive link() schemas"
+      },
+      {
+        "id": "CVE-2026-59869",
+        "package": "js-yaml",
+        "installed_version": "3.14.1",
+        "fixed_version": "3.15.0, 4.3.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML documents"
+      },
+      {
+        "id": "GHSA-5p4m-2wfm-xmqj",
+        "package": "js-yaml",
+        "installed_version": "3.14.1",
+        "fixed_version": "4.3.1, 3.15.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "id": "CVE-2025-64718",
+        "package": "js-yaml",
+        "installed_version": "3.14.1",
+        "fixed_version": "4.1.1, 3.14.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml prototype pollution in merge"
+      },
+      {
+        "id": "CVE-2026-53550",
+        "package": "js-yaml",
+        "installed_version": "3.14.1",
+        "fixed_version": "4.2.0, 3.15.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML merge keys"
+      },
+      {
+        "id": "CVE-2026-59869",
+        "package": "js-yaml",
+        "installed_version": "4.1.0",
+        "fixed_version": "3.15.0, 4.3.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML documents"
+      },
+      {
+        "id": "GHSA-5p4m-2wfm-xmqj",
+        "package": "js-yaml",
+        "installed_version": "4.1.0",
+        "fixed_version": "4.3.1, 3.15.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported"
+      },
+      {
+        "id": "CVE-2025-64718",
+        "package": "js-yaml",
+        "installed_version": "4.1.0",
+        "fixed_version": "4.1.1, 3.14.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml prototype pollution in merge"
+      },
+      {
+        "id": "CVE-2026-53550",
+        "package": "js-yaml",
+        "installed_version": "4.1.0",
+        "fixed_version": "4.2.0, 3.15.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "js-yaml: js-yaml: Denial of Service via crafted YAML merge keys"
+      },
+      {
+        "id": "CVE-2024-52011",
+        "package": "launch-editor",
+        "installed_version": "2.6.0",
+        "fixed_version": "2.9.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "launch-editor: vite: launch-editor: Arbitrary command execution via insufficient file argument sanitization"
+      },
+      {
+        "id": "CVE-2026-53632",
+        "package": "launch-editor",
+        "installed_version": "2.6.0",
+        "fixed_version": "2.14.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "launch-editor: launch-editor: Credential compromise via NTLMv2 password hash leak through UNC path access"
+      },
+      {
+        "id": "CVE-2026-4800",
+        "package": "lodash",
+        "installed_version": "4.17.21",
+        "fixed_version": "4.18.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "lodash: lodash: Arbitrary code execution via untrusted input in template imports"
+      },
+      {
+        "id": "CVE-2025-13465",
+        "package": "lodash",
+        "installed_version": "4.17.21",
+        "fixed_version": "4.17.23",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "lodash: prototype pollution in _.unset and _.omit functions"
+      },
+      {
+        "id": "CVE-2026-2950",
+        "package": "lodash",
+        "installed_version": "4.17.21",
+        "fixed_version": "4.18.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "lodash: Lodash: Prototype pollution allows deletion of built-in prototype properties via array path bypass"
+      },
+      {
+        "id": "CVE-2024-4067",
+        "package": "micromatch",
+        "installed_version": "4.0.5",
+        "fixed_version": "4.0.8",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "micromatch: vulnerable to Regular Expression Denial of Service"
+      },
+      {
+        "id": "CVE-2026-26996",
+        "package": "minimatch",
+        "installed_version": "3.1.2",
+        "fixed_version": "10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: minimatch: Denial of Service via specially crafted glob patterns"
+      },
+      {
+        "id": "CVE-2026-27903",
+        "package": "minimatch",
+        "installed_version": "3.1.2",
+        "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns"
+      },
+      {
+        "id": "CVE-2026-27904",
+        "package": "minimatch",
+        "installed_version": "3.1.2",
+        "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions"
+      },
+      {
+        "id": "CVE-2026-26996",
+        "package": "minimatch",
+        "installed_version": "5.1.6",
+        "fixed_version": "10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: minimatch: Denial of Service via specially crafted glob patterns"
+      },
+      {
+        "id": "CVE-2026-27903",
+        "package": "minimatch",
+        "installed_version": "5.1.6",
+        "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns"
+      },
+      {
+        "id": "CVE-2026-27904",
+        "package": "minimatch",
+        "installed_version": "5.1.6",
+        "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions"
+      },
+      {
+        "id": "CVE-2026-67213",
+        "package": "nanoid",
+        "installed_version": "3.3.6",
+        "fixed_version": "3.3.18, 5.1.6",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nanoid: nanoid: Denial of Service via infinite loop in random ID generation"
+      },
+      {
+        "id": "CVE-2026-67214",
+        "package": "nanoid",
+        "installed_version": "3.3.6",
+        "fixed_version": "3.3.16, 5.1.16",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nanoid (Nano ID) before 5.1.16 contains an infinite loop in the custom ..."
+      },
+      {
+        "id": "CVE-2024-55565",
+        "package": "nanoid",
+        "installed_version": "3.3.6",
+        "fixed_version": "5.0.9, 3.3.8",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "nanoid: nanoid mishandles non-integer values"
+      },
+      {
+        "id": "CVE-2026-67213",
+        "package": "nanoid",
+        "installed_version": "4.0.2",
+        "fixed_version": "3.3.18, 5.1.6",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nanoid: nanoid: Denial of Service via infinite loop in random ID generation"
+      },
+      {
+        "id": "CVE-2026-67214",
+        "package": "nanoid",
+        "installed_version": "4.0.2",
+        "fixed_version": "3.3.16, 5.1.16",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nanoid (Nano ID) before 5.1.16 contains an infinite loop in the custom ..."
+      },
+      {
+        "id": "CVE-2024-55565",
+        "package": "nanoid",
+        "installed_version": "4.0.2",
+        "fixed_version": "5.0.9, 3.3.8",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "nanoid: nanoid mishandles non-integer values"
+      },
+      {
+        "id": "CVE-2022-0235",
+        "package": "node-fetch",
+        "installed_version": "2.1.2",
+        "fixed_version": "3.1.1, 2.6.7",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-fetch: exposure of sensitive information to an unauthorized actor"
+      },
+      {
+        "id": "CVE-2020-15168",
+        "package": "node-fetch",
+        "installed_version": "2.1.2",
+        "fixed_version": "2.6.1, 3.0.0-beta.9",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "node-fetch: size of data after fetch() JS thread leads to DoS"
+      },
+      {
+        "id": "CVE-2025-12816",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.3.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: node-forge: Interpretation conflict vulnerability allows bypassing cryptographic verifications"
+      },
+      {
+        "id": "CVE-2025-66031",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.3.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: node-forge ASN.1 Unbounded Recursion"
+      },
+      {
+        "id": "CVE-2026-33891",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.4.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: node-forge: Denial of Service via infinite loop in BigInteger.modInverse()"
+      },
+      {
+        "id": "CVE-2026-33894",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.4.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: Forge: Signature Forgery via Weak RSASSA PKCS#1 v1.5 Verification"
+      },
+      {
+        "id": "CVE-2026-33895",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.4.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: Forge: Authentication bypass via forged Ed25519 cryptographic signatures"
+      },
+      {
+        "id": "CVE-2026-33896",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.4.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-forge: Forge (node-forge): Certificate validation bypass allows unauthorized certificate issuance"
+      },
+      {
+        "id": "CVE-2025-66030",
+        "package": "node-forge",
+        "installed_version": "1.3.1",
+        "fixed_version": "1.3.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-forge: node-forge: Integer Overflow allows OID-based security bypass"
+      },
+      {
+        "id": "CVE-2021-3803",
+        "package": "nth-check",
+        "installed_version": "1.0.2",
+        "fixed_version": "2.0.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nodejs-nth-check: inefficient regular expression complexity"
+      },
+      {
+        "id": "CVE-2025-7339",
+        "package": "on-headers",
+        "installed_version": "1.0.2",
+        "fixed_version": "1.1.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "on-headers: on-headers vulnerable to http response header manipulation"
+      },
+      {
+        "id": "CVE-2024-45296",
+        "package": "path-to-regexp",
+        "installed_version": "0.1.7",
+        "fixed_version": "1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "path-to-regexp: Backtracking regular expressions cause ReDoS"
+      },
+      {
+        "id": "CVE-2024-52798",
+        "package": "path-to-regexp",
+        "installed_version": "0.1.7",
+        "fixed_version": "0.1.12",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "path-to-regexp: path-to-regexp Unpatched `path-to-regexp` ReDoS in 0.1.x"
+      },
+      {
+        "id": "CVE-2026-4867",
+        "package": "path-to-regexp",
+        "installed_version": "0.1.7",
+        "fixed_version": "0.1.13",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "path-to-regexp: path-to-regexp: Denial of Service via catastrophic backtracking from malformed URL parameters"
+      },
+      {
+        "id": "CVE-2024-45296",
+        "package": "path-to-regexp",
+        "installed_version": "1.8.0",
+        "fixed_version": "1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "path-to-regexp: Backtracking regular expressions cause ReDoS"
+      },
+      {
+        "id": "CVE-2026-33671",
+        "package": "picomatch",
+        "installed_version": "2.3.1",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "picomatch: Picomatch: Regular Expression Denial of Service via crafted extglob patterns"
+      },
+      {
+        "id": "CVE-2026-33672",
+        "package": "picomatch",
+        "installed_version": "2.3.1",
+        "fixed_version": "4.0.4, 3.0.2, 2.3.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "picomatch: Picomatch: Data integrity compromised via method injection with crafted POSIX bracket expressions"
+      },
+      {
+        "id": "CVE-2026-45623",
+        "package": "postcss",
+        "installed_version": "7.0.39",
+        "fixed_version": "8.5.12",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Information disclosure and denial of service via crafted CSS input"
+      },
+      {
+        "id": "CVE-2026-73646",
+        "package": "postcss",
+        "installed_version": "7.0.39",
+        "fixed_version": "8.5.18",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure"
+      },
+      {
+        "id": "CVE-2023-44270",
+        "package": "postcss",
+        "installed_version": "7.0.39",
+        "fixed_version": "8.4.31",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "PostCSS: Improper input validation in PostCSS"
+      },
+      {
+        "id": "CVE-2026-41305",
+        "package": "postcss",
+        "installed_version": "7.0.39",
+        "fixed_version": "8.5.10",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Cross-Site Scripting (XSS) via improper escaping of style closing tags"
+      },
+      {
+        "id": "CVE-2026-69153",
+        "package": "postcss",
+        "installed_version": "7.0.39",
+        "fixed_version": "8.5.23",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Information disclosure via crafted sourceMappingURL"
+      },
+      {
+        "id": "CVE-2026-45623",
+        "package": "postcss",
+        "installed_version": "8.4.24",
+        "fixed_version": "8.5.12",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Information disclosure and denial of service via crafted CSS input"
+      },
+      {
+        "id": "CVE-2026-73646",
+        "package": "postcss",
+        "installed_version": "8.4.24",
+        "fixed_version": "8.5.18",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure"
+      },
+      {
+        "id": "CVE-2023-44270",
+        "package": "postcss",
+        "installed_version": "8.4.24",
+        "fixed_version": "8.4.31",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "PostCSS: Improper input validation in PostCSS"
+      },
+      {
+        "id": "CVE-2026-41305",
+        "package": "postcss",
+        "installed_version": "8.4.24",
+        "fixed_version": "8.5.10",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Cross-Site Scripting (XSS) via improper escaping of style closing tags"
+      },
+      {
+        "id": "CVE-2026-69153",
+        "package": "postcss",
+        "installed_version": "8.4.24",
+        "fixed_version": "8.5.23",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "postcss: PostCSS: Information disclosure via crafted sourceMappingURL"
+      },
+      {
+        "id": "CVE-2025-15284",
+        "package": "qs",
+        "installed_version": "6.11.0",
+        "fixed_version": "6.14.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "qs: qs: Denial of Service via improper input validation in array parsing"
+      },
+      {
+        "id": "CVE-2026-2391",
+        "package": "qs",
+        "installed_version": "6.11.0",
+        "fixed_version": "6.14.2",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "qs: qs's arrayLimit bypass in comma parsing allows denial of service"
+      },
+      {
+        "id": "CVE-2025-15284",
+        "package": "qs",
+        "installed_version": "6.11.2",
+        "fixed_version": "6.14.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "qs: qs: Denial of Service via improper input validation in array parsing"
+      },
+      {
+        "id": "CVE-2026-8723",
+        "package": "qs",
+        "installed_version": "6.11.2",
+        "fixed_version": "6.15.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "### Summary    `qs.stringify` throws `TypeError` when called with `arr ..."
+      },
+      {
+        "id": "CVE-2026-2391",
+        "package": "qs",
+        "installed_version": "6.11.2",
+        "fixed_version": "6.14.2",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "qs: qs's arrayLimit bypass in comma parsing allows denial of service"
+      },
+      {
+        "id": "CVE-2024-47068",
+        "package": "rollup",
+        "installed_version": "2.79.1",
+        "fixed_version": "3.29.5, 4.22.4, 2.79.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "rollup: DOM Clobbering Gadget found in rollup bundled scripts that leads to XSS"
+      },
+      {
+        "id": "CVE-2026-27606",
+        "package": "rollup",
+        "installed_version": "2.79.1",
+        "fixed_version": "2.80.0, 3.30.0, 4.59.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "rollup: Rollup: Remote Code Execution via Path Traversal Vulnerability"
+      },
+      {
+        "id": "CVE-2026-27606",
+        "package": "rollup",
+        "installed_version": "3.29.5",
+        "fixed_version": "2.80.0, 3.30.0, 4.59.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "rollup: Rollup: Remote Code Execution via Path Traversal Vulnerability"
+      },
+      {
+        "id": "CVE-2022-25883",
+        "package": "semver",
+        "installed_version": "6.3.0",
+        "fixed_version": "7.5.2, 6.3.1, 5.7.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nodejs-semver: Regular expression denial of service"
+      },
+      {
+        "id": "CVE-2024-43799",
+        "package": "send",
+        "installed_version": "0.18.0",
+        "fixed_version": "0.19.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "send: Code Execution Vulnerability in Send Library"
+      },
+      {
+        "id": "GHSA-5c6j-r48x-rmvq",
+        "package": "serialize-javascript",
+        "installed_version": "4.0.0",
+        "fixed_version": "7.0.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString()"
+      },
+      {
+        "id": "GHSA-5c6j-r48x-rmvq",
+        "package": "serialize-javascript",
+        "installed_version": "6.0.1",
+        "fixed_version": "7.0.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString()"
+      },
+      {
+        "id": "CVE-2024-11831",
+        "package": "serialize-javascript",
+        "installed_version": "6.0.1",
+        "fixed_version": "6.0.2",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "npm-serialize-javascript: Cross-site Scripting (XSS) in serialize-javascript"
+      },
+      {
+        "id": "CVE-2026-34043",
+        "package": "serialize-javascript",
+        "installed_version": "6.0.1",
+        "fixed_version": "7.0.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "serialize-javascript: serialize-javascript: Denial of Service via specially crafted array-like object serialization"
+      },
+      {
+        "id": "CVE-2024-43800",
+        "package": "serve-static",
+        "installed_version": "1.15.0",
+        "fixed_version": "1.16.0, 2.1.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "serve-static: Improper Sanitization in serve-static"
+      },
+      {
+        "id": "CVE-2025-9288",
+        "package": "sha.js",
+        "installed_version": "2.4.11",
+        "fixed_version": "2.4.12",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "sha.js: Missing type checks leading to hash rewind and passing on crafted data"
+      },
+      {
+        "id": "CVE-2026-9277",
+        "package": "shell-quote",
+        "installed_version": "1.8.1",
+        "fixed_version": "1.8.4",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "shell-quote: shell-quote: Arbitrary code execution via command injection due to unescaped line terminators"
+      },
+      {
+        "id": "CVE-2026-13311",
+        "package": "shell-quote",
+        "installed_version": "1.8.1",
+        "fixed_version": "1.9.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "shell-quote: shell-quote/parse: shell-quote: Denial of Service due to inefficient input parsing"
+      },
+      {
+        "id": "CVE-2024-45047",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "4.2.19",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "Svelte has a potential mXSS vulnerability due to improper HTML escaping"
+      },
+      {
+        "id": "CVE-2026-27121",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte affected by cross-site scripting via spread attributes in Svelte SSR"
+      },
+      {
+        "id": "CVE-2026-27122",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte SSR does not validate dynamic element tag names in `<svelte:element>`"
+      },
+      {
+        "id": "CVE-2026-27125",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.51.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte SSR attribute spreading includes inherited properties from prototype chain"
+      },
+      {
+        "id": "CVE-2026-27901",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.53.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte: Cross-Site Scripting and HTML injection via improper escaping of bind:innerText and bind:textContent"
+      },
+      {
+        "id": "CVE-2026-42573",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.55.7",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte: Cross-Site Scripting via DOM Clobbering"
+      },
+      {
+        "id": "CVE-2026-42599",
+        "package": "svelte",
+        "installed_version": "3.59.2",
+        "fixed_version": "5.55.7",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "svelte: Svelte: Cross-Site Scripting via untrusted data in spread attributes"
+      },
+      {
+        "id": "CVE-2026-73650",
+        "package": "svgo",
+        "installed_version": "1.3.2",
+        "fixed_version": "2.8.3, 3.3.4, 4.0.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "SVGO removeScripts plugin leaves some executable scripts intact"
+      },
+      {
+        "id": "CVE-2026-29074",
+        "package": "svgo",
+        "installed_version": "2.8.0",
+        "fixed_version": "2.8.1, 3.3.3, 4.0.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "svgo: SVGO: Denial of Service via XML entity expansion"
+      },
+      {
+        "id": "CVE-2026-73650",
+        "package": "svgo",
+        "installed_version": "2.8.0",
+        "fixed_version": "2.8.3, 3.3.4, 4.0.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "SVGO removeScripts plugin leaves some executable scripts intact"
+      },
+      {
+        "id": "CVE-2026-59873",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.19",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "tar: node-tar: Denial of Service via crafted gzip bomb"
+      },
+      {
+        "id": "CVE-2026-23745",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives"
+      },
+      {
+        "id": "CVE-2026-23950",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.4",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition"
+      },
+      {
+        "id": "CVE-2026-24842",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.7",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check"
+      },
+      {
+        "id": "CVE-2026-26960",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.8",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation"
+      },
+      {
+        "id": "CVE-2026-29786",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.10",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "node-tar: hardlink path traversal via drive-relative linkpath"
+      },
+      {
+        "id": "CVE-2026-31802",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.11",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "tar: tar: File overwrite via drive-relative symlink traversal"
+      },
+      {
+        "id": "CVE-2026-59874",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.18",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "tar: Node-tar: Denial of Service via malformed tar archive header"
+      },
+      {
+        "id": "CVE-2024-28863",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "6.2.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-tar: denial of service while parsing a tar file due to lack of folders depth validation"
+      },
+      {
+        "id": "CVE-2026-53655",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.16",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-tar: node-tar: File smuggling due to inconsistent tar archive parsing"
+      },
+      {
+        "id": "CVE-2026-59871",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.18",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-tar: node-tar: Denial of Service due to incorrect PAX path handling"
+      },
+      {
+        "id": "CVE-2026-59875",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.17",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-tar: node-tar: Denial of Service via crafted archive with NUL bytes in metadata"
+      },
+      {
+        "id": "GHSA-r292-9mhp-454m",
+        "package": "tar",
+        "installed_version": "4.4.19",
+        "fixed_version": "7.5.21",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection"
+      },
+      {
+        "id": "CVE-2026-41907",
+        "package": "uuid",
+        "installed_version": "8.3.2",
+        "fixed_version": "11.1.1, 12.0.1, 13.0.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "uuid: uuid: Out-of-bounds write vulnerability impacts data integrity and confidentiality"
+      },
+      {
+        "id": "CVE-2024-43788",
+        "package": "webpack",
+        "installed_version": "5.88.0",
+        "fixed_version": "5.94.0",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack: DOM Clobbering vulnerability in AutoPublicPathRuntimeModule"
+      },
+      {
+        "id": "CVE-2025-68157",
+        "package": "webpack",
+        "installed_version": "5.88.0",
+        "fixed_version": "5.104.0",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "webpack: webpack buildHttp HttpUriPlugin allowedUris bypass via HTTP redirects"
+      },
+      {
+        "id": "CVE-2025-68458",
+        "package": "webpack",
+        "installed_version": "5.88.0",
+        "fixed_version": "5.104.1",
+        "severity": "LOW",
+        "target": "web/yarn.lock",
+        "title": "webpack: webpack buildHttp: allowedUris allow-list bypass via URL userinfo (@) leading to build-time SSRF behavior"
+      },
+      {
+        "id": "CVE-2024-29180",
+        "package": "webpack-dev-middleware",
+        "installed_version": "5.3.3",
+        "fixed_version": "7.1.0, 6.1.2, 5.3.4",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-middleware: lack of URL validation may lead to file leak"
+      },
+      {
+        "id": "CVE-2025-30359",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server information exposure"
+      },
+      {
+        "id": "CVE-2025-30360",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server information exposure"
+      },
+      {
+        "id": "CVE-2026-14620",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.6",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server: Arbitrary file opening and denial of service via exposed developer endpoints"
+      },
+      {
+        "id": "CVE-2026-14631",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.6",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server: Denial of Service via malformed headers"
+      },
+      {
+        "id": "CVE-2026-6402",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.4",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server: Information disclosure due to cross-origin source code exposure"
+      },
+      {
+        "id": "CVE-2026-9595",
+        "package": "webpack-dev-server",
+        "installed_version": "4.15.1",
+        "fixed_version": "5.2.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "webpack-dev-server: webpack-dev-server: Information disclosure and denial of service via improper proxy configuration"
+      },
+      {
+        "id": "CVE-2026-54466",
+        "package": "websocket-driver",
+        "installed_version": "0.7.4",
+        "fixed_version": "0.7.5",
+        "severity": "CRITICAL",
+        "target": "web/yarn.lock",
+        "title": "websocket-driver is a WebSocket protocol handler with pluggable I/O. P ..."
+      },
+      {
+        "id": "CVE-2026-54490",
+        "package": "websocket-driver",
+        "installed_version": "0.7.4",
+        "fixed_version": "0.7.5",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "websocket-driver is a WebSocket protocol handler with pluggable I/O. P ..."
+      },
+      {
+        "id": "CVE-2023-26115",
+        "package": "word-wrap",
+        "installed_version": "1.2.3",
+        "fixed_version": "1.2.4",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "word-wrap: ReDoS"
+      },
+      {
+        "id": "CVE-2024-37890",
+        "package": "ws",
+        "installed_version": "7.4.6",
+        "fixed_version": "5.2.4, 6.2.3, 7.5.10, 8.17.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nodejs-ws: denial of service when handling a request with many HTTP headers"
+      },
+      {
+        "id": "CVE-2026-48779",
+        "package": "ws",
+        "installed_version": "7.4.6",
+        "fixed_version": "5.2.5, 6.2.4, 7.5.11, 8.21.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments"
+      },
+      {
+        "id": "CVE-2024-37890",
+        "package": "ws",
+        "installed_version": "7.5.9",
+        "fixed_version": "5.2.4, 6.2.3, 7.5.10, 8.17.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nodejs-ws: denial of service when handling a request with many HTTP headers"
+      },
+      {
+        "id": "CVE-2026-48779",
+        "package": "ws",
+        "installed_version": "7.5.9",
+        "fixed_version": "5.2.5, 6.2.4, 7.5.11, 8.21.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments"
+      },
+      {
+        "id": "CVE-2024-37890",
+        "package": "ws",
+        "installed_version": "8.13.0",
+        "fixed_version": "5.2.4, 6.2.3, 7.5.10, 8.17.1",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "nodejs-ws: denial of service when handling a request with many HTTP headers"
+      },
+      {
+        "id": "CVE-2026-48779",
+        "package": "ws",
+        "installed_version": "8.13.0",
+        "fixed_version": "5.2.5, 6.2.4, 7.5.11, 8.21.0",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments"
+      },
+      {
+        "id": "CVE-2026-45736",
+        "package": "ws",
+        "installed_version": "8.13.0",
+        "fixed_version": "8.20.1",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "ws: ws: Uninitialized memory disclosure via `websocket.close()` with `TypedArray`"
+      },
+      {
+        "id": "CVE-2023-30533",
+        "package": "xlsx",
+        "installed_version": "0.18.5",
+        "fixed_version": "0.19.3",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "Prototype Pollution in sheetJS"
+      },
+      {
+        "id": "CVE-2024-22363",
+        "package": "xlsx",
+        "installed_version": "0.18.5",
+        "fixed_version": "0.20.2",
+        "severity": "HIGH",
+        "target": "web/yarn.lock",
+        "title": "SheetJS Regular Expression Denial of Service (ReDoS)"
+      },
+      {
+        "id": "CVE-2026-33532",
+        "package": "yaml",
+        "installed_version": "1.10.2",
+        "fixed_version": "2.8.3, 1.10.3",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "yaml: yaml: Denial of Service via deeply nested YAML document parsing"
+      },
+      {
+        "id": "CVE-2026-33532",
+        "package": "yaml",
+        "installed_version": "2.3.1",
+        "fixed_version": "2.8.3, 1.10.3",
+        "severity": "MEDIUM",
+        "target": "web/yarn.lock",
+        "title": "yaml: yaml: Denial of Service via deeply nested YAML document parsing"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "github-actions[bot]"
+    ],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 105,
+    "open_prs": 5,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 16,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": false,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 18,
+    "total_recent_prs_checked": 19,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715502.8781152
+}

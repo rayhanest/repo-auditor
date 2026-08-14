@@ -1,0 +1,71 @@
+{
+  "repo": "zeromicro/go-zero",
+  "owner": "zeromicro",
+  "name": "go-zero",
+  "package_managers": [
+    "go modules"
+  ],
+  "languages": [
+    "Go",
+    "Shell",
+    "Go Template",
+    "ANTLR",
+    "TypeScript",
+    "Makefile",
+    "Lua",
+    "Dockerfile",
+    "Smarty"
+  ],
+  "vulnerabilities": {
+    "total": 2,
+    "critical": 0,
+    "high": 2,
+    "medium": 0,
+    "low": 0,
+    "findings": [
+      {
+        "id": "CVE-2026-46600",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.55.0",
+        "fixed_version": "0.56.0",
+        "severity": "HIGH",
+        "target": "tools/goctl/go.mod",
+        "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing"
+      },
+      {
+        "id": "CVE-2026-56852",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.37.0",
+        "fixed_version": "0.39.0",
+        "severity": "HIGH",
+        "target": "tools/goctl/go.mod",
+        "title": "golang.org/x/text: golang.org/x/text: Denial of Service via invalid UTF-8 input"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "dependabot[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 259,
+    "open_prs": 146,
+    "commits_last_90_days": 44,
+    "contributors_last_90_days": 12,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "moderate"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 22,
+    "total_recent_prs_checked": 22,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715382.6685624
+}

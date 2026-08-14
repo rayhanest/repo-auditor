@@ -1,0 +1,703 @@
+{
+  "repo": "python-poetry/poetry",
+  "owner": "python-poetry",
+  "name": "poetry",
+  "package_managers": [
+    "poetry"
+  ],
+  "languages": [
+    "Python",
+    "HTML"
+  ],
+  "vulnerabilities": {
+    "total": 73,
+    "critical": 0,
+    "high": 31,
+    "medium": 41,
+    "low": 1,
+    "findings": [
+      {
+        "id": "CVE-2026-69247",
+        "package": "cryptography",
+        "installed_version": "49.0.0",
+        "fixed_version": "50.0.0",
+        "severity": "HIGH",
+        "target": "poetry.lock",
+        "title": "cryptography is a package designed to expose cryptographic primitives  ..."
+      },
+      {
+        "id": "CVE-2023-37920",
+        "package": "certifi",
+        "installed_version": "2020.6.20",
+        "fixed_version": "2023.7.22",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-certifi: Removal of e-Tugra root certificate"
+      },
+      {
+        "id": "CVE-2022-23491",
+        "package": "certifi",
+        "installed_version": "2020.6.20",
+        "fixed_version": "2022.12.07",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-certifi: untrusted root certificates"
+      },
+      {
+        "id": "CVE-2024-3651",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.7",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-idna: potential DoS via resource consumption via specially crafted inputs to idna.encode()"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2021-32559",
+        "package": "pywin32",
+        "installed_version": "227",
+        "fixed_version": "301",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "Integer overflow in pywin32"
+      },
+      {
+        "id": "CVE-2023-32681",
+        "package": "requests",
+        "installed_version": "2.24.0",
+        "fixed_version": "2.31.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-requests: Unintended leak of Proxy-Authorization header"
+      },
+      {
+        "id": "CVE-2024-35195",
+        "package": "requests",
+        "installed_version": "2.24.0",
+        "fixed_version": "2.32.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "requests: subsequent requests to the same host ignore cert verification"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.24.0",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.24.0",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2021-33503",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "1.26.5",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-urllib3: ReDoS in the parsing of authority part of URL"
+      },
+      {
+        "id": "CVE-2023-43804",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.0.6, 1.26.17",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2023-45803",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.0.7, 1.26.18",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: Request body not stripped after redirect from 303 status changes request method to GET"
+      },
+      {
+        "id": "CVE-2024-37891",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "1.26.19, 2.2.2",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: proxy-authorization request header is not stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "1.25.10",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/outdated_lock/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      },
+      {
+        "id": "CVE-2023-37920",
+        "package": "certifi",
+        "installed_version": "2020.12.5",
+        "fixed_version": "2023.7.22",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-certifi: Removal of e-Tugra root certificate"
+      },
+      {
+        "id": "CVE-2022-23491",
+        "package": "certifi",
+        "installed_version": "2020.12.5",
+        "fixed_version": "2022.12.07",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-certifi: untrusted root certificates"
+      },
+      {
+        "id": "CVE-2024-3651",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.7",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-idna: potential DoS via resource consumption via specially crafted inputs to idna.encode()"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2021-32559",
+        "package": "pywin32",
+        "installed_version": "227",
+        "fixed_version": "301",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "Integer overflow in pywin32"
+      },
+      {
+        "id": "CVE-2023-32681",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.31.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-requests: Unintended leak of Proxy-Authorization header"
+      },
+      {
+        "id": "CVE-2024-35195",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "requests: subsequent requests to the same host ignore cert verification"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2021-33503",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.5",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-urllib3: ReDoS in the parsing of authority part of URL"
+      },
+      {
+        "id": "CVE-2023-43804",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.0.6, 1.26.17",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2021-28363",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "python-urllib3: HTTPS proxy host name not validated when using default SSLContext"
+      },
+      {
+        "id": "CVE-2023-45803",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.0.7, 1.26.18",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: Request body not stripped after redirect from 303 status changes request method to GET"
+      },
+      {
+        "id": "CVE-2024-37891",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.19, 2.2.2",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: proxy-authorization request header is not stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      },
+      {
+        "id": "CVE-2023-37920",
+        "package": "certifi",
+        "installed_version": "2020.12.5",
+        "fixed_version": "2023.7.22",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-certifi: Removal of e-Tugra root certificate"
+      },
+      {
+        "id": "CVE-2022-23491",
+        "package": "certifi",
+        "installed_version": "2020.12.5",
+        "fixed_version": "2022.12.07",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-certifi: untrusted root certificates"
+      },
+      {
+        "id": "CVE-2024-3651",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.7",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-idna: potential DoS via resource consumption via specially crafted inputs to idna.encode()"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2021-32559",
+        "package": "pywin32",
+        "installed_version": "227",
+        "fixed_version": "301",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "Integer overflow in pywin32"
+      },
+      {
+        "id": "CVE-2023-32681",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.31.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-requests: Unintended leak of Proxy-Authorization header"
+      },
+      {
+        "id": "CVE-2024-35195",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "requests: subsequent requests to the same host ignore cert verification"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2021-33503",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.5",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-urllib3: ReDoS in the parsing of authority part of URL"
+      },
+      {
+        "id": "CVE-2023-43804",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.0.6, 1.26.17",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2021-28363",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "python-urllib3: HTTPS proxy host name not validated when using default SSLContext"
+      },
+      {
+        "id": "CVE-2023-45803",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.0.7, 1.26.18",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: Request body not stripped after redirect from 303 status changes request method to GET"
+      },
+      {
+        "id": "CVE-2024-37891",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "1.26.19, 2.2.2",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: proxy-authorization request header is not stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "1.26.3",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/up_to_date_lock_non_package/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      },
+      {
+        "id": "CVE-2023-37920",
+        "package": "certifi",
+        "installed_version": "2022.12.7",
+        "fixed_version": "2023.7.22",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-certifi: Removal of e-Tugra root certificate"
+      },
+      {
+        "id": "CVE-2024-39689",
+        "package": "certifi",
+        "installed_version": "2022.12.7",
+        "fixed_version": "2024.7.4",
+        "severity": "LOW",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-certifi: Remove root certificates from `GLOBALTRUST` from the root store"
+      },
+      {
+        "id": "CVE-2024-3651",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.7",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-idna: potential DoS via resource consumption via specially crafted inputs to idna.encode()"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "2.10",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2023-32681",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.31.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-requests: Unintended leak of Proxy-Authorization header"
+      },
+      {
+        "id": "CVE-2024-35195",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "requests: subsequent requests to the same host ignore cert verification"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.25.1",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2023-43804",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.0.6, 1.26.17",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-66418",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+      },
+      {
+        "id": "CVE-2025-66471",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.6.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+      },
+      {
+        "id": "CVE-2026-21441",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.6.3",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+      },
+      {
+        "id": "CVE-2026-44431",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.7.0",
+        "severity": "HIGH",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+      },
+      {
+        "id": "CVE-2023-45803",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.0.7, 1.26.18",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: Request body not stripped after redirect from 303 status changes request method to GET"
+      },
+      {
+        "id": "CVE-2024-37891",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "1.26.19, 2.2.2",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: proxy-authorization request header is not stripped during cross-origin redirects"
+      },
+      {
+        "id": "CVE-2025-50181",
+        "package": "urllib3",
+        "installed_version": "1.26.14",
+        "fixed_version": "2.5.0",
+        "severity": "MEDIUM",
+        "target": "tests/fixtures/with_path_dependency/poetry.lock",
+        "title": "urllib3: urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "pre-commit-ci[bot]"
+    ],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 566,
+    "open_prs": 75,
+    "commits_last_90_days": 44,
+    "contributors_last_90_days": 19,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "moderate"
+  },
+  "contributor_openness": {
+    "has_contributing_md": false,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 25,
+    "total_recent_prs_checked": 38,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715365.6156921
+}

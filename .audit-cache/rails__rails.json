@@ -1,0 +1,725 @@
+{
+  "repo": "rails/rails",
+  "owner": "rails",
+  "name": "rails",
+  "package_managers": [
+    "bundler",
+    "yarn"
+  ],
+  "languages": [
+    "Ruby",
+    "JavaScript",
+    "HTML",
+    "SCSS",
+    "CSS",
+    "Dockerfile",
+    "Shell"
+  ],
+  "vulnerabilities": {
+    "total": 75,
+    "critical": 2,
+    "high": 25,
+    "medium": 33,
+    "low": 15,
+    "findings": [
+      {
+        "id": "CVE-2026-73426",
+        "package": "action_text-trix",
+        "installed_version": "2.1.16",
+        "fixed_version": "2.1.17",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Trix has a Stored XSS vulnerability through serialized attributes"
+      },
+      {
+        "id": "CVE-2026-73428",
+        "package": "action_text-trix",
+        "installed_version": "2.1.16",
+        "fixed_version": "2.1.18",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Trix: Stored XSS via HTMLParser attribute injection on paste"
+      },
+      {
+        "id": "GHSA-53g2-mvcc-q9x3",
+        "package": "action_text-trix",
+        "installed_version": "2.1.16",
+        "fixed_version": ">= 2.1.18",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Stored XSS via HTMLParser attribute injection on paste"
+      },
+      {
+        "id": "GHSA-qmpg-8xg6-ph5q",
+        "package": "action_text-trix",
+        "installed_version": "2.1.16",
+        "fixed_version": ">= 2.1.17",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Trix has a Stored XSS vulnerability through serialized attributes"
+      },
+      {
+        "id": "CVE-2026-73427",
+        "package": "action_text-trix",
+        "installed_version": "2.1.16",
+        "fixed_version": "2.1.18",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Trix is vulnerable to XSS through JSON deserialization bypass in drag-and-drop (Level0InputController)"
+      },
+      {
+        "id": "CVE-2026-35611",
+        "package": "addressable",
+        "installed_version": "2.8.7",
+        "fixed_version": ">= 2.9.0",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "addressable: Addressable: Denial of Service via crafted URI templates"
+      },
+      {
+        "id": "CVE-2025-14762",
+        "package": "aws-sdk-s3",
+        "installed_version": "1.197.0",
+        "fixed_version": ">= 1.208.0",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "aws-sdk-ruby: AWS SDK for Ruby: Data integrity compromise via missing cryptographic key commitment"
+      },
+      {
+        "id": "CVE-2026-33306",
+        "package": "bcrypt",
+        "installed_version": "3.1.20",
+        "fixed_version": ">= 3.1.22",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "github.com/bcrypt-ruby/bcrypt-ruby: bcrypt-ruby (JRuby): Weakened password hashing due to integer overflow"
+      },
+      {
+        "id": "CVE-2026-41316",
+        "package": "erb",
+        "installed_version": "5.1.1",
+        "fixed_version": "~> 4.0.3.1, ~> 4.0.4.1, ~> 6.0.1.1, >= 6.0.4",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "erb: ERB: Arbitrary code execution via deserialization bypass"
+      },
+      {
+        "id": "CVE-2026-54297",
+        "package": "faraday",
+        "installed_version": "2.14.0",
+        "fixed_version": "~> 1.10.6, >= 2.14.3",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "faraday: Faraday: Denial of Service via crafted nested query strings"
+      },
+      {
+        "id": "CVE-2026-25765",
+        "package": "faraday",
+        "installed_version": "2.14.0",
+        "fixed_version": "~> 1.10.5, >= 2.14.1",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Faraday: Faraday: Server-Side Request Forgery via protocol-relative URLs"
+      },
+      {
+        "id": "CVE-2026-33637",
+        "package": "faraday",
+        "installed_version": "2.14.0",
+        "fixed_version": ">= 2.14.2",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "faraday: rubygem-faraday: Faraday: Off-host request forgery due to protocol-relative host override"
+      },
+      {
+        "id": "CVE-2026-71847",
+        "package": "json",
+        "installed_version": "2.20.0",
+        "fixed_version": ">= 2.21.2",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Ruby JSON is a JSON implementation for Ruby. From 2.20.0 until 2.21.2, ..."
+      },
+      {
+        "id": "CVE-2026-45363",
+        "package": "jwt",
+        "installed_version": "2.10.1",
+        "fixed_version": "~> 2.10.3, >= 3.2.0",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "ruby-jwt: ruby-jwt: Authentication bypass due to empty key in HMAC verification"
+      },
+      {
+        "id": "CVE-2026-73490",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": "2.25.2",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Loofah is a general library for manipulating and transforming HTML/XML ..."
+      },
+      {
+        "id": "GHSA-9wjq-cp2p-hrgf",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": ">= 2.25.2",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "SVG `href` attribute bypasses local-reference restriction in Loofah"
+      },
+      {
+        "id": "CVE-2026-73491",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": "2.25.2",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Loofah is a general library for manipulating and transforming HTML/XML ..."
+      },
+      {
+        "id": "GHSA-2j22-pr5w-6gq8",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": "2.25.1",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Loofah has improper detection of disallowed URIs via `allowed_uri?`"
+      },
+      {
+        "id": "GHSA-46fp-8f5p-pf2m",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": ">= 2.25.1",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Improper detection of disallowed URIs by Loofah `allowed_uri?`"
+      },
+      {
+        "id": "GHSA-5qhf-9phg-95m2",
+        "package": "loofah",
+        "installed_version": "2.25.0",
+        "fixed_version": ">= 2.25.2",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Loofah `allowed_uri?` does not detect `javascript:` URIs split by numeric character references without semicolons"
+      },
+      {
+        "id": "CVE-2026-54522",
+        "package": "msgpack",
+        "installed_version": "1.7.5",
+        "fixed_version": ">= 1.8.2",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "MessagePack for Ruby is an implementation of the MessagePack binary se ..."
+      },
+      {
+        "id": "CVE-2026-42257",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.4.24, ~> 0.5.14, >= 0.6.4",
+        "severity": "CRITICAL",
+        "target": "Gemfile.lock",
+        "title": "net-imap: Net::IMAP: Arbitrary IMAP command injection via CRLF sequences in unvalidated input"
+      },
+      {
+        "id": "CVE-2026-42245",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.4.24, ~> 0.5.14, >= 0.6.4",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "ruby: net-imap: Net::IMAP: Denial of Service via crafted IMAP responses"
+      },
+      {
+        "id": "CVE-2026-42246",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.3.10, ~> 0.4.24, ~> 0.5.14, >= 0.6.4",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "net-imap: ruby: Net::IMAP: Information disclosure via man-in-the-middle attack bypassing TLS"
+      },
+      {
+        "id": "CVE-2026-42258",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.4.24, ~> 0.5.14, >= 0.6.4",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "ruby/net-imap: ruby: Net::IMAP: IMAP Command Injection via Symbol Arguments"
+      },
+      {
+        "id": "CVE-2025-25186",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.3.8, ~> 0.4.19, >= 0.5.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "net-imap: Net::IMAP vulnerable to possible DoS by memory exhaustion"
+      },
+      {
+        "id": "CVE-2025-43857",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.2.5, ~> 0.3.9, ~> 0.4.20, >= 0.5.7",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "net-imap: net-imap rubygem vulnerable to possible DoS by memory exhaustion"
+      },
+      {
+        "id": "CVE-2026-42256",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.4.24, ~> 0.5.14, >= 0.6.4",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "ruby/net-imap: ruby: Net::IMAP: Denial of Service via large iteration count in SCRAM authentication"
+      },
+      {
+        "id": "CVE-2026-47240",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.5.15, >= 0.6.4.1",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "net-imap: Net::IMAP: Command injection via non-synchronizing literals"
+      },
+      {
+        "id": "CVE-2026-47242",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.5.15, >= 0.6.4.1",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Net::IMAP implements Internet Message Access Protocol (IMAP) client fu ..."
+      },
+      {
+        "id": "CVE-2026-47241",
+        "package": "net-imap",
+        "installed_version": "0.5.5",
+        "fixed_version": "~> 0.5.15, >= 0.6.4.1",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "net-imap: rubygem-net-imap: Net::IMAP: Denial of Service via malformed command input"
+      },
+      {
+        "id": "GHSA-c4rq-3m3g-8wgx",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.3",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri CSS selector tokenizer has regular expression backtracking"
+      },
+      {
+        "id": "GHSA-5prr-v3j2-97mh",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Out-of-Bounds Read in `Nokogiri::XML::NodeSet#[]`"
+      },
+      {
+        "id": "GHSA-v2fc-qm4h-8hqv",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.3",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri XSLT transform has a memory leak"
+      },
+      {
+        "id": "GHSA-5v8h-3h3q-446p",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Use-After-Free when `Nokogiri::XML::Document#encoding=` raises an exception"
+      },
+      {
+        "id": "GHSA-8678-w3jw-xfc2",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: XML::Schema on JRuby allows network requests when NONET is set, bypassing CVE-2020-26247"
+      },
+      {
+        "id": "GHSA-9cv2-cfxc-v4v2",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Null Pointer Dereference calling methods on uninitialized wrapper classes"
+      },
+      {
+        "id": "GHSA-p67v-3w7g-wjg7",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Use-After-Free when directly using `NokogirI::XML::XPathContext` beyond document lifetime"
+      },
+      {
+        "id": "GHSA-phwj-rprq-35pp",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Use-After-Free when setting an attribute value via `Nokogiri::XML::Attr#value=` or `#content=`"
+      },
+      {
+        "id": "GHSA-wfpw-mmfh-qq69",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Use-After-Free in XInclude Processing"
+      },
+      {
+        "id": "GHSA-wjv4-x9w8-wm3h",
+        "package": "nokogiri",
+        "installed_version": "1.19.1",
+        "fixed_version": ">= 1.19.4",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "Nokogiri: Possible Use-After-Free when setting `Document#root=` to an invalid node type"
+      },
+      {
+        "id": "CVE-2026-47736",
+        "package": "puma",
+        "installed_version": "6.5.0",
+        "fixed_version": "~> 7.2.1, >= 8.0.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "puma: Puma: Denial of Service due to unbounded memory growth in PROXY protocol v1"
+      },
+      {
+        "id": "CVE-2026-47737",
+        "package": "puma",
+        "installed_version": "6.5.0",
+        "fixed_version": "~> 7.2.1, >= 8.0.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "puma: Puma: Source IP spoofing via PROXY protocol header re-parsing"
+      },
+      {
+        "id": "CVE-2025-61770",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.19, ~> 3.1.17, >= 3.2.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack's unbounded multipart preamble buffering enables DoS (memory exhaustion)"
+      },
+      {
+        "id": "CVE-2025-61771",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.19, ~> 3.1.17, >= 3.2.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack's multipart parser buffers large non\u2011file fields entirely in memory, enabling DoS (memory exhaustion)"
+      },
+      {
+        "id": "CVE-2025-61772",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.19, ~> 3.1.17, >= 3.2.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack memory exhaustion denial of service"
+      },
+      {
+        "id": "CVE-2025-61919",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.20, ~> 3.1.18, >= 3.2.3",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rubygem-rack: Unbounded read in `Rack::Request` form parsing can lead to memory exhaustion"
+      },
+      {
+        "id": "CVE-2026-22860",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.22, ~> 3.1.20, >= 3.2.5",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rubygem-rack: Rack Directory Traversal via Rack:Directory"
+      },
+      {
+        "id": "CVE-2026-34785",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "github.com/rack/rack: Rack: Information disclosure via incorrect static file serving prefix check"
+      },
+      {
+        "id": "CVE-2026-34827",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 3.1.21, >= 3.2.6",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Denial of Service via crafted multipart/form-data requests"
+      },
+      {
+        "id": "CVE-2026-34829",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Denial of Service via unbounded multipart file upload"
+      },
+      {
+        "id": "CVE-2025-61780",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.20, ~> 3.1.18, >= 3.2.3",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rubygem-rack: Improper handling of headers in `Rack::Sendfile` may allow proxy bypass"
+      },
+      {
+        "id": "CVE-2026-25500",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.22, ~> 3.1.20, >= 3.2.5",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rubygem-rack: Rack stored XSS in Rack::Directory"
+      },
+      {
+        "id": "CVE-2026-26962",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": ">= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Header injection and response splitting via incorrect multipart header parsing"
+      },
+      {
+        "id": "CVE-2026-32762",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Parameter smuggling via improper Forwarded header parsing"
+      },
+      {
+        "id": "CVE-2026-34230",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Denial of Service via crafted Accept-Encoding header"
+      },
+      {
+        "id": "CVE-2026-34763",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Information disclosure via regular expression metacharacters in root path"
+      },
+      {
+        "id": "CVE-2026-34786",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Security header bypass via URL-encoded static path requests"
+      },
+      {
+        "id": "CVE-2026-34826",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Denial of Service via malicious HTTP Range header"
+      },
+      {
+        "id": "CVE-2026-34830",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Information disclosure via regular expression injection in X-Accel-Mapping header"
+      },
+      {
+        "id": "CVE-2026-34831",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: HTTP response desynchronization via incorrect Content-Length calculation with UTF-8 characters"
+      },
+      {
+        "id": "CVE-2026-34835",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 3.1.21, >= 3.2.6",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rack: Rack: Host header poisoning due to malformed Host header bypasses validation"
+      },
+      {
+        "id": "CVE-2026-26961",
+        "package": "rack",
+        "installed_version": "3.2.1",
+        "fixed_version": "~> 2.2.23, ~> 3.1.21, >= 3.2.6",
+        "severity": "LOW",
+        "target": "Gemfile.lock",
+        "title": "github.com/rack/rack: Rack: Content smuggling via multipart boundary parsing mismatch"
+      },
+      {
+        "id": "CVE-2026-39324",
+        "package": "rack-session",
+        "installed_version": "2.1.1",
+        "fixed_version": ">= 2.1.2",
+        "severity": "CRITICAL",
+        "target": "Gemfile.lock",
+        "title": "Rack::Session is a session management implementation for Rack. From 2. ..."
+      },
+      {
+        "id": "CVE-2026-73648",
+        "package": "rails-html-sanitizer",
+        "installed_version": "1.7.0",
+        "fixed_version": "1.7.1",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rails-html-sanitizer is responsible for sanitizing HTML fragments in R ..."
+      },
+      {
+        "id": "CVE-2025-58767",
+        "package": "rexml",
+        "installed_version": "3.4.0",
+        "fixed_version": ">= 3.4.2",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "rexml: REXML denial of service"
+      },
+      {
+        "id": "CVE-2025-61921",
+        "package": "sinatra",
+        "installed_version": "4.1.1",
+        "fixed_version": ">= 4.2.0",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "sinatra: Sinatra has ReDoS vulnerability in ETag header value generation"
+      },
+      {
+        "id": "CVE-2026-54619",
+        "package": "sqlite3",
+        "installed_version": "2.5.0",
+        "fixed_version": ">= 2.9.5",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "sqlite3-ruby: sqlite3: sqlite3-ruby: Use-after-free when redefining SQLite functions with different arity"
+      },
+      {
+        "id": "CVE-2026-54620",
+        "package": "sqlite3",
+        "installed_version": "2.5.0",
+        "fixed_version": ">= 2.9.5",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "sqlite3-ruby: sqlite3: sqlite3-ruby: Use-After-Free vulnerability in SQLite aggregate function callbacks"
+      },
+      {
+        "id": "CVE-2025-61594",
+        "package": "uri",
+        "installed_version": "1.0.3",
+        "fixed_version": "~> 0.12.5, ~> 0.13.3, >= 1.0.4",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "uri: URI module: Credential exposure via URI + operator"
+      },
+      {
+        "id": "CVE-2026-54463",
+        "package": "websocket-driver",
+        "installed_version": "0.7.7",
+        "fixed_version": ">= 0.8.1",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "websocket-driver: websocket-driver: Denial of Service via unbounded memory consumption in WebSocket length header"
+      },
+      {
+        "id": "CVE-2026-54465",
+        "package": "websocket-driver",
+        "installed_version": "0.7.7",
+        "fixed_version": ">= 0.8.1",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "websocket-driver: websocket-driver: Denial of Service via unbounded memory consumption"
+      },
+      {
+        "id": "CVE-2026-61666",
+        "package": "websocket-driver",
+        "installed_version": "0.7.7",
+        "fixed_version": ">= 0.8.2",
+        "severity": "HIGH",
+        "target": "Gemfile.lock",
+        "title": "Denial of service via malformed Host header"
+      },
+      {
+        "id": "CVE-2026-54464",
+        "package": "websocket-driver",
+        "installed_version": "0.7.7",
+        "fixed_version": ">= 0.8.1",
+        "severity": "MEDIUM",
+        "target": "Gemfile.lock",
+        "title": "### Impact  If this library is used in tandem with the `permessage-def ..."
+      },
+      {
+        "id": "CVE-2026-31830",
+        "package": "sigstore",
+        "installed_version": "0.2.2",
+        "fixed_version": ">= 0.2.3",
+        "severity": "HIGH",
+        "target": "tools/releaser/Gemfile.lock",
+        "title": "sigstore-ruby verifier returns success for DSSE bundles with mismatched in-toto subject digest"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 1585,
+    "open_prs": 1101,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 23,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 27,
+    "total_recent_prs_checked": 45,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715601.2943106
+}

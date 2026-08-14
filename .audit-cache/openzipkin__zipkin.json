@@ -1,0 +1,50 @@
+{
+  "repo": "openzipkin/zipkin",
+  "owner": "openzipkin",
+  "name": "zipkin",
+  "package_managers": [
+    "maven",
+    "npm"
+  ],
+  "languages": [
+    "Java",
+    "TypeScript",
+    "JavaScript",
+    "Shell",
+    "Dockerfile",
+    "CQL",
+    "HTML",
+    "CSS"
+  ],
+  "vulnerabilities": {
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "findings": [],
+    "scan_error": "Trivy error: 2026-08-14T14:50:19+01:00\tFATAL\tError\tremote Maven repository returned 429 Too Many Requests for https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.21.2/jackson-bom-2.21.2.pom. R"
+  },
+  "bots": {
+    "bots_found": [],
+    "has_dependency_bot": false
+  },
+  "community": {
+    "open_issues": 175,
+    "open_prs": 4,
+    "commits_last_90_days": 0,
+    "contributors_last_90_days": 0,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": false,
+    "activity_level": "dormant"
+  },
+  "contributor_openness": {
+    "has_contributing_md": false,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 24,
+    "total_recent_prs_checked": 46,
+    "is_open_to_contributions": false
+  },
+  "_cached_at": 1786715425.9294584
+}

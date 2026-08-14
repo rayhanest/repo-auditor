@@ -1,0 +1,253 @@
+{
+  "repo": "istio/istio",
+  "owner": "istio",
+  "name": "istio",
+  "package_managers": [
+    "go modules"
+  ],
+  "languages": [
+    "Go",
+    "Shell",
+    "Makefile",
+    "CSS",
+    "Jsonnet",
+    "Go Template",
+    "HTML",
+    "Python",
+    "Dockerfile",
+    "Java",
+    "JavaScript"
+  ],
+  "vulnerabilities": {
+    "total": 22,
+    "critical": 0,
+    "high": 1,
+    "medium": 18,
+    "low": 3,
+    "findings": [
+      {
+        "id": "GHSA-gcjh-h69q-9w9g",
+        "package": "github.com/google/cel-go",
+        "installed_version": "v0.28.1",
+        "fixed_version": "0.29.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "cel-go: JSON Private Fields Exposed via NativeTypes and ParseStructTag"
+      },
+      {
+        "id": "CVE-2025-47278",
+        "package": "flask",
+        "installed_version": "3.1.0",
+        "fixed_version": "3.1.1",
+        "severity": "LOW",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "flask: Flask Session Signing Fallback Key Vulnerability"
+      },
+      {
+        "id": "CVE-2026-27205",
+        "package": "flask",
+        "installed_version": "3.1.0",
+        "fixed_version": "3.1.3",
+        "severity": "LOW",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "flask: Flask: Information disclosure via improper caching of session data"
+      },
+      {
+        "id": "CVE-2026-45409",
+        "package": "idna",
+        "installed_version": "3.10",
+        "fixed_version": "3.15",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "python-idna: idna: Denial of Service via specially crafted long inputs"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.32.3",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.32.3",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2025-47273",
+        "package": "setuptools",
+        "installed_version": "78.1.0",
+        "fixed_version": "78.1.1",
+        "severity": "HIGH",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "setuptools: Path Traversal Vulnerability in setuptools PackageIndex"
+      },
+      {
+        "id": "CVE-2026-59890",
+        "package": "setuptools",
+        "installed_version": "78.1.0",
+        "fixed_version": "83.0.0",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "setuptools: setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD)"
+      },
+      {
+        "id": "CVE-2025-66221",
+        "package": "werkzeug",
+        "installed_version": "3.1.3",
+        "fixed_version": "3.1.4",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": "Werkzeug: Werkzeug: Denial of service via Windows device names in path segments"
+      },
+      {
+        "id": "CVE-2026-21860",
+        "package": "werkzeug",
+        "installed_version": "3.1.3",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": " Werkzeug safe_join() allows Windows special device names with compound extensions"
+      },
+      {
+        "id": "CVE-2026-27199",
+        "package": "werkzeug",
+        "installed_version": "3.1.3",
+        "fixed_version": "3.1.6",
+        "severity": "MEDIUM",
+        "target": "samples/bookinfo/src/productpage/requirements.txt",
+        "title": " Werkzeug safe_join() allows Windows special device names"
+      },
+      {
+        "id": "CVE-2026-27205",
+        "package": "flask",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.1.3",
+        "severity": "LOW",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "flask: Flask: Information disclosure via improper caching of session data"
+      },
+      {
+        "id": "CVE-2024-56201",
+        "package": "jinja2",
+        "installed_version": "3.1.4",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "jinja2: Jinja has a sandbox breakout through malicious filenames"
+      },
+      {
+        "id": "CVE-2024-56326",
+        "package": "jinja2",
+        "installed_version": "3.1.4",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "jinja2: Jinja has a sandbox breakout through indirect reference to format method"
+      },
+      {
+        "id": "CVE-2025-27516",
+        "package": "jinja2",
+        "installed_version": "3.1.4",
+        "fixed_version": "3.1.6",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "jinja2: Jinja sandbox breakout through attr filter selecting format method"
+      },
+      {
+        "id": "CVE-2024-47081",
+        "package": "requests",
+        "installed_version": "2.32.0",
+        "fixed_version": "2.32.4",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "requests: Requests vulnerable to .netrc credentials leak via malicious URLs"
+      },
+      {
+        "id": "CVE-2026-25645",
+        "package": "requests",
+        "installed_version": "2.32.0",
+        "fixed_version": "2.33.0",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "requests: Requests: Security bypass due to predictable temporary file creation"
+      },
+      {
+        "id": "CVE-2024-49766",
+        "package": "werkzeug",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.0.6",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "werkzeug: python-werkzeug: Werkzeug safe_join not safe on Windows"
+      },
+      {
+        "id": "CVE-2024-49767",
+        "package": "werkzeug",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.0.6",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "werkzeug: python-werkzeug: Werkzeug possible resource exhaustion when parsing file data in forms"
+      },
+      {
+        "id": "CVE-2025-66221",
+        "package": "werkzeug",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.1.4",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": "Werkzeug: Werkzeug: Denial of service via Windows device names in path segments"
+      },
+      {
+        "id": "CVE-2026-21860",
+        "package": "werkzeug",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.1.5",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": " Werkzeug safe_join() allows Windows special device names with compound extensions"
+      },
+      {
+        "id": "CVE-2026-27199",
+        "package": "werkzeug",
+        "installed_version": "3.0.3",
+        "fixed_version": "3.1.6",
+        "severity": "MEDIUM",
+        "target": "samples/helloworld/src/requirements.txt",
+        "title": " Werkzeug safe_join() allows Windows special device names"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "dependabot[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 483,
+    "open_prs": 98,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 36,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 18,
+    "total_recent_prs_checked": 44,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715203.6265626
+}

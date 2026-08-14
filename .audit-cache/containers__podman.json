@@ -1,0 +1,56 @@
+{
+  "repo": "containers/podman",
+  "owner": "containers",
+  "name": "podman",
+  "package_managers": [
+    "go modules",
+    "pip"
+  ],
+  "languages": [
+    "Go",
+    "Shell",
+    "Perl",
+    "Python",
+    "PowerShell",
+    "C",
+    "Makefile",
+    "Ruby",
+    "Dockerfile",
+    "Awk",
+    "HTML",
+    "Batchfile"
+  ],
+  "vulnerabilities": {
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "findings": [],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "renovate[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 1122,
+    "open_prs": 0,
+    "commits_last_90_days": 100,
+    "contributors_last_90_days": 26,
+    "has_security_md": false,
+    "has_code_of_conduct": true,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 34,
+    "total_recent_prs_checked": 39,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715418.1030798
+}

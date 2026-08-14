@@ -1,0 +1,1002 @@
+{
+  "repo": "slimtoolkit/slim",
+  "owner": "slimtoolkit",
+  "name": "slim",
+  "package_managers": [
+    "go modules"
+  ],
+  "languages": [
+    "Go",
+    "Shell",
+    "Makefile",
+    "Dockerfile"
+  ],
+  "vulnerabilities": {
+    "total": 106,
+    "critical": 2,
+    "high": 68,
+    "medium": 34,
+    "low": 2,
+    "findings": [
+      {
+        "id": "CVE-2026-32287",
+        "package": "github.com/antchfx/xpath",
+        "installed_version": "v1.2.4",
+        "fixed_version": "1.3.6",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/antchfx/xpath: github.com/antchfx/xpath: Denial of Service due to infinite loop via boolean XPath expressions"
+      },
+      {
+        "id": "CVE-2024-25621",
+        "package": "github.com/containerd/containerd",
+        "installed_version": "v1.7.11",
+        "fixed_version": "1.7.29",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/containerd/containerd: containerd local privilege escalation"
+      },
+      {
+        "id": "CVE-2026-53488",
+        "package": "github.com/containerd/containerd",
+        "installed_version": "v1.7.11",
+        "fixed_version": "1.7.33",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/containerd/containerd: containerd: Host-root command execution via unvalidated image config labels in CRI plugin"
+      },
+      {
+        "id": "CVE-2024-40635",
+        "package": "github.com/containerd/containerd",
+        "installed_version": "v1.7.11",
+        "fixed_version": "1.7.27, 1.6.38",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "containerd: containerd has an integer overflow in User ID handling"
+      },
+      {
+        "id": "CVE-2025-64329",
+        "package": "github.com/containerd/containerd",
+        "installed_version": "v1.7.11",
+        "fixed_version": "1.7.29",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/containerd/containerd: containerd: Memory exhaustion via CRI Attach implementation goroutine leaks"
+      },
+      {
+        "id": "CVE-2026-47262",
+        "package": "github.com/containerd/containerd",
+        "installed_version": "v1.7.11",
+        "fixed_version": "1.7.33",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/containerd/containerd: containerd: Denial of Service via maliciously crafted image leading to unbounded group parsing"
+      },
+      {
+        "id": "CVE-2026-33540",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Information disclosure via improper validation of authentication realm URL"
+      },
+      {
+        "id": "CVE-2026-35172",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Information disclosure via stale references after content deletion"
+      },
+      {
+        "id": "CVE-2026-41888",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Security bypass allows unauthorized tag deletion"
+      },
+      {
+        "id": "CVE-2025-15558",
+        "package": "github.com/docker/cli",
+        "installed_version": "v24.0.0+incompatible",
+        "fixed_version": "29.2.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "docker/cli: Docker CLI for Windows: Privilege escalation via malicious plugin binaries"
+      },
+      {
+        "id": "CVE-2026-34040",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "29.3.1",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "Moby: Moby: Authorization bypass vulnerability"
+      },
+      {
+        "id": "CVE-2026-41567",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "docker: Moby/Docker Engine: Arbitrary Code Execution via malicious container image and compressed archive upload"
+      },
+      {
+        "id": "CVE-2026-42306",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "github.com/docker/docker: github.com/moby/moby: Moby container framework: Host file overwrite via race condition in docker cp mount setup"
+      },
+      {
+        "id": "CVE-2026-33997",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "29.3.1",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "moby: docker: github.com/moby/moby: Moby: Privilege validation bypass during plugin installation"
+      },
+      {
+        "id": "CVE-2026-41568",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "N/A",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/docker/docker: github.com/moby/moby: Moby: Denial of Service via race condition in docker cp mount setup"
+      },
+      {
+        "id": "CVE-2025-54410",
+        "package": "github.com/docker/docker",
+        "installed_version": "v25.0.6+incompatible",
+        "fixed_version": "25.0.13, 28.0.0",
+        "severity": "LOW",
+        "target": "go.mod",
+        "title": "github.com/moby/moby: Moby's Firewalld reload removes bridge network isolation"
+      },
+      {
+        "id": "GHSA-r277-6w6q-xmqw",
+        "package": "github.com/getkin/kin-openapi",
+        "installed_version": "v0.131.0",
+        "fixed_version": "0.144.0",
+        "severity": "CRITICAL",
+        "target": "go.mod",
+        "title": "kin-openapi: ValidationHandler.Load() Fail-Open Authentication Bypass via NoopAuthenticationFunc Default"
+      },
+      {
+        "id": "CVE-2026-73502",
+        "package": "github.com/getkin/kin-openapi",
+        "installed_version": "v0.131.0",
+        "fixed_version": "0.144.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "kin-openapi openapi3filter: unauthenticated nil-pointer panic when validating a request against a `content` parameter whose media type has no schema"
+      },
+      {
+        "id": "CVE-2026-35469",
+        "package": "github.com/moby/spdystream",
+        "installed_version": "v0.2.0",
+        "fixed_version": "0.5.1",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "Kubelet: CRI-O: kube-apiserver: Kubelet, CRI-O, kube-apiserver: Denial of Service via SPDY streaming code"
+      },
+      {
+        "id": "CVE-2021-29482",
+        "package": "github.com/ulikunitz/xz",
+        "installed_version": "v0.5.7",
+        "fixed_version": "0.5.8",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "ulikunitz/xz: Infinite loop in readUvarint allows for denial of service"
+      },
+      {
+        "id": "CVE-2025-58058",
+        "package": "github.com/ulikunitz/xz",
+        "installed_version": "v0.5.7",
+        "fixed_version": "0.5.15",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "github.com/ulikunitz/xz: github.com/ulikunitz/xz leaks memory"
+      },
+      {
+        "id": "CVE-2026-39828",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Unauthorized command execution via discarded SSH permissions"
+      },
+      {
+        "id": "CVE-2026-39829",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted public key with excessive parameters"
+      },
+      {
+        "id": "CVE-2026-39830",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via resource leak from unsolicited SSH responses"
+      },
+      {
+        "id": "CVE-2026-39831",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Security key bypass due to missing user presence check"
+      },
+      {
+        "id": "CVE-2026-39832",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to improper handling of key restrictions"
+      },
+      {
+        "id": "CVE-2026-39835",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via crafted SSH certificate"
+      },
+      {
+        "id": "CVE-2026-42508",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/knownhosts: golang: golang.org/x/crypto/ssh/knownhosts: Revocation bypass via unchecked SignatureKey"
+      },
+      {
+        "id": "CVE-2026-46595",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Authorization bypass due to skipped source-address validation"
+      },
+      {
+        "id": "CVE-2026-46597",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted AES-GCM packet decoder inputs"
+      },
+      {
+        "id": "CVE-2026-39827",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via repeated rejected channel openings"
+      },
+      {
+        "id": "CVE-2026-39833",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to unenforced key confirmation"
+      },
+      {
+        "id": "CVE-2026-39834",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service due to integer overflow in SSH channel write"
+      },
+      {
+        "id": "CVE-2026-46598",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.45.0",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang: golang.org/x/crypto/ssh/agent: Denial of Service via malformed input"
+      },
+      {
+        "id": "CVE-2026-25681",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Arbitrary code execution via Cross-Site Scripting"
+      },
+      {
+        "id": "CVE-2026-27136",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via HTML parsing bypass"
+      },
+      {
+        "id": "CVE-2026-33814",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.53.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "net/http/internal/http2: golang: golang.org/x/net: Go HTTP/2: Denial of Service via malformed SETTINGS_MAX_FRAME_SIZE frame"
+      },
+      {
+        "id": "CVE-2026-39821",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/idna: golang: net/http: golang.org/x/net/idna: Privilege escalation via incorrect Punycode label processing"
+      },
+      {
+        "id": "CVE-2026-46600",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.56.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing"
+      },
+      {
+        "id": "CVE-2026-25680",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Denial of Service due to excessive HTML parsing"
+      },
+      {
+        "id": "CVE-2026-42502",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via unexpected HTML tree rendering"
+      },
+      {
+        "id": "CVE-2026-42506",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.47.0",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Cross-Site Scripting (XSS) via arbitrary HTML parsing"
+      },
+      {
+        "id": "CVE-2025-22868",
+        "package": "golang.org/x/oauth2",
+        "installed_version": "v0.10.0",
+        "fixed_version": "0.27.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/oauth2/jws: Unexpected memory consumption during token parsing in golang.org/x/oauth2/jws"
+      },
+      {
+        "id": "CVE-2026-56852",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.31.0",
+        "fixed_version": "0.39.0",
+        "severity": "HIGH",
+        "target": "go.mod",
+        "title": "golang.org/x/text: golang.org/x/text: Denial of Service via invalid UTF-8 input"
+      },
+      {
+        "id": "CVE-2020-26160",
+        "package": "github.com/dgrijalva/jwt-go",
+        "installed_version": "v0.0.0-20170104182250-a601269ab70c",
+        "fixed_version": "N/A",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "jwt-go: access restriction bypass vulnerability"
+      },
+      {
+        "id": "CVE-2026-33540",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Information disclosure via improper validation of authentication realm URL"
+      },
+      {
+        "id": "CVE-2026-35172",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Information disclosure via stale references after content deletion"
+      },
+      {
+        "id": "CVE-2026-41888",
+        "package": "github.com/distribution/distribution/v3",
+        "installed_version": "v3.0.0-20210316161203-a01c71e2477e",
+        "fixed_version": "3.1.1",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "github.com/distribution/distribution: Distribution: Security bypass allows unauthorized tag deletion"
+      },
+      {
+        "id": "CVE-2021-3121",
+        "package": "github.com/gogo/protobuf",
+        "installed_version": "v1.1.1",
+        "fixed_version": "1.3.2",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation"
+      },
+      {
+        "id": "GHSA-77vh-xpmg-72qh",
+        "package": "github.com/opencontainers/image-spec",
+        "installed_version": "v1.0.1",
+        "fixed_version": "1.0.2",
+        "severity": "LOW",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "Clarify `mediaType` handling"
+      },
+      {
+        "id": "CVE-2022-21698",
+        "package": "github.com/prometheus/client_golang",
+        "installed_version": "v1.1.0",
+        "fixed_version": "1.11.1",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "prometheus/client_golang: Denial of service using InstrumentHandlerCounter"
+      },
+      {
+        "id": "CVE-2025-65637",
+        "package": "github.com/sirupsen/logrus",
+        "installed_version": "v1.8.1",
+        "fixed_version": "1.8.3, 1.9.1, 1.9.3",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "github.com/sirupsen/logrus: github.com/sirupsen/logrus: Denial-of-Service due to large single-line payload"
+      },
+      {
+        "id": "CVE-2020-29652",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.0.0-20201216223049-8b5274cf687f",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: crypto/ssh: crafted authentication request can lead to nil pointer dereference"
+      },
+      {
+        "id": "CVE-2020-9283",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.0.0-20200220183623-bac4c82f6975",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto: Processing of crafted ssh-ed25519 public keys allows for panic"
+      },
+      {
+        "id": "CVE-2021-43565",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.0.0-20211202192323-5770296d904e",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto: empty plaintext packet causes panic"
+      },
+      {
+        "id": "CVE-2022-27191",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.0.0-20220314234659-1baeb1ce4c0b",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: crash in a golang.org/x/crypto/ssh server"
+      },
+      {
+        "id": "CVE-2024-45337",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.31.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: Misuse of ServerConfig.PublicKeyCallback may cause authorization bypass in golang.org/x/crypto"
+      },
+      {
+        "id": "CVE-2025-22869",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.35.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: Denial of Service in the Key Exchange of golang.org/x/crypto/ssh"
+      },
+      {
+        "id": "CVE-2025-47913",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.43.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: SSH client panic due to unexpected SSH_AGENT_SUCCESS"
+      },
+      {
+        "id": "CVE-2026-39828",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Unauthorized command execution via discarded SSH permissions"
+      },
+      {
+        "id": "CVE-2026-39829",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted public key with excessive parameters"
+      },
+      {
+        "id": "CVE-2026-39830",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via resource leak from unsolicited SSH responses"
+      },
+      {
+        "id": "CVE-2026-39831",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Security key bypass due to missing user presence check"
+      },
+      {
+        "id": "CVE-2026-39832",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to improper handling of key restrictions"
+      },
+      {
+        "id": "CVE-2026-39835",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via crafted SSH certificate"
+      },
+      {
+        "id": "CVE-2026-42508",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/knownhosts: golang: golang.org/x/crypto/ssh/knownhosts: Revocation bypass via unchecked SignatureKey"
+      },
+      {
+        "id": "CVE-2026-46595",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Authorization bypass due to skipped source-address validation"
+      },
+      {
+        "id": "CVE-2026-46597",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via crafted AES-GCM packet decoder inputs"
+      },
+      {
+        "id": "CVE-2023-48795",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.17.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "ssh: Prefix truncation attack on Binary Packet Protocol (BPP)"
+      },
+      {
+        "id": "CVE-2025-47914",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.45.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: SSH Agent servers: Denial of Service due to malformed messages"
+      },
+      {
+        "id": "CVE-2025-58181",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.45.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via unbounded memory consumption in GSSAPI authentication"
+      },
+      {
+        "id": "CVE-2026-39827",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service via repeated rejected channel openings"
+      },
+      {
+        "id": "CVE-2026-39833",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang.org/x/crypto/ssh/agent: Security bypass due to unenforced key confirmation"
+      },
+      {
+        "id": "CVE-2026-39834",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh: golang: golang.org/x/crypto/ssh: Denial of Service due to integer overflow in SSH channel write"
+      },
+      {
+        "id": "CVE-2026-46598",
+        "package": "golang.org/x/crypto",
+        "installed_version": "v0.0.0-20200128174031-69ecbb4d6d5d",
+        "fixed_version": "0.52.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/crypto/ssh/agent: golang: golang.org/x/crypto/ssh/agent: Denial of Service via malformed input"
+      },
+      {
+        "id": "CVE-2021-33194",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.0.0-20210520170846-37e1c6afe023",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: x/net/html: infinite loop in ParseFragment"
+      },
+      {
+        "id": "CVE-2021-44716",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.0.0-20211209124913-491a49abca63",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http: limit growth of header canonicalization cache"
+      },
+      {
+        "id": "CVE-2022-27664",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.0.0-20220906165146-f3363e06e74c",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http: handle server errors after sending GOAWAY"
+      },
+      {
+        "id": "CVE-2022-41723",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.7.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/http2: avoid quadratic complexity in HPACK decoding"
+      },
+      {
+        "id": "CVE-2023-39325",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.17.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http, x/net/http2: rapid stream resets can cause excessive work (CVE-2023-44487)"
+      },
+      {
+        "id": "CVE-2023-45288",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.23.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http, x/net/http2: unlimited number of CONTINUATION frames causes DoS"
+      },
+      {
+        "id": "CVE-2024-45338",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.33.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: Non-linear parsing of case-insensitive content in golang.org/x/net/html"
+      },
+      {
+        "id": "CVE-2026-25681",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Arbitrary code execution via Cross-Site Scripting"
+      },
+      {
+        "id": "CVE-2026-27136",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via HTML parsing bypass"
+      },
+      {
+        "id": "CVE-2026-33814",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.53.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "net/http/internal/http2: golang: golang.org/x/net: Go HTTP/2: Denial of Service via malformed SETTINGS_MAX_FRAME_SIZE frame"
+      },
+      {
+        "id": "CVE-2026-39821",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/idna: golang: net/http: golang.org/x/net/idna: Privilege escalation via incorrect Punycode label processing"
+      },
+      {
+        "id": "CVE-2026-46600",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.56.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing"
+      },
+      {
+        "id": "CVE-2021-31525",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.0.0-20210428140749-89ef3d95e781",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http: panic in ReadRequest and ReadResponse when reading a very large header"
+      },
+      {
+        "id": "CVE-2022-41717",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.4.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: net/http: excessive memory growth in a Go server accepting HTTP/2 requests"
+      },
+      {
+        "id": "CVE-2023-3978",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.13.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: Cross site scripting"
+      },
+      {
+        "id": "CVE-2025-22870",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.36.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/proxy: golang.org/x/net/http/httpproxy: HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net"
+      },
+      {
+        "id": "CVE-2025-22872",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.38.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: Incorrect Neutralization of Input During Web Page Generation in x/net in golang.org/x/net"
+      },
+      {
+        "id": "CVE-2025-47911",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.45.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: Quadratic parsing complexity in golang.org/x/net/html"
+      },
+      {
+        "id": "CVE-2025-58190",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.45.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: Infinite parsing loop in golang.org/x/net"
+      },
+      {
+        "id": "CVE-2026-25680",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Denial of Service due to excessive HTML parsing"
+      },
+      {
+        "id": "CVE-2026-42502",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: golang: golang.org/x/net/html: Cross-Site Scripting via unexpected HTML tree rendering"
+      },
+      {
+        "id": "CVE-2026-42506",
+        "package": "golang.org/x/net",
+        "installed_version": "v0.0.0-20200202094626-16171245cfb2",
+        "fixed_version": "0.55.0",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/net/html: golang.org/x/net/html: Cross-Site Scripting (XSS) via arbitrary HTML parsing"
+      },
+      {
+        "id": "CVE-2025-22868",
+        "package": "golang.org/x/oauth2",
+        "installed_version": "v0.0.0-20190604053449-0f29369cfe45",
+        "fixed_version": "0.27.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/oauth2/jws: Unexpected memory consumption during token parsing in golang.org/x/oauth2/jws"
+      },
+      {
+        "id": "CVE-2022-29526",
+        "package": "golang.org/x/sys",
+        "installed_version": "v0.0.0-20200323222414-85ca7c5b95cd",
+        "fixed_version": "0.0.0-20220412211240-33da011f77ad",
+        "severity": "MEDIUM",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: syscall: faccessat checks wrong group"
+      },
+      {
+        "id": "CVE-2020-14040",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.3.0",
+        "fixed_version": "0.3.3",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/text: possibility to trigger an infinite loop in encoding/unicode could lead to crash"
+      },
+      {
+        "id": "CVE-2021-38561",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.3.0",
+        "fixed_version": "0.3.7",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: out-of-bounds read in golang.org/x/text/language leads to DoS"
+      },
+      {
+        "id": "CVE-2022-32149",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.3.0",
+        "fixed_version": "0.3.8",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang: golang.org/x/text/language: ParseAcceptLanguage takes a long time to parse complex tags"
+      },
+      {
+        "id": "CVE-2026-56852",
+        "package": "golang.org/x/text",
+        "installed_version": "v0.3.0",
+        "fixed_version": "0.39.0",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "golang.org/x/text: golang.org/x/text: Denial of Service via invalid UTF-8 input"
+      },
+      {
+        "id": "CVE-2026-33186",
+        "package": "google.golang.org/grpc",
+        "installed_version": "v0.0.0-20160317175043-d3ddb4469d5a",
+        "fixed_version": "1.79.3",
+        "severity": "CRITICAL",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "google.golang.org/grpc/grpc-go: google.golang.org/grpc/authz: gRPC-Go: Authorization bypass due to improper HTTP/2 path validation"
+      },
+      {
+        "id": "GHSA-hrxh-6v49-42gf",
+        "package": "google.golang.org/grpc",
+        "installed_version": "v0.0.0-20160317175043-d3ddb4469d5a",
+        "fixed_version": "1.82.1",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "gRPC-Go: xDS RBAC and HTTP/2 Vulnerabilities"
+      },
+      {
+        "id": "GHSA-m425-mq94-257g",
+        "package": "google.golang.org/grpc",
+        "installed_version": "v0.0.0-20160317175043-d3ddb4469d5a",
+        "fixed_version": "1.56.3, 1.57.1, 1.58.3",
+        "severity": "HIGH",
+        "target": "pkg/third_party/compose-go/go.mod",
+        "title": "gRPC-Go HTTP/2 Rapid Reset vulnerability"
+      }
+    ],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "dependabot[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 211,
+    "open_prs": 23,
+    "commits_last_90_days": 1,
+    "contributors_last_90_days": 1,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "low"
+  },
+  "contributor_openness": {
+    "has_contributing_md": true,
+    "has_good_first_issue_label": true,
+    "external_prs_merged": 31,
+    "total_recent_prs_checked": 31,
+    "is_open_to_contributions": true
+  },
+  "_cached_at": 1786715307.8450358
+}

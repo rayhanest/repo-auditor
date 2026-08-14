@@ -1,0 +1,44 @@
+{
+  "repo": "Netflix/zuul",
+  "owner": "Netflix",
+  "name": "zuul",
+  "package_managers": [
+    "gradle"
+  ],
+  "languages": [
+    "Java"
+  ],
+  "vulnerabilities": {
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "findings": [],
+    "scan_error": null
+  },
+  "bots": {
+    "bots_found": [
+      "dependabot[bot]"
+    ],
+    "has_dependency_bot": true
+  },
+  "community": {
+    "open_issues": 12,
+    "open_prs": 10,
+    "commits_last_90_days": 62,
+    "contributors_last_90_days": 6,
+    "has_security_md": false,
+    "has_code_of_conduct": false,
+    "is_active": true,
+    "activity_level": "high"
+  },
+  "contributor_openness": {
+    "has_contributing_md": false,
+    "has_good_first_issue_label": false,
+    "external_prs_merged": 17,
+    "total_recent_prs_checked": 48,
+    "is_open_to_contributions": false
+  },
+  "_cached_at": 1786715478.0707161
+}
