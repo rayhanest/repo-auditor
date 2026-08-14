@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Audit cache (regenerated on each run)
+.audit-cache/
+
+# Generated reports (local output)
+reports/
+
+# OS files
+.DS_Store
+Thumbs.db
