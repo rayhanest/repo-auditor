@@ -63,15 +63,15 @@ def save_result(owner: str, repo: str, result: dict) -> None:
     """
     Save a scan result to the cache.
 
-    Adds a _cached_at timestamp to the result before writing.
+    Adds a _cached_at timestamp to a copy before writing (does not mutate the input).
     """
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
-    result["_cached_at"] = time.time()
+    to_cache = {**result, "_cached_at": time.time()}
     path = _cache_path(owner, repo)
 
     try:
-        path.write_text(json.dumps(result, indent=2, default=str))
+        path.write_text(json.dumps(to_cache, indent=2, default=str))
     except OSError as e:
         # Non-fatal — just skip caching
         print(f"  WARNING: Could not write cache for {owner}/{repo}: {e}")

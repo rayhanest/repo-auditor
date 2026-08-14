@@ -26,6 +26,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
@@ -108,9 +109,39 @@ def clone_repo(owner: str, repo: str, dest: str) -> bool:
         return False
 
 
-def audit_repo(owner: str, repo: str, use_cache: bool = True) -> dict:
+def _check_gh_auth() -> bool:
+    """
+    Verify the GitHub CLI is installed and authenticated.
+
+    Returns True if `gh auth status` succeeds, False otherwise.
+    """
+    try:
+        result = subprocess.run(
+            ["gh", "auth", "status"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        return result.returncode == 0
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return False
+
+
+def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: bool = False) -> dict:
     """
     Run the full audit pipeline on a single repo.
+
+    Parallelization strategy:
+      - Clone + detect + Trivy scan run as one track (needs filesystem).
+      - GitHub API calls run as a second track in parallel (no clone needed).
+      - Within the API track, all calls run concurrently.
+
+    Args:
+        owner: GitHub org/user.
+        repo: Repository name.
+        use_cache: Whether to use cached results.
+        skip_maven_scan: If True, skip Trivy scan for Maven/Gradle repos
+                         (used after a 429 has already been hit this run).
 
     Returns a dict with all collected data.
     """
@@ -135,51 +166,119 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True) -> dict:
         "contributor_openness": {},
     }
 
-    # Step 1: Clone
-    tmp_dir = tempfile.mkdtemp(prefix=f"audit-{repo}-")
+    def _run_api_track():
+        """Run all GitHub API queries concurrently (no clone needed)."""
+        # Fetch repo data once, share it between community health and openness
+        repo_data = github_api.get_repo_data(owner, repo)
+
+        with ThreadPoolExecutor(max_workers=4) as api_pool:
+            future_bots = api_pool.submit(github_api.detect_bots, owner, repo)
+            future_community = api_pool.submit(
+                github_api.get_community_health, owner, repo, repo_data
+            )
+            future_openness = api_pool.submit(
+                github_api.get_contributor_openness, owner, repo, repo_data
+            )
+            future_languages = api_pool.submit(github_api.get_languages, owner, repo)
+
+        return {
+            "bots": future_bots.result(),
+            "community": future_community.result(),
+            "openness": future_openness.result(),
+            "languages": future_languages.result(),
+        }
+
+    def _run_scan_track():
+        """Clone, detect, and scan (needs filesystem)."""
+        tmp_dir = tempfile.mkdtemp(prefix=f"audit-{repo}-")
+        scan_result = {
+            "package_managers": [],
+            "file_languages": [],
+            "vulnerabilities": scanner.VulnSummary(),
+            "error": None,
+        }
+
+        try:
+            print(f"  Cloning {repo_id}...")
+            if not clone_repo(owner, repo, tmp_dir):
+                print(f"  FAILED: Could not clone {repo_id}")
+                scan_result["error"] = "clone_failed"
+                return scan_result
+
+            # Detect package managers
+            print(f"  Detecting package managers...")
+            scan_result["package_managers"] = detector.detect_package_managers(tmp_dir)
+
+            # Detect languages (file-based fallback)
+            scan_result["file_languages"] = detector.detect_languages_from_files(tmp_dir)
+
+            # Trivy scan
+            MAVEN_ECOSYSTEMS = {"maven", "gradle"}
+            is_maven = bool(MAVEN_ECOSYSTEMS & set(scan_result["package_managers"]))
+
+            if skip_maven_scan and is_maven:
+                print(f"  Running OSV-Scanner (Maven rate limit hit earlier)...")
+                scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
+            else:
+                print(f"  Running Trivy CVE scan...")
+                scan_result["vulnerabilities"] = scanner.run_trivy_scan(tmp_dir)
+
+                if scan_result["vulnerabilities"].scan_error == "maven_rate_limit":
+                    print(f"  Maven rate limit (429) -- falling back to OSV-Scanner...")
+                    scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
+
+        finally:
+            shutil.rmtree(tmp_dir, ignore_errors=True)
+
+        return scan_result
+
+    # Run both tracks in parallel: scan (clone+trivy) and API queries
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        future_scan = pool.submit(_run_scan_track)
+        future_api = pool.submit(_run_api_track)
+
+    # Collect results — handle failures gracefully so one track doesn't kill the other
+    try:
+        scan_data = future_scan.result()
+    except Exception as e:
+        print(f"  ERROR: Scan track failed: {e}")
+        scan_data = {"package_managers": [], "file_languages": [], "vulnerabilities": scanner.VulnSummary(), "error": "scan_exception"}
 
     try:
-        print(f"  Cloning {repo_id}...")
-        if not clone_repo(owner, repo, tmp_dir):
-            print(f"  FAILED: Could not clone {repo_id}")
-            result["error"] = "clone_failed"
-            return result
+        api_data = future_api.result()
+    except Exception as e:
+        print(f"  ERROR: API track failed: {e}")
+        api_data = {
+            "bots": github_api.BotInfo(),
+            "community": github_api.CommunityHealth(),
+            "openness": github_api.ContributorOpenness(),
+            "languages": [],
+        }
 
-        # Step 2: Detect package managers
-        print(f"  Detecting package managers...")
-        result["package_managers"] = detector.detect_package_managers(tmp_dir)
+    # Handle clone failure
+    if scan_data["error"]:
+        result["error"] = scan_data["error"]
+        # Still include API data even if clone failed
+        result["bots"] = asdict(api_data["bots"])
+        result["community"] = asdict(api_data["community"])
+        result["contributor_openness"] = asdict(api_data["openness"])
+        result["languages"] = api_data["languages"]
+        return result
 
-        # Step 3: Detect languages (file-based fallback)
-        file_languages = detector.detect_languages_from_files(tmp_dir)
+    # Merge scan results
+    result["package_managers"] = scan_data["package_managers"]
+    result["vulnerabilities"] = asdict(scan_data["vulnerabilities"])
 
-        # Step 4: Trivy scan
-        print(f"  Running Trivy CVE scan...")
-        vuln_summary = scanner.run_trivy_scan(tmp_dir)
-        result["vulnerabilities"] = asdict(vuln_summary)
+    # Merge API results
+    result["bots"] = asdict(api_data["bots"])
+    result["community"] = asdict(api_data["community"])
+    result["contributor_openness"] = asdict(api_data["openness"])
 
-    finally:
-        # Always clean up the clone
-        shutil.rmtree(tmp_dir, ignore_errors=True)
+    # Prefer API languages, fall back to file-based detection
+    result["languages"] = api_data["languages"] if api_data["languages"] else scan_data["file_languages"]
 
-    # Step 5: GitHub API queries (don't need the clone)
-    print(f"  Checking for bots...")
-    bot_info = github_api.detect_bots(owner, repo)
-    result["bots"] = asdict(bot_info)
-
-    print(f"  Gathering community health...")
-    community = github_api.get_community_health(owner, repo)
-    result["community"] = asdict(community)
-
-    print(f"  Assessing contributor openness...")
-    openness = github_api.get_contributor_openness(owner, repo)
-    result["contributor_openness"] = asdict(openness)
-
-    # Get languages from GitHub API (preferred over file-based)
-    api_languages = github_api.get_languages(owner, repo)
-    result["languages"] = api_languages if api_languages else file_languages
-
-    # Cache the result
-    if use_cache:
+    # Cache the result (don't cache if there was a scan error)
+    if use_cache and not result.get("vulnerabilities", {}).get("scan_error"):
         cache.save_result(owner, repo, result)
 
     return result
@@ -212,6 +311,12 @@ def main():
 
     args = parser.parse_args()
 
+    # Pre-flight: verify gh CLI is authenticated
+    if not _check_gh_auth():
+        print("Error: GitHub CLI is not authenticated.")
+        print("Run 'gh auth login' to authenticate, then retry.")
+        sys.exit(1)
+
     # Handle cache clearing
     if args.clear_cache:
         count = cache.clear_cache()
@@ -223,14 +328,39 @@ def main():
         print("No repos found in the input file.")
         sys.exit(1)
 
+    # Deduplicate (preserves first occurrence order)
+    seen = set()
+    unique_repos = []
+    for entry in repos:
+        key = (entry[0].lower(), entry[1].lower())
+        if key not in seen:
+            seen.add(key)
+            unique_repos.append(entry)
+    if len(unique_repos) < len(repos):
+        print(f"  Note: Removed {len(repos) - len(unique_repos)} duplicate repo(s).")
+    repos = unique_repos
+
     print(f"\nAuditing {len(repos)} repos...\n")
 
     # Audit each repo sequentially
     results = []
+    maven_rate_limited = False
+
     for i, (owner, repo) in enumerate(repos, start=1):
         print(f"[{i}/{len(repos)}] {owner}/{repo}")
-        result = audit_repo(owner, repo, use_cache=not args.no_cache)
+        result = audit_repo(
+            owner, repo,
+            use_cache=not args.no_cache,
+            skip_maven_scan=maven_rate_limited,
+        )
         results.append(result)
+
+        # Detect if Maven rate limit was hit (triggers fast-fail for remaining repos)
+        vuln = result.get("vulnerabilities", {})
+        if vuln.get("scanner_used") == "osv-scanner" and not maven_rate_limited:
+            maven_rate_limited = True
+            print(f"  Maven rate limit hit -- using OSV-Scanner for remaining Maven repos")
+
         print()
 
     # Output results
@@ -255,6 +385,15 @@ def main():
     print(f"Reports written to:")
     print(f"  JSON: {json_path}")
     print(f"  HTML: {html_path}")
+
+    # Note if any repos used the OSV fallback
+    osv_repos = [
+        r["repo"] for r in results
+        if r.get("vulnerabilities", {}).get("scanner_used") == "osv-scanner"
+    ]
+    if osv_repos:
+        print(f"\n  Note: {len(osv_repos)} repo(s) scanned with OSV-Scanner (Maven rate limit).")
+        print(f"  These show declared deps only. Re-run with Trivy later for full transitive coverage.")
 
 
 if __name__ == "__main__":

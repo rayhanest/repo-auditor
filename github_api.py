@@ -11,7 +11,7 @@ Queries the GitHub API via `gh api` to gather:
 import json
 import subprocess
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 
 @dataclass
@@ -41,6 +41,7 @@ class ContributorOpenness:
     has_good_first_issue_label: bool = False
     external_prs_merged: int = 0
     total_recent_prs_checked: int = 0
+    is_archived: bool = False  # Archived repos are dead — can't accept PRs
     is_open_to_contributions: bool = False  # Our assessment
 
 
@@ -84,6 +85,19 @@ def get_languages(owner: str, repo: str) -> list[str]:
     return [lang for lang, _ in sorted_langs]
 
 
+def get_repo_data(owner: str, repo: str) -> dict | None:
+    """
+    Fetch the base /repos/{owner}/{repo} endpoint once.
+
+    This data is used by both get_community_health and get_contributor_openness,
+    so fetching it once and passing it in saves a redundant API call.
+    """
+    data = _run_gh([f"/repos/{owner}/{repo}"])
+    if isinstance(data, dict):
+        return data
+    return None
+
+
 def detect_bots(owner: str, repo: str) -> BotInfo:
     """
     Look at recent commits and PRs for known bot authors.
@@ -92,14 +106,7 @@ def detect_bots(owner: str, repo: str) -> BotInfo:
     """
     info = BotInfo()
 
-    # Check recent commits for bot authors
-    data = _run_gh([
-        f"/repos/{owner}/{repo}/commits",
-        "--jq", ".[].author.login",
-        "-q", "per_page=100",
-    ])
-
-    # Fallback: get commits as full JSON and extract authors
+    # Get recent commits and extract bot authors
     commits = _run_gh([
         f"/repos/{owner}/{repo}/commits?per_page=100",
     ])
@@ -134,27 +141,37 @@ def detect_bots(owner: str, repo: str) -> BotInfo:
     return info
 
 
-def get_community_health(owner: str, repo: str) -> CommunityHealth:
+def get_community_health(owner: str, repo: str, repo_data: dict | None = None) -> CommunityHealth:
     """
     Gather community health signals: activity level, health files, etc.
+
+    Args:
+        owner: GitHub org/user.
+        repo: Repository name.
+        repo_data: Optional pre-fetched /repos/{owner}/{repo} response to avoid
+                   a duplicate API call.
     """
     health = CommunityHealth()
 
-    # Basic repo info (open issues count)
-    repo_data = _run_gh([f"/repos/{owner}/{repo}"])
+    # Basic repo info
+    if repo_data is None:
+        repo_data = _run_gh([f"/repos/{owner}/{repo}"])
     if isinstance(repo_data, dict):
-        health.open_issues = repo_data.get("open_issues_count", 0)
         health.has_security_md = repo_data.get("security_and_analysis") is not None
 
+    # Separate issue count (excludes PRs) via search API
+    issue_search = _run_gh([
+        f"/search/issues?q=repo:{owner}/{repo}+type:issue+state:open",
+    ])
+    if isinstance(issue_search, dict):
+        health.open_issues = issue_search.get("total_count", 0)
+
     # Open PRs count
-    prs = _run_gh([f"/repos/{owner}/{repo}/pulls?state=open&per_page=1"])
-    # We just need count — check the response headers would be ideal,
-    # but let's use search instead
-    search = _run_gh([
+    pr_search = _run_gh([
         f"/search/issues?q=repo:{owner}/{repo}+type:pr+state:open",
     ])
-    if isinstance(search, dict):
-        health.open_prs = search.get("total_count", 0)
+    if isinstance(pr_search, dict):
+        health.open_prs = pr_search.get("total_count", 0)
 
     # Commits in last 90 days
     since = _days_ago_iso(90)
@@ -162,14 +179,18 @@ def get_community_health(owner: str, repo: str) -> CommunityHealth:
         f"/repos/{owner}/{repo}/commits?since={since}&per_page=100",
     ])
     if isinstance(commits_data, list):
-        health.commits_last_90_days = len(commits_data)
-        # Unique contributors
+        # Filter out bot commits for accurate human activity measurement
+        human_commits = 0
         contributors = set()
         for c in commits_data:
             author = c.get("author") or {}
             login = author.get("login", "")
-            if login and not _is_bot(login):
+            if login and _is_bot(login):
+                continue
+            human_commits += 1
+            if login:
                 contributors.add(login)
+        health.commits_last_90_days = human_commits
         health.contributors_last_90_days = len(contributors)
 
     # Check for health files
@@ -181,7 +202,7 @@ def get_community_health(owner: str, repo: str) -> CommunityHealth:
             health.has_security_md or files.get("security") is not None
         )
 
-    # Determine activity level
+    # Determine activity level based on human commits
     health.is_active = health.commits_last_90_days > 0
     if health.commits_last_90_days == 0:
         health.activity_level = "dormant"
@@ -195,7 +216,7 @@ def get_community_health(owner: str, repo: str) -> CommunityHealth:
     return health
 
 
-def get_contributor_openness(owner: str, repo: str) -> ContributorOpenness:
+def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = None) -> ContributorOpenness:
     """
     Assess whether the repo is open to external contributions.
 
@@ -203,8 +224,22 @@ def get_contributor_openness(owner: str, repo: str) -> ContributorOpenness:
       - Presence of CONTRIBUTING.md
       - "good first issue" label exists
       - Merged PRs from non-org members (author_association != MEMBER/OWNER)
+
+    Args:
+        owner: GitHub org/user.
+        repo: Repository name.
+        repo_data: Optional pre-fetched /repos/{owner}/{repo} response to avoid
+                   a duplicate API call.
     """
     openness = ContributorOpenness()
+
+    # Check if repo is archived — archived repos cannot accept contributions
+    if repo_data is None:
+        repo_data = _run_gh([f"/repos/{owner}/{repo}"])
+    if isinstance(repo_data, dict) and repo_data.get("archived", False):
+        openness.is_archived = True
+        openness.is_open_to_contributions = False
+        return openness
 
     # Check for CONTRIBUTING.md
     contrib = _run_gh([f"/repos/{owner}/{repo}/contents/CONTRIBUTING.md"])
@@ -216,10 +251,12 @@ def get_contributor_openness(owner: str, repo: str) -> ContributorOpenness:
         label_names = [l.get("name", "").lower() for l in labels]
         openness.has_good_first_issue_label = "good first issue" in label_names
 
-    # Check recent merged PRs for external contributors
+    # Check recent merged PRs for external contributors (within last 90 days)
     merged_prs = _run_gh([
         f"/repos/{owner}/{repo}/pulls?state=closed&sort=updated&direction=desc&per_page=50",
     ])
+
+    cutoff = _days_ago_iso(90)
 
     if isinstance(merged_prs, list):
         external_merged = 0
@@ -227,8 +264,14 @@ def get_contributor_openness(owner: str, repo: str) -> ContributorOpenness:
 
         for pr in merged_prs:
             # Only count actually merged PRs
-            if not pr.get("merged_at"):
+            merged_at = pr.get("merged_at")
+            if not merged_at:
                 continue
+
+            # Only count PRs merged within the last 90 days
+            if merged_at < cutoff:
+                continue
+
             total_checked += 1
 
             # author_association tells us if the author is a member
@@ -239,13 +282,19 @@ def get_contributor_openness(owner: str, repo: str) -> ContributorOpenness:
         openness.external_prs_merged = external_merged
         openness.total_recent_prs_checked = total_checked
 
-    # Our assessment: open if 2+ of the signals are true
-    signals = [
-        openness.has_contributing_md,
-        openness.has_good_first_issue_label,
-        openness.external_prs_merged > 0,
-    ]
-    openness.is_open_to_contributions = sum(signals) >= 2
+    # Our assessment:
+    # Strong signal: if 3+ external PRs merged in 90 days, the project is
+    # demonstrably open regardless of docs/labels.
+    # Otherwise: open if 2+ of the weaker signals are true.
+    if openness.external_prs_merged >= 3:
+        openness.is_open_to_contributions = True
+    else:
+        signals = [
+            openness.has_contributing_md,
+            openness.has_good_first_issue_label,
+            openness.external_prs_merged > 0,
+        ]
+        openness.is_open_to_contributions = sum(signals) >= 2
 
     return openness
 
@@ -265,7 +314,5 @@ def _is_bot(login: str) -> bool:
 def _days_ago_iso(days: int) -> str:
     """Return an ISO 8601 timestamp for N days ago."""
     now = datetime.now(timezone.utc)
-    past = now.replace(day=now.day)  # placeholder
-    from datetime import timedelta
     past = now - timedelta(days=days)
     return past.strftime("%Y-%m-%dT%H:%M:%SZ")
