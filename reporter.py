@@ -174,10 +174,13 @@ def _format_bots(bots: dict) -> str:
 def _format_activity(community: dict) -> str:
     """Format activity level for table display."""
     level = community.get("activity_level", "unknown")
+    approximate = community.get("counts_approximate", False)
+    suffix = "+" if approximate else ""
+
     if level == "high":
-        return "YES (high)"
+        return f"YES (high{suffix})"
     elif level == "moderate":
-        return "YES (moderate)"
+        return f"YES (moderate{suffix})"
     elif level == "low":
         return "low"
     elif level == "dormant":

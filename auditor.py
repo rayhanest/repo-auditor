@@ -169,17 +169,22 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
     }
 
     def _run_api_track():
-        """Run all GitHub API queries concurrently (no clone needed)."""
-        # Fetch repo data once, share it between community health and openness
+        """Run all GitHub API queries, sharing fetched data to minimise API calls."""
+        # Phase 1: Fetch shared data (sequential — these are the building blocks)
         repo_data = github_api.get_repo_data(owner, repo)
+        commits = github_api.get_recent_commits(owner, repo)
+        prs = github_api.get_recent_prs(owner, repo)
 
+        # Phase 2: Run analysis functions in parallel (all read-only on shared data)
         with ThreadPoolExecutor(max_workers=4) as api_pool:
-            future_bots = api_pool.submit(github_api.detect_bots, owner, repo)
+            future_bots = api_pool.submit(
+                github_api.detect_bots, owner, repo, commits, prs
+            )
             future_community = api_pool.submit(
-                github_api.get_community_health, owner, repo, repo_data
+                github_api.get_community_health, owner, repo, repo_data, commits
             )
             future_openness = api_pool.submit(
-                github_api.get_contributor_openness, owner, repo, repo_data
+                github_api.get_contributor_openness, owner, repo, repo_data, prs
             )
             future_languages = api_pool.submit(github_api.get_languages, owner, repo)
 
@@ -360,32 +365,41 @@ def main():
 
     print(f"\nAuditing {len(repos)} repos...\n")
 
-    # Audit each repo sequentially
+    # Audit each repo sequentially (Ctrl+C stops after current repo, writes partial results)
     results = []
     maven_rate_limited = False
 
-    for i, (owner, repo) in enumerate(repos, start=1):
-        print(f"[{i}/{len(repos)}] {owner}/{repo}")
-        result = audit_repo(
-            owner, repo,
-            use_cache=not args.no_cache,
-            skip_maven_scan=maven_rate_limited,
-            trivy_only=args.trivy_only,
-        )
-        results.append(result)
+    try:
+        for i, (owner, repo) in enumerate(repos, start=1):
+            print(f"[{i}/{len(repos)}] {owner}/{repo}")
+            result = audit_repo(
+                owner, repo,
+                use_cache=not args.no_cache,
+                skip_maven_scan=maven_rate_limited,
+                trivy_only=args.trivy_only,
+            )
+            results.append(result)
 
-        # Detect if Maven rate limit was hit (triggers fast-fail for remaining Maven repos)
-        vuln = result.get("vulnerabilities", {})
-        if (vuln.get("scanner_used") == "osv-scanner"
-                and vuln.get("coverage") == "direct-only"
-                and not maven_rate_limited):
-            # Only set the flag if this was actually a Maven/Gradle repo that fell back
-            pkg_mgrs = set(result.get("package_managers", []))
-            if pkg_mgrs & {"maven", "gradle"}:
-                maven_rate_limited = True
-                print(f"  Maven rate limit hit -- using OSV-Scanner for remaining Maven repos")
+            # Detect if Maven rate limit was hit (triggers fast-fail for remaining Maven repos)
+            vuln = result.get("vulnerabilities", {})
+            if (vuln.get("scanner_used") == "osv-scanner"
+                    and vuln.get("coverage") == "direct-only"
+                    and not maven_rate_limited):
+                # Only set the flag if this was actually a Maven/Gradle repo that fell back
+                pkg_mgrs = set(result.get("package_managers", []))
+                if pkg_mgrs & {"maven", "gradle"}:
+                    maven_rate_limited = True
+                    print(f"  Maven rate limit hit -- using OSV-Scanner for remaining Maven repos")
 
+            print()
+    except KeyboardInterrupt:
+        skipped = len(repos) - len(results)
+        print(f"\n\n  ⚠ Cancelled. {len(results)}/{len(repos)} repos completed, {skipped} skipped.")
         print()
+
+    if not results:
+        print("No results to report.")
+        sys.exit(1)
 
     # Output results
     reporter.print_console_table(results)
