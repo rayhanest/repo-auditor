@@ -284,7 +284,11 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
     result["contributor_openness"] = asdict(api_data["openness"])
 
     # Prefer API languages, fall back to file-based detection
-    result["languages"] = api_data["languages"] if api_data["languages"] else scan_data["file_languages"]
+    if api_data["languages"]:
+        result["languages"] = api_data["languages"]
+    else:
+        print(f"  Note: GitHub API returned no languages — using file extension heuristics.")
+        result["languages"] = scan_data["file_languages"]
 
     # Cache the result (don't cache if there was a scan error)
     if use_cache and not result.get("vulnerabilities", {}).get("scan_error"):

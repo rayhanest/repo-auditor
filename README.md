@@ -8,12 +8,12 @@ Built to answer: **"Which repos are worth contributing CVE fixes to?"**
 
 | Signal | Method |
 |--------|--------|
-| Dependency CVEs (direct + transitive) | Trivy filesystem scan against lockfiles |
+| Dependency CVEs (direct + transitive) | Trivy filesystem scan (OSV-Scanner fallback for Maven rate limits — direct deps only) |
 | Dependency management bots | Commit/PR author analysis for known bot patterns |
 | Package managers | Lockfile and manifest detection |
 | Languages | GitHub API language breakdown |
-| Community activity | Commits, contributors, and issues in last 90 days |
-| External contributor openness | CONTRIBUTING.md, "good first issue" labels, merged external PRs |
+| Community activity | Human commits, contributors, and open issues in last 90 days (bot activity filtered out) |
+| Open to external PRs | Score-based: docs/labels + recently merged external PRs (last 90 days) |
 
 ## Prerequisites
 
@@ -21,6 +21,7 @@ Built to answer: **"Which repos are worth contributing CVE fixes to?"**
 - **git**
 - **[Trivy](https://github.com/aquasecurity/trivy)** — for vulnerability scanning
 - **[GitHub CLI (gh)](https://cli.github.com/)** — authenticated (`gh auth login`)
+- **[OSV-Scanner](https://github.com/google/osv-scanner)** *(optional)* — fallback for Maven/Gradle repos when Trivy hits rate limits
 
 ## Installation
 
