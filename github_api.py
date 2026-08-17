@@ -20,6 +20,14 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
 
+# Known dependency management bot logins — single source of truth used by
+# both detection and responsiveness assessment.
+DEP_BOT_LOGINS = frozenset({
+    "dependabot[bot]", "renovate[bot]", "snyk-bot", "greenkeeper[bot]",
+    "mend-bolt-for-github[bot]", "depfu[bot]", "pyup-bot",
+})
+
+
 @dataclass
 class BotInfo:
     """Bots detected in the repo and how maintainers respond to their PRs."""
@@ -144,10 +152,6 @@ def detect_bots(owner: str, repo: str, commits: list[dict] | None = None,
     info = BotInfo()
     bot_names: set[str] = set()
 
-    # Known dependency management bots
-    dep_bots = {"dependabot[bot]", "renovate[bot]", "snyk-bot", "greenkeeper[bot]",
-                "mend-bolt-for-github[bot]", "depfu[bot]", "pyup-bot"}
-
     # --- Config-based detection ---
     # Ordered by prevalence; short-circuits once a dep bot is found.
     BOT_CONFIG_FILES = [
@@ -188,7 +192,7 @@ def detect_bots(owner: str, repo: str, commits: list[dict] | None = None,
             bot_names.add(login)
 
     info.bots_found = sorted(bot_names)
-    info.has_dependency_bot = bool(bot_names & dep_bots)
+    info.has_dependency_bot = bool(bot_names & DEP_BOT_LOGINS)
 
     # --- Responsiveness: derived from the PR list (no extra API calls) ---
     if info.has_dependency_bot:
@@ -207,10 +211,6 @@ def _assess_bot_pr_responsiveness(info: BotInfo, prs: list[dict]) -> None:
     """
     cutoff = _days_ago_iso(90)
 
-    # Only count PRs from known dependency bots (not github-actions, codecov, etc.)
-    dep_bot_logins = {"dependabot[bot]", "renovate[bot]", "snyk-bot", "greenkeeper[bot]",
-                      "mend-bolt-for-github[bot]", "depfu[bot]", "pyup-bot"}
-
     total_merged = 0
     total_closed = 0
     total_open = 0
@@ -218,7 +218,7 @@ def _assess_bot_pr_responsiveness(info: BotInfo, prs: list[dict]) -> None:
     for pr in prs:
         user = pr.get("user") or {}
         login = user.get("login", "")
-        if login.lower() not in dep_bot_logins:
+        if login.lower() not in DEP_BOT_LOGINS:
             continue
 
         # Only count PRs created within last 90 days
