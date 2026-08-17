@@ -258,31 +258,3 @@ def _increment_severity(summary: VulnSummary, severity: str) -> None:
         summary.low += 1
 
 
-def format_severity_line(summary: VulnSummary) -> str:
-    """
-    Return a short human-readable severity string like '3 CRIT, 5 HIGH, 2 MED'.
-
-    Used for the console table output.
-    """
-    if summary.scan_error:
-        return f"ERROR: {summary.scan_error[:40]}"
-
-    if summary.total == 0:
-        label = "clean"
-    else:
-        parts = []
-        if summary.critical:
-            parts.append(f"{summary.critical} CRIT")
-        if summary.high:
-            parts.append(f"{summary.high} HIGH")
-        if summary.medium:
-            parts.append(f"{summary.medium} MED")
-        if summary.low:
-            parts.append(f"{summary.low} LOW")
-        label = ", ".join(parts)
-
-    # Annotate when coverage is partial (OSV without transitive resolution)
-    if summary.coverage == "direct-only":
-        label += " (direct only)"
-
-    return label

@@ -13,7 +13,6 @@ Why:
 """
 
 import json
-import os
 import time
 from pathlib import Path
 
@@ -93,21 +92,3 @@ def clear_cache() -> int:
             f.unlink()
             count += 1
     return count
-
-
-def list_cached_repos() -> list[str]:
-    """
-    Return a list of repo identifiers currently in the cache.
-
-    Returns:
-        List of strings like "docker/compose".
-    """
-    if not CACHE_DIR.exists():
-        return []
-
-    repos = []
-    for f in CACHE_DIR.iterdir():
-        if f.suffix == ".json" and "__" in f.stem:
-            owner, repo = f.stem.split("__", 1)
-            repos.append(f"{owner}/{repo}")
-    return sorted(repos)
