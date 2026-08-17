@@ -282,19 +282,33 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
         openness.external_prs_merged = external_merged
         openness.total_recent_prs_checked = total_checked
 
-    # Our assessment:
-    # Strong signal: if 3+ external PRs merged in 90 days, the project is
-    # demonstrably open regardless of docs/labels.
-    # Otherwise: open if 2+ of the weaker signals are true.
+    # Our assessment — score-based, so evidence compounds rather than
+    # hiding behind arbitrary thresholds:
+    #
+    #   Signal                          Points
+    #   ──────────────────────────────  ──────
+    #   CONTRIBUTING.md exists           1
+    #   "good first issue" label exists  1
+    #   1-2 external PRs merged (90d)    1
+    #   3+ external PRs merged (90d)     2  (strong demonstrated openness)
+    #
+    # Open = score >= 2.  This means:
+    #   - CONTRIBUTING.md + label alone = open (docs say "come contribute")
+    #   - 1 external PR + either doc/label = open (evidence + invitation)
+    #   - 3+ external PRs alone = open (demonstrated, docs don't matter)
+    #   - Only CONTRIBUTING.md, nothing else = NOT open (docs without action)
+    #   - Only 1 external PR, no docs/label = NOT open (could be a one-off)
+    score = 0
+    if openness.has_contributing_md:
+        score += 1
+    if openness.has_good_first_issue_label:
+        score += 1
     if openness.external_prs_merged >= 3:
-        openness.is_open_to_contributions = True
-    else:
-        signals = [
-            openness.has_contributing_md,
-            openness.has_good_first_issue_label,
-            openness.external_prs_merged > 0,
-        ]
-        openness.is_open_to_contributions = sum(signals) >= 2
+        score += 2
+    elif openness.external_prs_merged > 0:
+        score += 1
+
+    openness.is_open_to_contributions = score >= 2
 
     return openness
 

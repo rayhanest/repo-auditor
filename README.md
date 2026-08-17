@@ -97,6 +97,7 @@ Reports written to:
 | `--no-cache` | Ignore cached results and re-scan everything |
 | `--clear-cache` | Clear all cached results before running |
 | `-o`, `--output` | Custom filename prefix for reports (default: `audit-TIMESTAMP`) |
+| `--trivy-only` | Disable OSV-Scanner fallback — fail the scan instead of silently losing transitive coverage |
 
 ## How caching works
 

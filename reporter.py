@@ -125,19 +125,24 @@ def _format_cves(vuln: dict) -> str:
     if vuln.get("scan_error"):
         return "ERROR"
     if total == 0:
-        return "clean"
+        label = "clean"
+    else:
+        parts = []
+        if vuln.get("critical", 0):
+            parts.append(f"{vuln['critical']} CRIT")
+        if vuln.get("high", 0):
+            parts.append(f"{vuln['high']} HIGH")
+        if vuln.get("medium", 0):
+            parts.append(f"{vuln['medium']} MED")
+        if vuln.get("low", 0):
+            parts.append(f"{vuln['low']} LOW")
+        label = ", ".join(parts) if parts else f"{total} total"
 
-    parts = []
-    if vuln.get("critical", 0):
-        parts.append(f"{vuln['critical']} CRIT")
-    if vuln.get("high", 0):
-        parts.append(f"{vuln['high']} HIGH")
-    if vuln.get("medium", 0):
-        parts.append(f"{vuln['medium']} MED")
-    if vuln.get("low", 0):
-        parts.append(f"{vuln['low']} LOW")
+    # Annotate partial coverage (OSV without transitive resolution)
+    if vuln.get("coverage") == "direct-only":
+        label += " *"
 
-    return ", ".join(parts) if parts else f"{total} total"
+    return label
 
 
 def _format_bots(bots: dict) -> str:

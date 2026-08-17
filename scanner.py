@@ -24,6 +24,7 @@ class VulnSummary:
     findings: list[dict] = field(default_factory=list)
     scan_error: str | None = None
     scanner_used: str = "trivy"  # "trivy" or "osv-scanner"
+    coverage: str = "full"  # "full" (trivy) or "direct-only" (osv without resolve)
 
 
 def _is_maven_rate_limit(stderr: str) -> bool:
@@ -103,7 +104,7 @@ def run_osv_scan(repo_path: str) -> VulnSummary:
     Returns:
         VulnSummary with counts and details of vulnerabilities found.
     """
-    summary = VulnSummary(scanner_used="osv-scanner")
+    summary = VulnSummary(scanner_used="osv-scanner", coverage="direct-only")
 
     cmd = [
         "osv-scanner", "scan", "source",
@@ -267,16 +268,21 @@ def format_severity_line(summary: VulnSummary) -> str:
         return f"ERROR: {summary.scan_error[:40]}"
 
     if summary.total == 0:
-        return "clean"
+        label = "clean"
+    else:
+        parts = []
+        if summary.critical:
+            parts.append(f"{summary.critical} CRIT")
+        if summary.high:
+            parts.append(f"{summary.high} HIGH")
+        if summary.medium:
+            parts.append(f"{summary.medium} MED")
+        if summary.low:
+            parts.append(f"{summary.low} LOW")
+        label = ", ".join(parts)
 
-    parts = []
-    if summary.critical:
-        parts.append(f"{summary.critical} CRIT")
-    if summary.high:
-        parts.append(f"{summary.high} HIGH")
-    if summary.medium:
-        parts.append(f"{summary.medium} MED")
-    if summary.low:
-        parts.append(f"{summary.low} LOW")
+    # Annotate when coverage is partial (OSV without transitive resolution)
+    if summary.coverage == "direct-only":
+        label += " (direct only)"
 
-    return ", ".join(parts)
+    return label

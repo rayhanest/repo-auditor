@@ -127,7 +127,7 @@ def _check_gh_auth() -> bool:
         return False
 
 
-def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: bool = False) -> dict:
+def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: bool = False, trivy_only: bool = False) -> dict:
     """
     Run the full audit pipeline on a single repo.
 
@@ -142,6 +142,8 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
         use_cache: Whether to use cached results.
         skip_maven_scan: If True, skip Trivy scan for Maven/Gradle repos
                          (used after a 429 has already been hit this run).
+        trivy_only: If True, don't fall back to OSV-Scanner on Maven 429 —
+                    report the scan error instead.
 
     Returns a dict with all collected data.
     """
@@ -217,15 +219,22 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
             is_maven = bool(MAVEN_ECOSYSTEMS & set(scan_result["package_managers"]))
 
             if skip_maven_scan and is_maven:
-                print(f"  Running OSV-Scanner (Maven rate limit hit earlier)...")
-                scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
+                if trivy_only:
+                    print(f"  Skipping scan (Maven rate limit hit earlier, --trivy-only set)...")
+                    scan_result["vulnerabilities"].scan_error = "maven_rate_limit (skipped, --trivy-only)"
+                else:
+                    print(f"  Running OSV-Scanner (Maven rate limit hit earlier)...")
+                    scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
             else:
                 print(f"  Running Trivy CVE scan...")
                 scan_result["vulnerabilities"] = scanner.run_trivy_scan(tmp_dir)
 
                 if scan_result["vulnerabilities"].scan_error == "maven_rate_limit":
-                    print(f"  Maven rate limit (429) -- falling back to OSV-Scanner...")
-                    scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
+                    if trivy_only:
+                        print(f"  Maven rate limit (429) -- scan failed (--trivy-only set).")
+                    else:
+                        print(f"  Maven rate limit (429) -- falling back to OSV-Scanner...")
+                        scan_result["vulnerabilities"] = scanner.run_osv_scan(tmp_dir)
 
         finally:
             shutil.rmtree(tmp_dir, ignore_errors=True)
@@ -308,6 +317,11 @@ def main():
         default=None,
         help="Custom output filename prefix (default: auto-generated with timestamp)",
     )
+    parser.add_argument(
+        "--trivy-only",
+        action="store_true",
+        help="Disable OSV-Scanner fallback — fail the scan instead of silently losing transitive coverage",
+    )
 
     args = parser.parse_args()
 
@@ -352,14 +366,20 @@ def main():
             owner, repo,
             use_cache=not args.no_cache,
             skip_maven_scan=maven_rate_limited,
+            trivy_only=args.trivy_only,
         )
         results.append(result)
 
-        # Detect if Maven rate limit was hit (triggers fast-fail for remaining repos)
+        # Detect if Maven rate limit was hit (triggers fast-fail for remaining Maven repos)
         vuln = result.get("vulnerabilities", {})
-        if vuln.get("scanner_used") == "osv-scanner" and not maven_rate_limited:
-            maven_rate_limited = True
-            print(f"  Maven rate limit hit -- using OSV-Scanner for remaining Maven repos")
+        if (vuln.get("scanner_used") == "osv-scanner"
+                and vuln.get("coverage") == "direct-only"
+                and not maven_rate_limited):
+            # Only set the flag if this was actually a Maven/Gradle repo that fell back
+            pkg_mgrs = set(result.get("package_managers", []))
+            if pkg_mgrs & {"maven", "gradle"}:
+                maven_rate_limited = True
+                print(f"  Maven rate limit hit -- using OSV-Scanner for remaining Maven repos")
 
         print()
 
@@ -386,14 +406,15 @@ def main():
     print(f"  JSON: {json_path}")
     print(f"  HTML: {html_path}")
 
-    # Note if any repos used the OSV fallback
+    # Note if any repos used the OSV fallback (partial coverage)
     osv_repos = [
         r["repo"] for r in results
         if r.get("vulnerabilities", {}).get("scanner_used") == "osv-scanner"
     ]
     if osv_repos:
-        print(f"\n  Note: {len(osv_repos)} repo(s) scanned with OSV-Scanner (Maven rate limit).")
-        print(f"  These show declared deps only. Re-run with Trivy later for full transitive coverage.")
+        print(f"\n  ⚠ {len(osv_repos)} repo(s) scanned with OSV-Scanner (Maven rate limit).")
+        print(f"  These report DIRECT dependencies only — transitive CVEs are missing.")
+        print(f"  Re-run later with Trivy for full coverage, or use --trivy-only to fail instead.")
 
 
 if __name__ == "__main__":
