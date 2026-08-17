@@ -9,7 +9,7 @@ Built to answer: **"Which repos are worth contributing CVE fixes to?"**
 | Signal | Method |
 |--------|--------|
 | Dependency CVEs (direct + transitive) | Trivy filesystem scan (OSV-Scanner fallback for Maven rate limits — direct deps only) |
-| Dependency management bots | Commit/PR author analysis for known bot patterns |
+| Dependency management bots | Config file detection + commit/PR author analysis; responsiveness assessment (active/ignored/backlogged) |
 | Package managers | Lockfile and manifest detection |
 | Languages | GitHub API language breakdown |
 | Community activity | Human commits, contributors, and open issues in last 90 days (bot activity filtered out) |

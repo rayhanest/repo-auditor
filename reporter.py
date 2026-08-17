@@ -157,7 +157,18 @@ def _format_bots(bots: dict) -> str:
         name = bot.replace("[bot]", "").replace("-bot", "")
         short_names.append(name)
 
-    return ", ".join(short_names[:3])  # Max 3 for table width
+    label = ", ".join(short_names[:3])  # Max 3 for table width
+
+    # Append responsiveness indicator
+    responsiveness = bots.get("bot_pr_responsiveness", "unknown")
+    if responsiveness == "active":
+        label += " ✓"
+    elif responsiveness == "ignored":
+        label += " ✗"
+    elif responsiveness == "backlogged":
+        label += " …"
+
+    return label
 
 
 def _format_activity(community: dict) -> str:
@@ -465,6 +476,8 @@ def _html_repo_detail(r: dict) -> str:
     languages = ", ".join(r.get("languages", [])) or "unknown"
     bot_names = ", ".join(b.replace("[bot]", "") for b in bots.get("bots_found", [])) or "none"
     has_dep_bot = "Yes" if bots.get("has_dependency_bot") else "No"
+    bot_responsiveness = bots.get("bot_pr_responsiveness", "unknown")
+    bot_prs_detail = f"{bots.get('bot_prs_merged', 0)} merged, {bots.get('bot_prs_closed', 0)} closed, {bots.get('bot_prs_open', 0)} open"
 
     # Community details
     commits_90d = community.get("commits_last_90_days", "N/A")
@@ -536,6 +549,10 @@ def _html_repo_detail(r: dict) -> str:
             <div class="detail-item">
                 <div class="label">Bots Detected</div>
                 <div class="value">{bot_names} (dep bot: {has_dep_bot})</div>
+            </div>
+            <div class="detail-item">
+                <div class="label">Bot PR Responsiveness</div>
+                <div class="value">{bot_responsiveness} ({bot_prs_detail})</div>
             </div>
             <div class="detail-item">
                 <div class="label">Commits (90 days)</div>

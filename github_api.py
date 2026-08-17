@@ -16,9 +16,18 @@ from datetime import datetime, timedelta, timezone
 
 @dataclass
 class BotInfo:
-    """Bots detected in the repo's recent activity."""
+    """Bots detected in the repo and how maintainers respond to their PRs."""
     bots_found: list[str] = field(default_factory=list)
     has_dependency_bot: bool = False
+    # How maintainers handle dependency bot PRs (last 90 days):
+    #   "active"     — mostly merged (>50% of bot PRs)
+    #   "ignored"    — mostly closed without merging (>50% closed)
+    #   "backlogged" — mostly left open (>50% still open)
+    #   "unknown"    — no dependency bot or no bot PRs found
+    bot_pr_responsiveness: str = "unknown"
+    bot_prs_merged: int = 0
+    bot_prs_closed: int = 0
+    bot_prs_open: int = 0
 
 
 @dataclass
@@ -100,18 +109,53 @@ def get_repo_data(owner: str, repo: str) -> dict | None:
 
 def detect_bots(owner: str, repo: str) -> BotInfo:
     """
-    Look at recent commits and PRs for known bot authors.
+    Detect dependency management bots and assess how maintainers respond to them.
 
-    Checks last 100 commits for bot-patterned author names.
+    Detection (two layers):
+      1. Config-based: check for known bot config files (most reliable).
+      2. Activity-based: scan recent commits/PRs for bot logins
+         (catches org-level bots with no per-repo config).
+
+    Responsiveness (for repos with a dependency bot):
+      Searches bot-authored PRs from the last 90 days and classifies
+      maintainer behaviour as active, ignored, or backlogged.
     """
     info = BotInfo()
+    bot_names: set[str] = set()
 
-    # Get recent commits and extract bot authors
+    # --- Config-based detection (reliable, doesn't depend on recency) ---
+    BOT_CONFIG_FILES = {
+        "dependabot[bot]": [
+            ".github/dependabot.yml",
+            ".github/dependabot.yaml",
+        ],
+        "renovate[bot]": [
+            "renovate.json",
+            "renovate.json5",
+            ".github/renovate.json",
+            ".github/renovate.json5",
+            ".renovaterc",
+            ".renovaterc.json",
+        ],
+        "snyk-bot": [
+            ".snyk",
+        ],
+        "mend-bolt-for-github[bot]": [
+            ".whitesource",
+        ],
+    }
+
+    for bot_name, config_paths in BOT_CONFIG_FILES.items():
+        for config_path in config_paths:
+            result = _run_gh([f"/repos/{owner}/{repo}/contents/{config_path}"])
+            if isinstance(result, dict) and "name" in result:
+                bot_names.add(bot_name)
+                break
+
+    # --- Activity-based detection (catches org-level setups without config files) ---
     commits = _run_gh([
         f"/repos/{owner}/{repo}/commits?per_page=100",
     ])
-
-    bot_names: set[str] = set()
 
     if isinstance(commits, list):
         for commit in commits:
@@ -120,7 +164,6 @@ def detect_bots(owner: str, repo: str) -> BotInfo:
             if _is_bot(login):
                 bot_names.add(login)
 
-    # Also check recent PRs for bot authors
     prs = _run_gh([
         f"/repos/{owner}/{repo}/pulls?state=all&per_page=50&sort=updated&direction=desc",
     ])
@@ -133,12 +176,72 @@ def detect_bots(owner: str, repo: str) -> BotInfo:
                 bot_names.add(login)
 
     info.bots_found = sorted(bot_names)
+
     # Known dependency management bots
     dep_bots = {"dependabot[bot]", "renovate[bot]", "snyk-bot", "greenkeeper[bot]",
                 "mend-bolt-for-github[bot]", "depfu[bot]", "pyup-bot"}
     info.has_dependency_bot = bool(bot_names & dep_bots)
 
+    # --- Responsiveness: how do maintainers handle dependency bot PRs? ---
+    if info.has_dependency_bot:
+        _assess_bot_pr_responsiveness(owner, repo, info)
+
     return info
+
+
+def _assess_bot_pr_responsiveness(owner: str, repo: str, info: BotInfo) -> None:
+    """
+    Check how maintainers respond to dependency bot PRs in the last 90 days.
+
+    Uses the search API to find bot-authored PRs and categorises them
+    by outcome: merged, closed (rejected), or still open.
+    """
+    since = _days_ago_iso(90)
+
+    # Search for dependency bot PRs created in last 90 days
+    # Try known bot authors in order of prevalence
+    bot_authors = ["app/dependabot", "app/renovate", "app/snyk-bot"]
+    total_merged = 0
+    total_closed = 0
+    total_open = 0
+
+    for author in bot_authors:
+        search = _run_gh([
+            f"/search/issues?q=repo:{owner}/{repo}+author:{author}+type:pr+created:>{since[:10]}",
+        ])
+        if not isinstance(search, dict) or search.get("total_count", 0) == 0:
+            continue
+
+        # Fetch the actual PR items to check state
+        items = search.get("items", [])
+        for item in items:
+            state = item.get("state", "")
+            pull_request = item.get("pull_request", {})
+            merged_at = pull_request.get("merged_at") if pull_request else None
+
+            if merged_at:
+                total_merged += 1
+            elif state == "closed":
+                total_closed += 1
+            elif state == "open":
+                total_open += 1
+
+    info.bot_prs_merged = total_merged
+    info.bot_prs_closed = total_closed
+    info.bot_prs_open = total_open
+
+    total = total_merged + total_closed + total_open
+    if total == 0:
+        info.bot_pr_responsiveness = "unknown"
+    elif total_merged > total // 2:
+        info.bot_pr_responsiveness = "active"
+    elif total_closed > total // 2:
+        info.bot_pr_responsiveness = "ignored"
+    elif total_open > total // 2:
+        info.bot_pr_responsiveness = "backlogged"
+    else:
+        # Mixed — no clear majority
+        info.bot_pr_responsiveness = "active" if total_merged >= total_closed else "ignored"
 
 
 def get_community_health(owner: str, repo: str, repo_data: dict | None = None) -> CommunityHealth:
