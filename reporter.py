@@ -124,7 +124,9 @@ def _format_cves(vuln: dict) -> str:
     if vuln.get("scan_error"):
         return "ERROR"
     if total == 0:
-        label = "clean"
+        if vuln.get("coverage") == "direct-only":
+            return "0 (direct only) *"
+        return "clean"
     else:
         parts = []
         if vuln.get("critical", 0):
@@ -388,6 +390,8 @@ def _html_summary_table(results: list[dict]) -> str:
         if vuln.get("low", 0):
             cve_parts.append(f'<span class="severity-low">{vuln["low"]} LOW</span>')
         cve_cell = ", ".join(cve_parts) if cve_parts else "clean"
+        if not cve_parts and vuln.get("coverage") == "direct-only":
+            cve_cell = '<span style="color:#666;">0 (direct only)</span>'
 
         # Bots cell — neutral color, with responsiveness as plain text
         bot_list = bots.get("bots_found", [])
