@@ -29,7 +29,7 @@ def print_console_table(results: list[dict]) -> None:
         return
 
     # Column headers
-    headers = ["Repo", "CVEs", "Bots", "Pkg Mgrs", "Languages", "Active", "Ext Contribs"]
+    headers = ["Repo", "CVEs", "Bots", "Pkg Mgrs", "Languages", "Active", "Ext Contribs", "Worth"]
 
     # Build rows
     rows = []
@@ -41,8 +41,9 @@ def print_console_table(results: list[dict]) -> None:
         languages = ", ".join(r.get("languages", [])[:3]) or "unknown"  # Top 3
         active = _format_activity(r.get("community", {}))
         ext_contribs = _format_openness(r.get("contributor_openness", {}))
+        worth = r.get("worth_contributing", "?").upper()
 
-        rows.append([repo, cve_summary, bots, pkg_mgrs, languages, active, ext_contribs])
+        rows.append([repo, cve_summary, bots, pkg_mgrs, languages, active, ext_contribs, worth])
 
     # Calculate column widths
     col_widths = [len(h) for h in headers]
@@ -51,7 +52,7 @@ def print_console_table(results: list[dict]) -> None:
             col_widths[i] = max(col_widths[i], len(cell))
 
     # Cap widths for readability
-    max_widths = [25, 18, 16, 18, 20, 12, 14]
+    max_widths = [25, 18, 16, 18, 20, 12, 14, 7]
     col_widths = [min(w, m) for w, m in zip(col_widths, max_widths)]
 
     # Print table
@@ -318,6 +319,7 @@ def _html_header(timestamp: str, total_repos: int, total_cves: int, repos_open: 
         }}
         .badge-yes {{ background: #c6f6d5; color: #276749; }}
         .badge-no {{ background: #fed7d7; color: #9b2c2c; }}
+        .badge-maybe {{ background: #fefcbf; color: #975a16; }}
         .badge-bot {{ background: #e9d8fd; color: #553c9a; }}
         .repo-detail {{
             background: white;
@@ -405,13 +407,18 @@ def _html_summary_table(results: list[dict]) -> str:
             cve_parts.append(f'<span class="severity-low">{vuln["low"]} LOW</span>')
         cve_cell = ", ".join(cve_parts) if cve_parts else "clean"
 
-        # Bots cell
+        # Bots cell — neutral color, with responsiveness as plain text
         bot_list = bots.get("bots_found", [])
+        responsiveness = bots.get("bot_pr_responsiveness", "unknown")
         if bot_list:
-            bot_cell = " ".join(
+            bot_names = " ".join(
                 f'<span class="badge badge-bot">{b.replace("[bot]", "")}</span>'
                 for b in bot_list[:3]
             )
+            if responsiveness != "unknown":
+                bot_cell = f'{bot_names} <small>({responsiveness})</small>'
+            else:
+                bot_cell = bot_names
         else:
             bot_cell = "none"
 
@@ -421,12 +428,11 @@ def _html_summary_table(results: list[dict]) -> str:
         # Languages (top 3)
         languages = ", ".join(r.get("languages", [])[:3]) or "unknown"
 
-        # Activity
+        # Activity — no color, just text
         activity = community.get("activity_level", "unknown")
-        if activity in ("high", "moderate"):
-            activity_cell = f'<span class="badge badge-yes">{activity}</span>'
-        elif activity == "dormant":
-            activity_cell = f'<span class="badge badge-no">dormant</span>'
+        approximate = community.get("counts_approximate", False)
+        if approximate and activity in ("high", "moderate"):
+            activity_cell = f"{activity}+"
         else:
             activity_cell = activity
 
@@ -436,6 +442,15 @@ def _html_summary_table(results: list[dict]) -> str:
         else:
             open_cell = '<span class="badge badge-no">NO</span>'
 
+        # Worth contributing
+        worth = r.get("worth_contributing", "?")
+        if worth == "yes":
+            worth_cell = '<span class="badge badge-yes">YES</span>'
+        elif worth == "no":
+            worth_cell = '<span class="badge badge-no">NO</span>'
+        else:
+            worth_cell = '<span class="badge badge-maybe">MAYBE</span>'
+
         rows += f"""        <tr>
             <td><a href="https://github.com/{repo}">{repo}</a></td>
             <td>{cve_cell}</td>
@@ -444,6 +459,7 @@ def _html_summary_table(results: list[dict]) -> str:
             <td>{languages}</td>
             <td>{activity_cell}</td>
             <td>{open_cell}</td>
+            <td>{worth_cell}</td>
         </tr>
 """
 
@@ -458,6 +474,7 @@ def _html_summary_table(results: list[dict]) -> str:
                 <th>Languages</th>
                 <th>Activity</th>
                 <th>Open to Contribs</th>
+                <th>Worth Contributing</th>
             </tr>
         </thead>
         <tbody>
@@ -494,7 +511,10 @@ def _html_repo_detail(r: dict) -> str:
     has_contributing = "Yes" if openness.get("has_contributing_md") else "No"
     has_gfi = "Yes" if openness.get("has_good_first_issue_label") else "No"
     ext_prs = openness.get("external_prs_merged", 0)
+    dep_pr_titles = openness.get("dep_pr_titles", [])
     total_prs_checked = openness.get("total_recent_prs_checked", 0)
+    worth = r.get("worth_contributing", "?")
+    triage_reason = r.get("triage_reason", "")
 
     # Vulnerability table
     findings = vuln.get("findings", [])
@@ -589,10 +609,29 @@ def _html_repo_detail(r: dict) -> str:
                 <div class="label">External PRs Merged</div>
                 <div class="value">{ext_prs} of {total_prs_checked} recent PRs</div>
             </div>
-        </div>
+            <div class="detail-item">
+                <div class="label">Worth Contributing</div>
+                <div class="value"><strong>{worth}</strong> — {_html_escape(triage_reason)}</div>
+            </div>
+        </div>{_html_dep_pr_list(dep_pr_titles)}
         {vuln_table}
     </div>
 """
+
+
+def _html_dep_pr_list(titles: list[str]) -> str:
+    """Render matched dependency/CVE PR titles as a list, if any."""
+    if not titles:
+        return ""
+
+    items = "\n".join(f"            <li>{_html_escape(t)}</li>" for t in titles)
+    return f"""
+        <div style="margin-top:0.75rem;">
+            <span style="font-size:0.8rem; color:#666; text-transform:uppercase; letter-spacing:0.05em;">Matched Dep/CVE PRs (merged recently)</span>
+            <ul style="margin-top:0.25rem; padding-left:1.5rem; font-size:0.85rem;">
+{items}
+            </ul>
+        </div>"""
 
 
 def _html_footer() -> str:

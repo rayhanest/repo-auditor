@@ -127,6 +127,68 @@ def _check_gh_auth() -> bool:
         return False
 
 
+def _assess_triage(result: dict) -> dict:
+    """
+    Final triage assessment: is this repo worth contributing CVE fixes to?
+
+    Returns a dict with:
+        "verdict": "yes" | "maybe" | "no"
+        "reason": human-readable explanation of why
+        "factors": dict of all inputs that fed the decision
+    """
+    vuln = result.get("vulnerabilities", {})
+    openness = result.get("contributor_openness", {})
+    bots = result.get("bots", {})
+    community = result.get("community", {})
+
+    factors = {
+        "has_cves": vuln.get("total", 0) > 0,
+        "cve_count": vuln.get("total", 0),
+        "is_archived": openness.get("is_archived", False),
+        "activity_level": community.get("activity_level", "unknown"),
+        "is_open_to_contributions": openness.get("is_open_to_contributions", False),
+        "has_dependency_bot": bots.get("has_dependency_bot", False),
+        "bot_pr_responsiveness": bots.get("bot_pr_responsiveness", "unknown"),
+        "external_prs_merged": openness.get("external_prs_merged", 0),
+        "dep_prs_merged": openness.get("dep_prs_merged", 0),
+    }
+
+    # No CVEs = nothing to fix
+    if not factors["has_cves"]:
+        return {"verdict": "no", "reason": "No CVEs found — nothing to fix", "factors": factors}
+
+    # Archived = dead
+    if factors["is_archived"]:
+        return {"verdict": "no", "reason": "Repo is archived — cannot accept PRs", "factors": factors}
+
+    # Dormant = nobody to review
+    if factors["activity_level"] == "dormant":
+        return {"verdict": "no", "reason": "Repo is dormant — no one to review a PR", "factors": factors}
+
+    # Strongest signal: humans have already merged dep/CVE PRs
+    if factors["dep_prs_merged"] > 0:
+        return {"verdict": "yes", "reason": f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently — project actively maintains dependency health", "factors": factors}
+
+    # Open to contributions + dependency bot not actively handling it
+    if factors["is_open_to_contributions"]:
+        if not factors["has_dependency_bot"] or factors["bot_pr_responsiveness"] in ("ignored", "backlogged", "unknown"):
+            reason = "Open to contributions"
+            if not factors["has_dependency_bot"]:
+                reason += ", no dependency bot — manual bumps needed"
+            elif factors["bot_pr_responsiveness"] == "ignored":
+                reason += ", dependency bot PRs are being ignored"
+            elif factors["bot_pr_responsiveness"] == "backlogged":
+                reason += ", dependency bot PRs are backlogged"
+            else:
+                reason += ", no dependency bot activity detected"
+            return {"verdict": "yes", "reason": reason, "factors": factors}
+        else:
+            return {"verdict": "maybe", "reason": "Open to contributions but dependency bot is actively merging — may already be handled", "factors": factors}
+
+    # Not open but has CVEs — still worth a shot for critical ones
+    return {"verdict": "maybe", "reason": "Not clearly open to contributions, but has CVEs worth fixing", "factors": factors}
+
+
 def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: bool = False, trivy_only: bool = False) -> dict:
     """
     Run the full audit pipeline on a single repo.
@@ -294,6 +356,12 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
     else:
         print(f"  Note: GitHub API returned no languages — using file extension heuristics.")
         result["languages"] = scan_data["file_languages"]
+
+    # --- Final triage assessment: is this repo worth contributing CVE fixes to? ---
+    triage = _assess_triage(result)
+    result["worth_contributing"] = triage["verdict"]
+    result["triage_reason"] = triage["reason"]
+    result["triage_factors"] = triage["factors"]
 
     # Cache the result (don't cache if there was a scan error)
     if use_cache and not result.get("vulnerabilities", {}).get("scan_error"):

@@ -64,6 +64,8 @@ class ContributorOpenness:
     has_contributing_md: bool = False
     has_good_first_issue_label: bool = False
     external_prs_merged: int = 0
+    dep_prs_merged: int = 0  # Human PRs about dependencies/CVEs (any author)
+    dep_pr_titles: list[str] = field(default_factory=list)  # Titles of matched PRs
     total_recent_prs_checked: int = 0
     is_archived: bool = False  # Archived repos are dead — can't accept PRs
     is_open_to_contributions: bool = False  # Our assessment
@@ -400,6 +402,8 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
 
     cutoff = _days_ago_iso(90)
     external_merged = 0
+    dep_prs_merged = 0
+    dep_pr_titles = []
     total_checked = 0
 
     for pr in prs:
@@ -411,7 +415,7 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
         if merged_at < cutoff:
             continue
 
-        # Skip bot-authored PRs — we want human external contributors
+        # Skip bot-authored PRs — we want human activity only
         user = pr.get("user") or {}
         login = user.get("login", "")
         if _is_bot(login):
@@ -419,12 +423,20 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
 
         total_checked += 1
 
-        # author_association tells us if the author is a member
+        # Check if this PR is about dependencies/CVE remediation (any human author)
+        title = pr.get("title", "").lower()
+        if _is_dep_pr_title(title):
+            dep_prs_merged += 1
+            dep_pr_titles.append(pr.get("title", ""))
+
+        # author_association tells us if the author is external
         association = pr.get("author_association", "").upper()
         if association not in ("MEMBER", "OWNER", "COLLABORATOR"):
             external_merged += 1
 
     openness.external_prs_merged = external_merged
+    openness.dep_prs_merged = dep_prs_merged
+    openness.dep_pr_titles = dep_pr_titles[:10]  # Cap at 10 for report size
     openness.total_recent_prs_checked = total_checked
 
     # Score-based assessment:
@@ -485,6 +497,37 @@ def _is_bot(login: str) -> bool:
         or login_lower.endswith("-bot")
         or login_lower in {"dependabot", "renovate", "snyk-bot", "greenkeeper"}
     )
+
+
+def _is_dep_pr_title(title: str) -> bool:
+    """
+    Check if a PR title suggests it's about dependency updates or CVE fixes.
+
+    Matches common patterns like:
+      - "Bump lodash from 4.17.20 to 4.17.21"
+      - "Upgrade spring-core to fix CVE-2024-1234"
+      - "Update dependencies"
+      - "Fix security vulnerability in jackson-databind"
+    """
+    # Strong signals — these words almost always mean dependency work
+    strong = ("cve-", "cve ", "vulnerability", "security fix", "security patch",
+              "dependenc", "bump ", "bumps ")
+    for keyword in strong:
+        if keyword in title:
+            return True
+
+    # Moderate signals — only match if combined with version-like patterns
+    # "upgrade X to Y", "update X from A to B"
+    moderate = ("upgrade", "update")
+    version_hint = ("from", " to ", "v1", "v2", "v3", "v4", "v5",
+                    ".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9")
+    for keyword in moderate:
+        if keyword in title:
+            for hint in version_hint:
+                if hint in title:
+                    return True
+
+    return False
 
 
 def _days_ago_iso(days: int) -> str:
