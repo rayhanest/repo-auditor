@@ -27,9 +27,9 @@ The tool produces a final `yes` / `maybe` / `no` verdict for each repo:
 | Repo is archived | **no** — can't accept PRs |
 | Repo is dormant (0 commits in 90 days) | **no** — no one to review |
 | Dep/CVE PRs closed without merging (none merged) | **no** — project rejects this work |
+| Dep bot actively merging | **maybe** — they have an established workflow, check for duplicates |
 | Dep/CVE PRs merged recently + open to contributions | **yes** — proven they maintain dependency health |
 | Open to contributions + no dep bot or bot ignored/backlogged | **yes** — opportunity for manual bumps |
-| Open to contributions + dep bot actively merging | **maybe** — bot may already handle it |
 | Not open + merges dep PRs internally | **maybe** — they care about deps but haven't invited outsiders |
 | Not clearly open but has CVEs | **maybe** — worth a shot for critical ones |
 

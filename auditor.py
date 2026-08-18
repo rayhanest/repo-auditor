@@ -169,9 +169,16 @@ def _assess_triage(result: dict) -> dict:
     if factors["dep_prs_closed"] > 0 and factors["dep_prs_merged"] == 0:
         return {"verdict": "no", "reason": f"{factors['dep_prs_closed']} dep/CVE PR(s) closed without merging — project rejects this work", "factors": factors}
 
+    # --- Maybe: bot is actively merging (they have an established workflow) ---
+    if factors["has_dependency_bot"] and factors["bot_pr_responsiveness"] == "active":
+        reason = "Dependency bot is actively merging — they have an established dep management workflow"
+        if factors["dep_prs_merged"] > 0:
+            reason = f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently, but dependency bot is actively merging — check for duplicates"
+        return {"verdict": "maybe", "reason": reason, "factors": factors}
+
     # --- Yes signals ---
 
-    # Strongest: dep/CVE PRs merged + open to contributions
+    # Dep/CVE PRs merged + open to contributions
     if factors["dep_prs_merged"] > 0 and factors["is_open_to_contributions"]:
         reason = f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently + open to contributions"
         if factors["dep_prs_closed"] > 0:
@@ -197,10 +204,6 @@ def _assess_triage(result: dict) -> dict:
             return {"verdict": "yes", "reason": reason, "factors": factors}
 
     # --- Maybe signals ---
-
-    # Open but bot is actively merging — might not need manual bumps
-    if factors["is_open_to_contributions"] and factors["bot_pr_responsiveness"] == "active":
-        return {"verdict": "maybe", "reason": "Open to contributions but dependency bot is actively merging — may already be handled", "factors": factors}
 
     # Not open but merges dep PRs internally — they care, but haven't invited outsiders
     if factors["dep_prs_merged"] > 0 and not factors["is_open_to_contributions"]:
