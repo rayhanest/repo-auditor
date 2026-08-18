@@ -29,7 +29,7 @@ def print_console_table(results: list[dict]) -> None:
         return
 
     # Column headers
-    headers = ["Repo", "CVEs", "Bots", "Pkg Mgrs", "Languages", "Active", "Ext Contribs", "Worth"]
+    headers = ["Repo", "CVEs", "Bots", "Pkg Mgrs", "Languages", "Active", "Worth"]
 
     # Build rows
     rows = []
@@ -40,10 +40,9 @@ def print_console_table(results: list[dict]) -> None:
         pkg_mgrs = ", ".join(r.get("package_managers", [])) or "none"
         languages = ", ".join(r.get("languages", [])[:3]) or "unknown"  # Top 3
         active = _format_activity(r.get("community", {}))
-        ext_contribs = _format_openness(r.get("contributor_openness", {}))
         worth = r.get("worth_contributing", "?").upper()
 
-        rows.append([repo, cve_summary, bots, pkg_mgrs, languages, active, ext_contribs, worth])
+        rows.append([repo, cve_summary, bots, pkg_mgrs, languages, active, worth])
 
     # Calculate column widths
     col_widths = [len(h) for h in headers]
@@ -52,7 +51,7 @@ def print_console_table(results: list[dict]) -> None:
             col_widths[i] = max(col_widths[i], len(cell))
 
     # Cap widths for readability
-    max_widths = [25, 18, 16, 18, 20, 12, 14, 7]
+    max_widths = [25, 18, 16, 18, 20, 12, 7]
     col_widths = [min(w, m) for w, m in zip(col_widths, max_widths)]
 
     # Print table
@@ -78,9 +77,8 @@ def print_console_table(results: list[dict]) -> None:
     print()
 
     # Print summary line
-    total_cves = sum(r.get("vulnerabilities", {}).get("total", 0) for r in results)
-    open_repos = sum(1 for r in results if r.get("contributor_openness", {}).get("is_open_to_contributions"))
-    print(f"  Summary: {len(results)} repos scanned, {total_cves} total CVEs, {open_repos} open to contributions")
+    repos_worth = sum(1 for r in results if r.get("worth_contributing") == "yes")
+    print(f"  Summary: {len(results)} repos scanned, {repos_worth} worth contributing to")
     print()
 
 
@@ -189,13 +187,6 @@ def _format_activity(community: dict) -> str:
     return "?"
 
 
-def _format_openness(openness: dict) -> str:
-    """Format contributor openness for table display."""
-    if openness.get("is_open_to_contributions"):
-        return "YES"
-    return "NO"
-
-
 def write_html_report(results: list[dict], output_path: str = "audit-report.html") -> str:
     """
     Write a styled HTML report from the audit results.
@@ -211,12 +202,10 @@ def write_html_report(results: list[dict], output_path: str = "audit-report.html
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Build summary stats
-    total_cves = sum(r.get("vulnerabilities", {}).get("total", 0) for r in results)
-    repos_with_cves = sum(1 for r in results if r.get("vulnerabilities", {}).get("total", 0) > 0)
-    repos_open = sum(1 for r in results if r.get("contributor_openness", {}).get("is_open_to_contributions"))
+    repos_worth = sum(1 for r in results if r.get("worth_contributing") == "yes")
 
     # Build the HTML
-    html_parts = [_html_header(timestamp, len(results), total_cves, repos_open)]
+    html_parts = [_html_header(timestamp, len(results), repos_worth)]
 
     # Summary table
     html_parts.append(_html_summary_table(results))
@@ -231,7 +220,7 @@ def write_html_report(results: list[dict], output_path: str = "audit-report.html
     return str(path)
 
 
-def _html_header(timestamp: str, total_repos: int, total_cves: int, repos_open: int) -> str:
+def _html_header(timestamp: str, total_repos: int, repos_worth: int) -> str:
     """Generate the HTML header with embedded CSS."""
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -374,12 +363,8 @@ def _html_header(timestamp: str, total_repos: int, total_cves: int, repos_open: 
             <div class="label">Repos Scanned</div>
         </div>
         <div class="stat-card">
-            <div class="number">{total_cves}</div>
-            <div class="label">Total CVEs Found</div>
-        </div>
-        <div class="stat-card">
-            <div class="number">{repos_open}</div>
-            <div class="label">Open to Contributions</div>
+            <div class="number">{repos_worth}</div>
+            <div class="label">Worth Contributing</div>
         </div>
     </div>
 """
@@ -436,12 +421,6 @@ def _html_summary_table(results: list[dict]) -> str:
         else:
             activity_cell = activity
 
-        # Openness
-        if openness.get("is_open_to_contributions"):
-            open_cell = '<span class="badge badge-yes">YES</span>'
-        else:
-            open_cell = '<span class="badge badge-no">NO</span>'
-
         # Worth contributing
         worth = r.get("worth_contributing", "?")
         if worth == "yes":
@@ -458,7 +437,6 @@ def _html_summary_table(results: list[dict]) -> str:
             <td>{pkg_mgrs}</td>
             <td>{languages}</td>
             <td>{activity_cell}</td>
-            <td>{open_cell}</td>
             <td>{worth_cell}</td>
         </tr>
 """
@@ -473,7 +451,6 @@ def _html_summary_table(results: list[dict]) -> str:
                 <th>Package Managers</th>
                 <th>Languages</th>
                 <th>Activity</th>
-                <th>Open to Contribs</th>
                 <th>Worth Contributing</th>
             </tr>
         </thead>
