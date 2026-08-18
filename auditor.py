@@ -261,29 +261,20 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
 
     def _run_api_track():
         """Run all GitHub API queries, sharing fetched data to minimise API calls."""
-        # Phase 1: Fetch shared data (sequential — these are the building blocks)
         repo_data = github_api.get_repo_data(owner, repo)
         commits = github_api.get_recent_commits(owner, repo)
         prs = github_api.get_recent_prs(owner, repo)
 
-        # Phase 2: Run analysis functions in parallel (all read-only on shared data)
-        with ThreadPoolExecutor(max_workers=4) as api_pool:
-            future_bots = api_pool.submit(
-                github_api.detect_bots, owner, repo, commits, prs
-            )
-            future_community = api_pool.submit(
-                github_api.get_community_health, owner, repo, repo_data, commits
-            )
-            future_openness = api_pool.submit(
-                github_api.get_contributor_openness, owner, repo, repo_data, prs
-            )
-            future_languages = api_pool.submit(github_api.get_languages, owner, repo)
+        bots = github_api.detect_bots(owner, repo, commits, prs)
+        community = github_api.get_community_health(owner, repo, repo_data, commits)
+        openness = github_api.get_contributor_openness(owner, repo, repo_data, prs)
+        languages = github_api.get_languages(owner, repo)
 
         return {
-            "bots": future_bots.result(),
-            "community": future_community.result(),
-            "openness": future_openness.result(),
-            "languages": future_languages.result(),
+            "bots": bots,
+            "community": community,
+            "openness": openness,
+            "languages": languages,
         }
 
     def _run_scan_track():
