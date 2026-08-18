@@ -242,9 +242,6 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
             cached["worth_contributing"] = triage["verdict"]
             cached["triage_reason"] = triage["reason"]
             cached["triage_factors"] = triage["factors"]
-            # Recompute fixability summary
-            findings = cached.get("vulnerabilities", {}).get("findings", [])
-            cached["fixability"] = scanner.analyse_fixability(findings)
             return cached
 
     result = {
@@ -391,10 +388,6 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
     result["worth_contributing"] = triage["verdict"]
     result["triage_reason"] = triage["reason"]
     result["triage_factors"] = triage["factors"]
-
-    # --- Fixability summary: where's the low-hanging fruit? ---
-    findings = result.get("vulnerabilities", {}).get("findings", [])
-    result["fixability"] = scanner.analyse_fixability(findings)
 
     # Cache the result (don't cache if there was a scan error)
     if use_cache and not result.get("vulnerabilities", {}).get("scan_error"):

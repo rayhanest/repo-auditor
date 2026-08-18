@@ -347,9 +347,6 @@ def _html_header(timestamp: str, total_repos: int, repos_worth: int) -> str:
             font-size: 0.95rem;
             margin-top: 0.25rem;
         }}
-        .vuln-table {{ margin-top: 1rem; }}
-        .vuln-table th {{ font-size: 0.75rem; }}
-        .vuln-table td {{ font-size: 0.85rem; }}
     </style>
 </head>
 <body>
@@ -476,6 +473,18 @@ def _html_repo_detail(r: dict) -> str:
     bot_responsiveness = bots.get("bot_pr_responsiveness", "unknown")
     bot_prs_detail = f"{bots.get('bot_prs_merged', 0)} merged, {bots.get('bot_prs_closed', 0)} closed, {bots.get('bot_prs_open', 0)} open"
 
+    # CVE severity summary
+    cve_parts = []
+    if vuln.get("critical", 0):
+        cve_parts.append(f'<span class="severity-crit">{vuln["critical"]} CRIT</span>')
+    if vuln.get("high", 0):
+        cve_parts.append(f'<span class="severity-high">{vuln["high"]} HIGH</span>')
+    if vuln.get("medium", 0):
+        cve_parts.append(f'<span class="severity-med">{vuln["medium"]} MED</span>')
+    if vuln.get("low", 0):
+        cve_parts.append(f'<span class="severity-low">{vuln["low"]} LOW</span>')
+    cve_summary = ", ".join(cve_parts) if cve_parts else "clean"
+
     # Community details
     commits_90d = community.get("commits_last_90_days", "N/A")
     contributors_90d = community.get("contributors_last_90_days", "N/A")
@@ -493,54 +502,16 @@ def _html_repo_detail(r: dict) -> str:
     worth = r.get("worth_contributing", "?")
     triage_reason = r.get("triage_reason", "")
 
-    # Vulnerability table
-    findings = vuln.get("findings", [])
-    vuln_table = ""
-    if findings:
-        vuln_rows = ""
-        for f in findings[:20]:  # Cap at 20 for readability
-            sev = f.get("severity", "UNKNOWN")
-            sev_class = {
-                "CRITICAL": "severity-crit",
-                "HIGH": "severity-high",
-                "MEDIUM": "severity-med",
-                "LOW": "severity-low",
-            }.get(sev, "")
-
-            vuln_rows += f"""            <tr>
-                <td><span class="{sev_class}">{sev}</span></td>
-                <td>{_html_escape(f.get("id", "N/A"))}</td>
-                <td>{_html_escape(f.get("package", "unknown"))}</td>
-                <td>{_html_escape(f.get("installed_version", "N/A"))}</td>
-                <td>{_html_escape(f.get("fixed_version", "N/A"))}</td>
-            </tr>
-"""
-        remaining = len(findings) - 20
-        if remaining > 0:
-            vuln_rows += f'            <tr><td colspan="5" style="text-align:center; color:#666;">...and {remaining} more</td></tr>\n'
-
-        vuln_table = f"""
-        <h3 style="font-size:1rem; margin-top:1.5rem; margin-bottom:0.5rem;">Vulnerabilities ({vuln.get("total", 0)} total)</h3>
-        <table class="vuln-table">
-            <thead>
-                <tr>
-                    <th>Severity</th>
-                    <th>CVE ID</th>
-                    <th>Package</th>
-                    <th>Installed</th>
-                    <th>Fixed</th>
-                </tr>
-            </thead>
-            <tbody>
-{vuln_rows}            </tbody>
-        </table>"""
-
     return f"""    <div class="repo-detail">
         <h2><a href="https://github.com/{repo}">{repo}</a></h2>
         <div class="detail-grid">
             <div class="detail-item">
                 <div class="label">Package Managers</div>
                 <div class="value">{pkg_mgrs}</div>
+            </div>
+            <div class="detail-item">
+                <div class="label">CVEs</div>
+                <div class="value">{cve_summary}</div>
             </div>
             <div class="detail-item">
                 <div class="label">Languages</div>
@@ -591,89 +562,8 @@ def _html_repo_detail(r: dict) -> str:
                 <div class="value"><strong>{worth}</strong> — {_html_escape(triage_reason)}</div>
             </div>
         </div>{_html_dep_pr_list(dep_pr_titles)}
-        {_html_fixability_summary(r.get("fixability", {}))}
-        {vuln_table}
     </div>
 """
-
-
-def _html_fixability_summary(fixability: dict) -> str:
-    """Render the fixability summary as an HTML section."""
-    if not fixability or fixability.get("fixable", 0) == 0 and fixability.get("unfixable", 0) == 0:
-        return ""
-
-    fixable = fixability.get("fixable", 0)
-    unfixable = fixability.get("unfixable", 0)
-    patch = fixability.get("patch_bumps", 0)
-    minor = fixability.get("minor_bumps", 0)
-    major = fixability.get("major_bumps", 0)
-    unknown = fixability.get("unknown_bumps", 0)
-    by_sev = fixability.get("fixable_by_severity", {})
-    best = fixability.get("best_upgrades", [])
-
-    # Bump type breakdown
-    bump_parts = []
-    if patch:
-        bump_parts.append(f"{patch} patch")
-    if minor:
-        bump_parts.append(f"{minor} minor")
-    if major:
-        bump_parts.append(f"{major} major")
-    if unknown:
-        bump_parts.append(f"{unknown} unknown")
-    breakdown = ", ".join(bump_parts) if bump_parts else "none"
-
-    # Severity breakdown
-    sev_parts = []
-    if by_sev.get("CRITICAL", 0):
-        sev_parts.append(f'<span class="severity-crit">{by_sev["CRITICAL"]} CRIT</span>')
-    if by_sev.get("HIGH", 0):
-        sev_parts.append(f'<span class="severity-high">{by_sev["HIGH"]} HIGH</span>')
-    if by_sev.get("MEDIUM", 0):
-        sev_parts.append(f'<span class="severity-med">{by_sev["MEDIUM"]} MED</span>')
-    if by_sev.get("LOW", 0):
-        sev_parts.append(f'<span class="severity-low">{by_sev["LOW"]} LOW</span>')
-    sev_breakdown = ", ".join(sev_parts) if sev_parts else ""
-
-    # Best upgrades list
-    upgrades_html = ""
-    if best:
-        rows = ""
-        for u in best:
-            sevs = ", ".join(u.get("severities", []))
-            rows += f"""            <tr>
-                <td>{_html_escape(u.get("package", ""))}</td>
-                <td>{_html_escape(u.get("from", ""))} → {_html_escape(u.get("to", ""))}</td>
-                <td>{u.get("bump_type", "?")}</td>
-                <td>{u.get("cves_fixed", 0)}</td>
-                <td>{sevs}</td>
-            </tr>
-"""
-        upgrades_html = f"""
-        <table class="vuln-table" style="margin-top:0.5rem;">
-            <thead>
-                <tr>
-                    <th>Package</th>
-                    <th>Upgrade</th>
-                    <th>Bump</th>
-                    <th>CVEs Fixed</th>
-                    <th>Severities</th>
-                </tr>
-            </thead>
-            <tbody>
-{rows}            </tbody>
-        </table>"""
-
-    return f"""
-        <div style="margin-top:1.25rem;">
-            <h3 style="font-size:1rem; margin-bottom:0.5rem;">Fixability Summary</h3>
-            <p style="font-size:0.9rem; margin-bottom:0.25rem;">
-                <strong>{fixable}</strong> fixable ({breakdown}) · <strong>{unfixable}</strong> no fix available
-            </p>
-            <p style="font-size:0.9rem; margin-bottom:0.5rem;">
-                Fixable by severity: {sev_breakdown if sev_breakdown else "none"}
-            </p>{upgrades_html}
-        </div>"""
 
 
 def _html_dep_pr_list(titles: list[str]) -> str:
