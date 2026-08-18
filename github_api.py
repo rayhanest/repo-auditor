@@ -53,7 +53,6 @@ class CommunityHealth:
     contributors_last_90_days: int = 0
     has_security_md: bool = False
     has_code_of_conduct: bool = False
-    is_active: bool = False  # True if commits in last 90 days > 0
     activity_level: str = "unknown"  # "dormant", "low", "moderate", "high"
     counts_approximate: bool = False  # True when any count hit a pagination cap
 
@@ -198,39 +197,49 @@ def detect_bots(owner: str, repo: str, commits: list[dict] | None = None,
     info.bots_found = sorted(bot_names)
     info.has_dependency_bot = bool(bot_names & DEP_BOT_LOGINS)
 
-    # --- Responsiveness: derived from the PR list (no extra API calls) ---
+    # --- Responsiveness: targeted fetch for accurate bot PR history ---
     if info.has_dependency_bot:
-        _assess_bot_pr_responsiveness(info, prs)
+        _assess_bot_pr_responsiveness(owner, repo, info)
 
     return info
 
 
-def _assess_bot_pr_responsiveness(info: BotInfo, prs: list[dict]) -> None:
+def _assess_bot_pr_responsiveness(owner: str, repo: str, info: BotInfo) -> None:
     """
     Assess how maintainers respond to dependency bot PRs.
 
-    Uses the already-fetched PR list — filters for dependency-bot-authored PRs
-    created in the last 90 days and categorises by outcome.
-    Zero additional API calls.
+    Makes one targeted API call to fetch bot-authored PRs directly,
+    avoiding the 100-PR window bias on very active repos.
     """
-    cutoff = _days_ago_iso(90)
+    # Determine which bot to query
+    bot_creator = None
+    for bot in info.bots_found:
+        if bot in DEP_BOT_LOGINS:
+            # Map to GitHub's creator filter format
+            bot_creator = bot.replace("[bot]", "%5Bbot%5D")
+            break
 
+    if not bot_creator:
+        return
+
+    # Fetch recent bot PRs (all states) — one targeted call
+    bot_prs = _run_gh([
+        f"/repos/{owner}/{repo}/pulls?state=all&creator={bot_creator}&sort=created&direction=desc&per_page=30",
+    ])
+
+    if not isinstance(bot_prs, list) or not bot_prs:
+        return
+
+    cutoff = _days_ago_iso(90)
     total_merged = 0
     total_closed = 0
     total_open = 0
 
-    for pr in prs:
-        user = pr.get("user") or {}
-        login = user.get("login", "")
-        if login.lower() not in DEP_BOT_LOGINS:
-            continue
-
-        # Only count PRs created within last 90 days
+    for pr in bot_prs:
         created_at = pr.get("created_at", "")
         if created_at < cutoff:
             continue
 
-        # Categorise outcome
         merged_at = pr.get("merged_at")
         state = pr.get("state", "")
 
@@ -344,7 +353,6 @@ def get_community_health(owner: str, repo: str, repo_data: dict | None = None,
         )
 
     # --- Activity level ---
-    health.is_active = health.commits_last_90_days > 0
     if health.commits_last_90_days == 0:
         health.activity_level = "dormant"
     elif health.commits_last_90_days < 10:
