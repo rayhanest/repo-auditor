@@ -490,6 +490,7 @@ def _html_repo_detail(r: dict) -> str:
     contributors_90d = community.get("contributors_last_90_days", "N/A")
     open_issues = community.get("open_issues", "N/A")
     open_prs = community.get("open_prs", "N/A")
+    activity_level = community.get("activity_level", "unknown")
     has_security = "Yes" if community.get("has_security_md") else "No"
     has_coc = "Yes" if community.get("has_code_of_conduct") else "No"
 
@@ -536,6 +537,10 @@ def _html_repo_detail(r: dict) -> str:
             <div class="detail-item">
                 <div class="label">Open Issues / PRs</div>
                 <div class="value">{open_issues} / {open_prs}</div>
+            </div>
+            <div class="detail-item">
+                <div class="label">Activity Level</div>
+                <div class="value">{activity_level}</div>
             </div>
             <div class="detail-item">
                 <div class="label">SECURITY.md</div>
