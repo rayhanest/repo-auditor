@@ -151,25 +151,34 @@ def _assess_triage(result: dict) -> dict:
         "bot_pr_responsiveness": bots.get("bot_pr_responsiveness", "unknown"),
         "external_prs_merged": openness.get("external_prs_merged", 0),
         "dep_prs_merged": openness.get("dep_prs_merged", 0),
+        "dep_prs_closed": openness.get("dep_prs_closed", 0),
     }
 
-    # No CVEs = nothing to fix
+    # --- Hard no's ---
+
     if not factors["has_cves"]:
         return {"verdict": "no", "reason": "No CVEs found — nothing to fix", "factors": factors}
 
-    # Archived = dead
     if factors["is_archived"]:
         return {"verdict": "no", "reason": "Repo is archived — cannot accept PRs", "factors": factors}
 
-    # Dormant = nobody to review
     if factors["activity_level"] == "dormant":
         return {"verdict": "no", "reason": "Repo is dormant — no one to review a PR", "factors": factors}
 
-    # Strongest signal: humans have already merged dep/CVE PRs
-    if factors["dep_prs_merged"] > 0:
-        return {"verdict": "yes", "reason": f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently — project actively maintains dependency health", "factors": factors}
+    # Actively closing dep/CVE PRs = they don't want this kind of help
+    if factors["dep_prs_closed"] > 0 and factors["dep_prs_merged"] == 0:
+        return {"verdict": "no", "reason": f"{factors['dep_prs_closed']} dep/CVE PR(s) closed without merging — project rejects this work", "factors": factors}
 
-    # Open to contributions + dependency bot not actively handling it
+    # --- Yes signals ---
+
+    # Strongest: dep/CVE PRs merged + open to contributions
+    if factors["dep_prs_merged"] > 0 and factors["is_open_to_contributions"]:
+        reason = f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently + open to contributions"
+        if factors["activity_level"] == "low":
+            reason += " (note: low activity — reviews may be slow)"
+        return {"verdict": "yes", "reason": reason, "factors": factors}
+
+    # Open + no bot or bot ignored/backlogged
     if factors["is_open_to_contributions"]:
         if not factors["has_dependency_bot"] or factors["bot_pr_responsiveness"] in ("ignored", "backlogged", "unknown"):
             reason = "Open to contributions"
@@ -178,14 +187,24 @@ def _assess_triage(result: dict) -> dict:
             elif factors["bot_pr_responsiveness"] == "ignored":
                 reason += ", dependency bot PRs are being ignored"
             elif factors["bot_pr_responsiveness"] == "backlogged":
-                reason += ", dependency bot PRs are backlogged"
+                reason += ", dependency bot PRs are backlogged — check for duplicates before submitting"
             else:
                 reason += ", no dependency bot activity detected"
+            if factors["activity_level"] == "low":
+                reason += " (note: low activity — reviews may be slow)"
             return {"verdict": "yes", "reason": reason, "factors": factors}
-        else:
-            return {"verdict": "maybe", "reason": "Open to contributions but dependency bot is actively merging — may already be handled", "factors": factors}
 
-    # Not open but has CVEs — still worth a shot for critical ones
+    # --- Maybe signals ---
+
+    # Open but bot is actively merging — might not need manual bumps
+    if factors["is_open_to_contributions"] and factors["bot_pr_responsiveness"] == "active":
+        return {"verdict": "maybe", "reason": "Open to contributions but dependency bot is actively merging — may already be handled", "factors": factors}
+
+    # Not open but merges dep PRs internally — they care, but haven't invited outsiders
+    if factors["dep_prs_merged"] > 0 and not factors["is_open_to_contributions"]:
+        return {"verdict": "maybe", "reason": f"{factors['dep_prs_merged']} dep/CVE PR(s) merged internally — they maintain dep health but haven't shown openness to external help", "factors": factors}
+
+    # Not open, no dep PR signal either way
     return {"verdict": "maybe", "reason": "Not clearly open to contributions, but has CVEs worth fixing", "factors": factors}
 
 

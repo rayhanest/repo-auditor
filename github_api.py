@@ -65,7 +65,8 @@ class ContributorOpenness:
     has_good_first_issue_label: bool = False
     external_prs_merged: int = 0
     dep_prs_merged: int = 0  # Human PRs about dependencies/CVEs (any author)
-    dep_pr_titles: list[str] = field(default_factory=list)  # Titles of matched PRs
+    dep_prs_closed: int = 0  # Dep/CVE PRs closed without merging (signals rejection)
+    dep_pr_titles: list[str] = field(default_factory=list)  # Titles of matched merged PRs
     total_recent_prs_checked: int = 0
     is_archived: bool = False  # Archived repos are dead — can't accept PRs
     is_open_to_contributions: bool = False  # Our assessment
@@ -403,39 +404,48 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
     cutoff = _days_ago_iso(90)
     external_merged = 0
     dep_prs_merged = 0
+    dep_prs_closed = 0
     dep_pr_titles = []
     total_checked = 0
 
     for pr in prs:
-        merged_at = pr.get("merged_at")
-        if not merged_at:
-            continue
-
-        # Only count PRs merged within the last 90 days
-        if merged_at < cutoff:
-            continue
-
         # Skip bot-authored PRs — we want human activity only
         user = pr.get("user") or {}
         login = user.get("login", "")
         if _is_bot(login):
             continue
 
-        total_checked += 1
+        state = pr.get("state", "")
+        merged_at = pr.get("merged_at")
+        created_at = pr.get("created_at", "")
 
-        # Check if this PR is about dependencies/CVE remediation (any human author)
+        # Only count PRs from the last 90 days
+        if created_at and created_at < cutoff:
+            continue
+
+        # Check if this PR is about dependencies/CVE remediation
         title = pr.get("title", "").lower()
-        if _is_dep_pr_title(title):
-            dep_prs_merged += 1
-            dep_pr_titles.append(pr.get("title", ""))
+        is_dep_pr = _is_dep_pr_title(title)
 
-        # author_association tells us if the author is external
-        association = pr.get("author_association", "").upper()
-        if association not in ("MEMBER", "OWNER", "COLLABORATOR"):
-            external_merged += 1
+        if merged_at:
+            total_checked += 1
+
+            if is_dep_pr:
+                dep_prs_merged += 1
+                dep_pr_titles.append(pr.get("title", ""))
+
+            # author_association tells us if the author is external
+            association = pr.get("author_association", "").upper()
+            if association not in ("MEMBER", "OWNER", "COLLABORATOR"):
+                external_merged += 1
+
+        elif state == "closed" and is_dep_pr:
+            # Closed without merging — signals rejection of dep work
+            dep_prs_closed += 1
 
     openness.external_prs_merged = external_merged
     openness.dep_prs_merged = dep_prs_merged
+    openness.dep_prs_closed = dep_prs_closed
     openness.dep_pr_titles = dep_pr_titles[:10]  # Cap at 10 for report size
     openness.total_recent_prs_checked = total_checked
 
