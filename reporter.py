@@ -591,9 +591,89 @@ def _html_repo_detail(r: dict) -> str:
                 <div class="value"><strong>{worth}</strong> — {_html_escape(triage_reason)}</div>
             </div>
         </div>{_html_dep_pr_list(dep_pr_titles)}
+        {_html_fixability_summary(r.get("fixability", {}))}
         {vuln_table}
     </div>
 """
+
+
+def _html_fixability_summary(fixability: dict) -> str:
+    """Render the fixability summary as an HTML section."""
+    if not fixability or fixability.get("fixable", 0) == 0 and fixability.get("unfixable", 0) == 0:
+        return ""
+
+    fixable = fixability.get("fixable", 0)
+    unfixable = fixability.get("unfixable", 0)
+    patch = fixability.get("patch_bumps", 0)
+    minor = fixability.get("minor_bumps", 0)
+    major = fixability.get("major_bumps", 0)
+    unknown = fixability.get("unknown_bumps", 0)
+    by_sev = fixability.get("fixable_by_severity", {})
+    best = fixability.get("best_upgrades", [])
+
+    # Bump type breakdown
+    bump_parts = []
+    if patch:
+        bump_parts.append(f"{patch} patch")
+    if minor:
+        bump_parts.append(f"{minor} minor")
+    if major:
+        bump_parts.append(f"{major} major")
+    if unknown:
+        bump_parts.append(f"{unknown} unknown")
+    breakdown = ", ".join(bump_parts) if bump_parts else "none"
+
+    # Severity breakdown
+    sev_parts = []
+    if by_sev.get("CRITICAL", 0):
+        sev_parts.append(f'<span class="severity-crit">{by_sev["CRITICAL"]} CRIT</span>')
+    if by_sev.get("HIGH", 0):
+        sev_parts.append(f'<span class="severity-high">{by_sev["HIGH"]} HIGH</span>')
+    if by_sev.get("MEDIUM", 0):
+        sev_parts.append(f'<span class="severity-med">{by_sev["MEDIUM"]} MED</span>')
+    if by_sev.get("LOW", 0):
+        sev_parts.append(f'<span class="severity-low">{by_sev["LOW"]} LOW</span>')
+    sev_breakdown = ", ".join(sev_parts) if sev_parts else ""
+
+    # Best upgrades list
+    upgrades_html = ""
+    if best:
+        rows = ""
+        for u in best:
+            sevs = ", ".join(u.get("severities", []))
+            rows += f"""            <tr>
+                <td>{_html_escape(u.get("package", ""))}</td>
+                <td>{_html_escape(u.get("from", ""))} → {_html_escape(u.get("to", ""))}</td>
+                <td>{u.get("bump_type", "?")}</td>
+                <td>{u.get("cves_fixed", 0)}</td>
+                <td>{sevs}</td>
+            </tr>
+"""
+        upgrades_html = f"""
+        <table class="vuln-table" style="margin-top:0.5rem;">
+            <thead>
+                <tr>
+                    <th>Package</th>
+                    <th>Upgrade</th>
+                    <th>Bump</th>
+                    <th>CVEs Fixed</th>
+                    <th>Severities</th>
+                </tr>
+            </thead>
+            <tbody>
+{rows}            </tbody>
+        </table>"""
+
+    return f"""
+        <div style="margin-top:1.25rem;">
+            <h3 style="font-size:1rem; margin-bottom:0.5rem;">Fixability Summary</h3>
+            <p style="font-size:0.9rem; margin-bottom:0.25rem;">
+                <strong>{fixable}</strong> fixable ({breakdown}) · <strong>{unfixable}</strong> no fix available
+            </p>
+            <p style="font-size:0.9rem; margin-bottom:0.5rem;">
+                Fixable by severity: {sev_breakdown if sev_breakdown else "none"}
+            </p>{upgrades_html}
+        </div>"""
 
 
 def _html_dep_pr_list(titles: list[str]) -> str:

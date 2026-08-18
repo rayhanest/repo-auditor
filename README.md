@@ -15,6 +15,7 @@ Built to answer: **"Which repos are worth contributing CVE fixes to?"**
 | Languages | GitHub API language breakdown |
 | Community activity | Human commits, contributors, and open issues in last 90 days (bot activity filtered out) |
 | Open to external PRs | Score-based: docs/labels + recently merged external PRs (last 90 days) |
+| Fixability summary | Per-repo breakdown: fixable vs unfixable CVEs, severity, bump type, best single-PR upgrades |
 | **Worth contributing** | Final triage verdict (yes/maybe/no) combining all signals above |
 
 ## How "worth contributing" is determined
@@ -36,6 +37,7 @@ The tool produces a final `yes` / `maybe` / `no` verdict for each repo:
 Notes are attached when:
 - Community has low activity (reviews may be slow)
 - Bot is backlogged (check for duplicate PRs before submitting)
+- Mixed signals: some dep PRs merged, some closed (review carefully)
 
 ## Prerequisites
 

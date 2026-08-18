@@ -258,3 +258,149 @@ def _increment_severity(summary: VulnSummary, severity: str) -> None:
         summary.low += 1
 
 
+
+def analyse_fixability(findings: list[dict]) -> dict:
+    """
+    Analyse vulnerability findings to produce a fixability summary.
+
+    Groups CVEs by package, classifies upgrades as patch/minor/major,
+    and identifies the best bang-for-buck upgrades (most CVEs per bump).
+
+    Returns a dict with:
+        fixable: count of CVEs with a known fixed version
+        unfixable: count of CVEs with no fix available
+        fixable_by_severity: breakdown of fixable CVEs by severity
+        patch_bumps: count fixable by a patch version bump (x.y.Z)
+        minor_bumps: count fixable by a minor version bump (x.Y.z)
+        major_bumps: count fixable by a major version bump (X.y.z)
+        unknown_bumps: count fixable but version comparison unclear
+        best_upgrades: top upgrades ranked by CVEs fixed per bump (max 5)
+    """
+    if not findings:
+        return {
+            "fixable": 0,
+            "unfixable": 0,
+            "fixable_by_severity": {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0},
+            "patch_bumps": 0,
+            "minor_bumps": 0,
+            "major_bumps": 0,
+            "unknown_bumps": 0,
+            "best_upgrades": [],
+        }
+
+    fixable = 0
+    unfixable = 0
+    fixable_by_severity = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
+    patch_bumps = 0
+    minor_bumps = 0
+    major_bumps = 0
+    unknown_bumps = 0
+
+    # Group by (package, installed_version, fixed_version) to find multi-CVE upgrades
+    upgrade_groups: dict[tuple[str, str, str], list[dict]] = {}
+
+    for f in findings:
+        fixed = f.get("fixed_version", "N/A")
+
+        if not fixed or fixed == "N/A" or fixed == "":
+            unfixable += 1
+            continue
+
+        fixable += 1
+        severity = f.get("severity", "UNKNOWN").upper()
+        if severity in fixable_by_severity:
+            fixable_by_severity[severity] += 1
+
+        installed = f.get("installed_version", "N/A")
+        # Use first listed version when multiple are available
+        fixed_first = fixed.split(",")[0].strip()
+        bump_type = _classify_bump(installed, fixed_first)
+
+        if bump_type == "patch":
+            patch_bumps += 1
+        elif bump_type == "minor":
+            minor_bumps += 1
+        elif bump_type == "major":
+            major_bumps += 1
+        else:
+            unknown_bumps += 1
+
+        # Group for best-upgrade calculation
+        pkg = f.get("package", "unknown")
+        key = (pkg, installed, fixed_first)
+        if key not in upgrade_groups:
+            upgrade_groups[key] = []
+        upgrade_groups[key].append(f)
+
+    # Find best upgrades: most CVEs fixed per single version bump
+    best_upgrades = []
+    for (pkg, installed, fixed), cves in sorted(
+        upgrade_groups.items(), key=lambda x: len(x[1]), reverse=True
+    )[:5]:
+        severities = [c.get("severity", "UNKNOWN") for c in cves]
+        best_upgrades.append({
+            "package": pkg,
+            "from": installed,
+            "to": fixed,
+            "cves_fixed": len(cves),
+            "bump_type": _classify_bump(installed, fixed),
+            "severities": severities,
+        })
+
+    return {
+        "fixable": fixable,
+        "unfixable": unfixable,
+        "fixable_by_severity": fixable_by_severity,
+        "patch_bumps": patch_bumps,
+        "minor_bumps": minor_bumps,
+        "major_bumps": major_bumps,
+        "unknown_bumps": unknown_bumps,
+        "best_upgrades": best_upgrades,
+    }
+
+
+def _classify_bump(installed: str, fixed: str) -> str:
+    """
+    Classify a version bump as patch, minor, or major.
+
+    Compares semver-style versions. Returns 'unknown' if versions
+    can't be parsed.
+    """
+    installed_parts = _parse_version(installed)
+    fixed_parts = _parse_version(fixed)
+
+    if not installed_parts or not fixed_parts:
+        return "unknown"
+
+    if fixed_parts[0] != installed_parts[0]:
+        return "major"
+    elif fixed_parts[1] != installed_parts[1]:
+        return "minor"
+    else:
+        return "patch"
+
+
+def _parse_version(version: str) -> list[int] | None:
+    """
+    Parse a version string into [major, minor, patch].
+
+    Handles formats like: 1.2.3, v1.2.3, 1.2.3-rc1, 1.2
+    When multiple versions are listed (comma-separated), takes the first.
+    Returns None if unparseable.
+    """
+    import re
+    # Handle comma-separated versions (e.g., "5.0.8, 3.0.3, 1.1.17")
+    version = version.split(",")[0].strip()
+    # Strip leading 'v' and anything after a hyphen/plus (pre-release tags)
+    version = version.lstrip("v")
+    version = re.split(r"[-+]", version)[0]
+
+    parts = version.split(".")
+    try:
+        nums = [int(p) for p in parts[:3]]
+        # Pad to 3 parts
+        while len(nums) < 3:
+            nums.append(0)
+        return nums
+    except (ValueError, IndexError):
+        return None
