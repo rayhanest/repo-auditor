@@ -216,6 +216,11 @@ def audit_repo(owner: str, repo: str, use_cache: bool = True, skip_maven_scan: b
         cached = cache.get_cached_result(owner, repo)
         if cached:
             print(f"  [cached] Using cached result for {repo_id}")
+            # Always recompute triage (cheap, and logic may have changed)
+            triage = _assess_triage(cached)
+            cached["worth_contributing"] = triage["verdict"]
+            cached["triage_reason"] = triage["reason"]
+            cached["triage_factors"] = triage["factors"]
             return cached
 
     result = {
