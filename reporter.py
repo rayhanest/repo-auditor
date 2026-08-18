@@ -499,6 +499,7 @@ def _html_repo_detail(r: dict) -> str:
     has_gfi = "Yes" if openness.get("has_good_first_issue_label") else "No"
     ext_prs = openness.get("external_prs_merged", 0)
     dep_pr_titles = openness.get("dep_pr_titles", [])
+    dep_pr_closed_titles = openness.get("dep_pr_closed_titles", [])
     total_prs_checked = openness.get("total_recent_prs_checked", 0)
     worth = r.get("worth_contributing", "?")
     triage_reason = r.get("triage_reason", "")
@@ -566,23 +567,41 @@ def _html_repo_detail(r: dict) -> str:
                 <div class="label">Worth Contributing</div>
                 <div class="value"><strong>{worth}</strong> — {_html_escape(triage_reason)}</div>
             </div>
-        </div>{_html_dep_pr_list(dep_pr_titles)}
+        </div>{_html_dep_pr_list(dep_pr_titles, dep_pr_closed_titles)}
     </div>
 """
 
 
-def _html_dep_pr_list(titles: list[str]) -> str:
-    """Render matched dependency/CVE PR titles as a list, if any."""
-    if not titles:
+def _html_dep_pr_list(merged_titles: list[str], closed_titles: list[str]) -> str:
+    """Render matched dependency/CVE PR titles (merged and closed) as a list."""
+    if not merged_titles and not closed_titles:
         return ""
 
-    items = "\n".join(f"            <li>{_html_escape(t)}</li>" for t in titles)
+    sections = []
+
+    if merged_titles:
+        items = "\n".join(f"            <li>{_html_escape(t)}</li>" for t in merged_titles)
+        sections.append(f"""            <div style="margin-bottom:0.5rem;">
+                <span style="font-size:0.8rem; color:#276749; font-weight:500;">Merged ({len(merged_titles)})</span>
+                <ul style="margin-top:0.25rem; padding-left:1.5rem; font-size:0.85rem;">
+{items}
+                </ul>
+            </div>""")
+
+    if closed_titles:
+        items = "\n".join(f"            <li>{_html_escape(t)}</li>" for t in closed_titles)
+        sections.append(f"""            <div>
+                <span style="font-size:0.8rem; color:#9b2c2c; font-weight:500;">Closed without merging ({len(closed_titles)})</span>
+                <ul style="margin-top:0.25rem; padding-left:1.5rem; font-size:0.85rem;">
+{items}
+                </ul>
+            </div>""")
+
+    content = "\n".join(sections)
     return f"""
         <div style="margin-top:0.75rem;">
-            <span style="font-size:0.8rem; color:#666; text-transform:uppercase; letter-spacing:0.05em;">Matched Dep/CVE PRs (merged recently)</span>
-            <ul style="margin-top:0.25rem; padding-left:1.5rem; font-size:0.85rem;">
-{items}
-            </ul>
+            <span style="font-size:0.8rem; color:#666; text-transform:uppercase; letter-spacing:0.05em;">Dep/CVE PRs (last 90 days)</span>
+{content}
         </div>"""
 
 

@@ -67,6 +67,7 @@ class ContributorOpenness:
     dep_prs_merged: int = 0  # Human PRs about dependencies/CVEs (any author)
     dep_prs_closed: int = 0  # Dep/CVE PRs closed without merging (signals rejection)
     dep_pr_titles: list[str] = field(default_factory=list)  # Titles of matched merged PRs
+    dep_pr_closed_titles: list[str] = field(default_factory=list)  # Titles of closed dep PRs
     total_recent_prs_checked: int = 0
     is_archived: bool = False  # Archived repos are dead — can't accept PRs
     is_open_to_contributions: bool = False  # Our assessment
@@ -406,6 +407,7 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
     dep_prs_merged = 0
     dep_prs_closed = 0
     dep_pr_titles = []
+    dep_pr_closed_titles = []
     total_checked = 0
 
     for pr in prs:
@@ -442,11 +444,13 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
         elif state == "closed" and is_dep_pr:
             # Closed without merging — signals rejection of dep work
             dep_prs_closed += 1
+            dep_pr_closed_titles.append(pr.get("title", ""))
 
     openness.external_prs_merged = external_merged
     openness.dep_prs_merged = dep_prs_merged
     openness.dep_prs_closed = dep_prs_closed
     openness.dep_pr_titles = dep_pr_titles[:10]  # Cap at 10 for report size
+    openness.dep_pr_closed_titles = dep_pr_closed_titles[:10]
     openness.total_recent_prs_checked = total_checked
 
     # Score-based assessment:
