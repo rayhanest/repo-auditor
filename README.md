@@ -27,9 +27,9 @@ The tool produces a final `yes` / `maybe` / `no` verdict for each repo:
 | Repo is archived | **no** — can't accept PRs |
 | Repo is dormant (0 commits in 90 days) | **no** — no one to review |
 | Dep/CVE PRs closed without merging (none merged) | **no** — project rejects this work |
-| Dep bot actively merging | **maybe** — they have an established workflow, check for duplicates |
 | Dep/CVE PRs merged recently + open to contributions | **yes** — proven they maintain dependency health |
 | Open to contributions + no dep bot or bot ignored/backlogged | **yes** — opportunity for manual bumps |
+| Dep bot actively merging | **maybe** — they have an established workflow, check for duplicates |
 | Not open + merges dep PRs internally | **maybe** — they care about deps but haven't invited outsiders |
 | Not clearly open but has CVEs | **maybe** — worth a shot for critical ones |
 
@@ -37,6 +37,8 @@ Notes are attached when:
 - Community has low activity (reviews may be slow)
 - Bot is backlogged (check for duplicate PRs before submitting)
 - Mixed signals: some dep PRs merged, some closed (review carefully)
+
+For the full decision flowchart and edge cases, see [TRIAGE.md](TRIAGE.md).
 
 ## Prerequisites
 
@@ -81,6 +83,7 @@ The tool outputs:
 - A **console table** for quick triage
 - A **JSON report** with full details (individual CVEs, triage reasoning, matched PR titles)
 - An **HTML report** for readable, shareable viewing
+- A **shortlist** of repos worth contributing to (plain text + GitHub links)
 
 All reports are saved to `reports/` with timestamped filenames.
 
@@ -111,6 +114,8 @@ Auditing 2 repos...
 Reports written to:
   JSON: reports/audit-2026-08-18_12-01-20.json
   HTML: reports/audit-2026-08-18_12-01-20.html
+  Worth repos: shortlist/audit-2026-08-18_12-01-20-repos.txt (2 repos)
+  Worth links: shortlist/audit-2026-08-18_12-01-20-links.txt
 ```
 
 ### Console indicators
@@ -145,5 +150,6 @@ repo-auditor/
 ├── cache.py          # File-based scan cache (24hr TTL)
 ├── reporter.py       # Output formatting (console table, JSON, HTML)
 ├── reports/          # Generated reports (timestamped)
+├── shortlist/        # Repos worth contributing to (plain text + GitHub links)
 └── repos.txt         # Your input file
 ```
