@@ -8,6 +8,7 @@ __pycache__/
 
 # Generated reports (local output)
 reports/
+shortlist/
 
 # OS files
 .DS_Store

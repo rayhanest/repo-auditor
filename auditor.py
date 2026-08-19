@@ -166,21 +166,17 @@ def _assess_triage(result: dict) -> dict:
         return {"verdict": "no", "reason": "Repo is dormant — no one to review a PR", "factors": factors}
 
     # Actively closing dep/CVE PRs = they don't want this kind of help
-    if factors["dep_prs_closed"] > 0 and factors["dep_prs_merged"] == 0:
+    # Require 2+ closed to avoid false negatives from author-abandoned PRs
+    if factors["dep_prs_closed"] >= 2 and factors["dep_prs_merged"] == 0:
         return {"verdict": "no", "reason": f"{factors['dep_prs_closed']} dep/CVE PR(s) closed without merging — project rejects this work", "factors": factors}
-
-    # --- Maybe: bot is actively merging (they have an established workflow) ---
-    if factors["has_dependency_bot"] and factors["bot_pr_responsiveness"] == "active":
-        reason = "Dependency bot is actively merging — they have an established dep management workflow"
-        if factors["dep_prs_merged"] > 0:
-            reason = f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently, but dependency bot is actively merging — check for duplicates"
-        return {"verdict": "maybe", "reason": reason, "factors": factors}
 
     # --- Yes signals ---
 
     # Dep/CVE PRs merged + open to contributions
     if factors["dep_prs_merged"] > 0 and factors["is_open_to_contributions"]:
         reason = f"{factors['dep_prs_merged']} dep/CVE PR(s) merged recently + open to contributions"
+        if factors["bot_pr_responsiveness"] == "active":
+            reason += " (note: bot is also active — check for duplicates)"
         if factors["dep_prs_closed"] > 0:
             reason += f" (note: {factors['dep_prs_closed']} also closed — review carefully)"
         if factors["activity_level"] == "low":
@@ -204,6 +200,10 @@ def _assess_triage(result: dict) -> dict:
             return {"verdict": "yes", "reason": reason, "factors": factors}
 
     # --- Maybe signals ---
+
+    # Bot is actively merging and no other positive signal pushed us to YES
+    if factors["has_dependency_bot"] and factors["bot_pr_responsiveness"] == "active":
+        return {"verdict": "maybe", "reason": "Dependency bot is actively merging — they have an established workflow, check for duplicates", "factors": factors}
 
     # Not open but merges dep PRs internally — they care, but haven't invited outsiders
     if factors["dep_prs_merged"] > 0 and not factors["is_open_to_contributions"]:
@@ -508,9 +508,25 @@ def main():
     reporter.write_json_report(results, str(json_path))
     reporter.write_html_report(results, str(html_path))
 
+    # Generate shortlist/ — repos worth contributing to
+    shortlist_dir = Path(__file__).parent / "shortlist"
+    shortlist_dir.mkdir(exist_ok=True)
+
+    worth_repos = [r["repo"] for r in results if r.get("worth_contributing") == "yes"]
+    repos_path = shortlist_dir / f"{base_name}-repos.txt"
+    links_path = shortlist_dir / f"{base_name}-links.txt"
+
+    repos_path.write_text("\n".join(worth_repos) + "\n" if worth_repos else "")
+    links_path.write_text(
+        "\n".join(f"https://github.com/{repo}" for repo in worth_repos) + "\n"
+        if worth_repos else ""
+    )
+
     print(f"Reports written to:")
     print(f"  JSON: {json_path}")
     print(f"  HTML: {html_path}")
+    print(f"  Worth repos: {repos_path} ({len(worth_repos)} repos)")
+    print(f"  Worth links: {links_path}")
 
     # Note if any repos used the OSV fallback (partial coverage)
     osv_repos = [
