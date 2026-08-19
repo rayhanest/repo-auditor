@@ -159,6 +159,10 @@ def _assess_triage(result: dict) -> dict:
     if not factors["has_cves"]:
         return {"verdict": "no", "reason": "No CVEs found — nothing to fix", "factors": factors}
 
+    # Only worth contributing if there's at least one HIGH or CRITICAL
+    if vuln.get("critical", 0) == 0 and vuln.get("high", 0) == 0:
+        return {"verdict": "no", "reason": "No HIGH or CRITICAL CVEs — low priority", "factors": factors}
+
     if factors["is_archived"]:
         return {"verdict": "no", "reason": "Repo is archived — cannot accept PRs", "factors": factors}
 
