@@ -502,9 +502,9 @@ def _html_repo_detail(r: dict) -> str:
     has_contributing = "Yes" if openness.get("has_contributing_md") else "No"
     has_gfi = "Yes" if openness.get("has_good_first_issue_label") else "No"
     ext_prs = openness.get("external_prs_merged", 0)
+    total_prs_checked = openness.get("total_recent_prs_checked", 0)
     dep_pr_titles = openness.get("dep_pr_titles", [])
     dep_pr_closed_titles = openness.get("dep_pr_closed_titles", [])
-    total_prs_checked = openness.get("total_recent_prs_checked", 0)
     worth = r.get("worth_contributing", "?")
     triage_reason = r.get("triage_reason", "")
 
@@ -565,7 +565,7 @@ def _html_repo_detail(r: dict) -> str:
             </div>
             <div class="detail-item">
                 <div class="label">External PRs Merged</div>
-                <div class="value">{ext_prs} of {total_prs_checked} recent PRs</div>
+                <div class="value">{ext_prs} of {total_prs_checked} human merged PRs recently are external</div>
             </div>
             <div class="detail-item">
                 <div class="label">Worth Contributing</div>

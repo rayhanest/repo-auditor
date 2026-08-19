@@ -467,7 +467,9 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
     #   1-2 external PRs merged (90d)    → 1 point
     #   3+ external PRs merged (90d)     → 2 points
     #
-    # Open = score >= 2.
+    # Open = score >= 2 AND at least 1 external PR merged.
+    # Docs/labels without merge evidence are aspirational, not behavioral —
+    # if nobody external has been merged recently, the docs are dead letters.
     score = 0
     if openness.has_contributing_md:
         score += 1
@@ -478,7 +480,7 @@ def get_contributor_openness(owner: str, repo: str, repo_data: dict | None = Non
     elif openness.external_prs_merged > 0:
         score += 1
 
-    openness.is_open_to_contributions = score >= 2
+    openness.is_open_to_contributions = score >= 2 and openness.external_prs_merged > 0
 
     return openness
 
