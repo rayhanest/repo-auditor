@@ -40,6 +40,19 @@ Notes are attached when:
 
 For the full decision flowchart and edge cases, see [TRIAGE.md](TRIAGE.md).
 
+## How community activity is measured
+
+Activity level is based on **human commits to the default branch in the last 90 days** (bot commits are filtered out):
+
+| Human commits (90 days) | Level |
+|--------------------------|-------|
+| 0 | dormant |
+| 1–9 | low |
+| 10–49 | moderate |
+| 50+ | high |
+
+A `+` suffix in the console (e.g., `high+`) means the commit count hit the 100-commit pagination cap — actual activity is higher than reported.
+
 ## Prerequisites
 
 - **Python 3.10+**

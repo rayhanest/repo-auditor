@@ -13,3 +13,7 @@ shortlist/
 # OS files
 .DS_Store
 Thumbs.db
+
+oldshortlist.txt
+repos.txt
+test_repos.txt
